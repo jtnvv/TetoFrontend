@@ -2,9 +2,8 @@ version: '3.8'
 
 services:
   app:
-    container_name: teto-web
+    container_name: tetoapi-web
     build: .
-    command: ["npm", "run", "dev"]
     ports:
       - 3000:3000
     volumes:
