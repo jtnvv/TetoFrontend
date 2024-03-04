@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { onRegistration } from '../api/auth'
 
 const Register = () =>  {
 
@@ -61,7 +61,7 @@ const Register = () =>  {
 
     //Submit al formulario
 
-    const handleSubmit =  (event) => {
+    const handleSubmit =  async (event) => {
         event.preventDefault();
         
         
@@ -79,6 +79,16 @@ const Register = () =>  {
           
           //añadir función de registro aqui, pues no se ha encontrado errores 
           alert("CREADO");
+          try {
+            const { data } = await onRegistration(state)
+      
+            setError('')
+            setSuccess(data.message)
+            setState({ name:'',email: '', password: '' })
+          } catch (error) {
+            setError(error.response.data.errors[0].msg)
+            setSuccess('')
+          }
           
         }else{
         
