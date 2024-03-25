@@ -31,8 +31,6 @@ const Login = () => {
 
     }
 
-    console.log(values)
-
     return (
         <Layout>
             <form onSubmit={(e) => onSubmit(e)} className="container mt-3">
