@@ -1,10 +1,12 @@
-import Navbar from "./navbar"
+import Footer from "./footer"
+import Header from "./header"
 
 const Layout =({children})=>{
     return(
-        <div>
-            <Navbar/>
-            <div className="container">{children}</div>
+        <div className="flex flex-col justify-between h-screen w-screen">
+            <Header />
+            <div className="h-full">{children}</div>
+            <Footer />
         </div>
     )
 }

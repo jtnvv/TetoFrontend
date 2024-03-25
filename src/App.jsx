@@ -1,13 +1,11 @@
-import { useState } from 'react'
-import { Routes, Route, Link, BrowserRouter, Navigate, Outlet } from "react-router-dom";
+import { Routes, Route, BrowserRouter, Navigate, Outlet } from "react-router-dom";
 
 import Home from './pages/home'
 import Login from './pages/login'
 import Dashboard from './pages/dashboard'
-import Register from './Components/Register'
+import Register from './pages/register'
 
 import { useSelector } from 'react-redux'
-import './App.css'
 
 const PrivateRoutes = () => {
   const { isAuth } = useSelector(state => state.auth)
@@ -21,10 +19,6 @@ const RestrictedRoutes = () => {
 
 
 function App() {
-  const [count, setCount] = useState(0)
-
-
-
   return (
     <>
       <BrowserRouter>

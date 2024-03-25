@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { onRegistration } from '../api/auth'
+import BackButton from "./back-button";
 
-const Register = () =>  {
+const RegisterForm = () =>  {
 
     document.body.style = "background: url('../src/assets/bgRegister.png'); background-size: cover;";
 
@@ -63,12 +64,6 @@ const Register = () =>  {
 
     const handleSubmit =  async (event) => {
         event.preventDefault();
-        
-        
-        
-        console.log(errors.email)
-        console.log(errors.name)
-        console.log(errors.password)
 
         //actualizar los errores y validar
         let errorL = validation(state)
@@ -98,42 +93,43 @@ const Register = () =>  {
 
     return (
       
-        <div class="bg-white rounded-lg shadow-lg p-20 max-w-x1 mx-auto">
-          <div class="flex items-center justify-center mb-20 ">
-            <img class="w-20 mx-5 " src="../src/assets/TetoLogo.png" alt='Teto Logo'/>
-            <h1  class="text-5xl font-bold text-center text-gray-700  font-inknut" style={{fontSize:64}} >TETO</h1>
+        <div className="bg-white rounded-lg shadow-lg p-20 max-w-x1 mx-auto">
+          <BackButton />
+          <div className="flex items-center justify-center mb-20 ">
+            <img className="w-20 mx-5 " src="../src/assets/TetoLogo.png" alt='Teto Logo'/>
+            <h1  className="text-5xl font-bold text-center text-gray-700  font-inknut"  >TETO</h1>
           </div>
         
 
-            <form class="space-y-16" onSubmit={handleSubmit}>
+            <form className="space-y-16" onSubmit={handleSubmit}>
 
                 <div>
-                    <label class="block text-gray-700 font-bold mb-2 font-inknut text-left text-lg " style={{fontSize:24}} for="name">
+                    <label className="block text-gray-700 font-bold mb-2 font-inknut text-left text-lg "  htmlFor="name">
                         Nombre
                     </label>
-                    <input class="block w-96 py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300  focus_outline-non" id="name" name="name" onChange={handleInput}
+                    <input className="block w-96 py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300  focus_outline-non" id="name" name="name" onChange={handleInput}
                         type="text"/>
                     {errors.name && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.name}</span>}
                     
                 </div>
                 <div>
-                    <label class="block text-gray-700 font-bold mb-2 font-inknut text-left text-lg" style={{fontSize:24}} for="email">
+                    <label className="block text-gray-700 font-bold mb-2 font-inknut text-left text-lg"  htmlFor="email">
                         Correo Electronico
                     </label>
-                    <input class="block w-96 py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300 apparance-none  focus_outline-non" id="email" name="email" onChange={handleInput}
+                    <input className="block w-96 py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300 apparance-none  focus_outline-non" id="email" name="email" onChange={handleInput}
                         type="email"/>
                     {errors.email && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.email}</span>}
                 </div>
                 <div>
-                    <label class="block text-gray-700 font-bold mb-2 font-inknut text-left text-lg" style={{fontSize:24}} for="password">
+                    <label className="block text-gray-700 font-bold mb-2 font-inknut text-left text-lg"  htmlFor="password">
                         Contraseña
                     </label>
-                    <input class="block w-96 py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300 apparance-none focus_outline-non" id="password" name="password" onChange={handleInput}
+                    <input className="block w-96 py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300 apparance-none focus_outline-non" id="password" name="password" onChange={handleInput}
                         type="password"/>
                     {errors.password && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.password}</span>}
                 </div>
                 <div >
-                    <button class="w-full bg-custom-greyRegister-400 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-lg mt-10">
+                    <button className="w-full bg-brand-2 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-lg mt-10">
                         Registrarse
                     </button>
                 </div>
@@ -143,4 +139,4 @@ const Register = () =>  {
     )
 }
 
-export default Register
+export default RegisterForm
