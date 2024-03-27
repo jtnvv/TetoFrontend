@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { onRegistration } from '../api/auth'
 
 
-const RegisterForm = () =>  {
+const RegisterFormBrand = () =>  {
 
     
 
@@ -95,23 +95,39 @@ const RegisterForm = () =>  {
       
         <div className="bg-white rounded-lg shadow-lg p-20 max-w-x1 mx-auto"  >
           
-          <div className="flex items-center justify-center mb-20 ">
+          <div className="flex items-center justify-center mb-10 ">
             <img className="w-20 mx-5 " src="../src/assets/TetoLogo.png" alt='Teto Logo'/>
             <h1  className="text-5xl font-bold text-center text-gray-700  font-inknut"  >TETO</h1>
           </div>
           
         
 
-            <form className="space-y-16" onSubmit={handleSubmit}>
+            <form className="space-y-10" onSubmit={handleSubmit}>
 
                 <div>
                     <label className="block text-gray-700 font-bold mb-2 font-inknut text-left text-lg "  htmlFor="name">
-                        Nombre
+                        Nombre de la marca
                     </label>
                     <input className="block w-96 py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300  focus_outline-non" id="name" name="name" onChange={handleInput}
                         type="text"/>
                     {errors.name && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.name}</span>}
                     
+                </div>
+                <div>
+                    <label className="block text-gray-700 font-bold mb-2 font-inknut text-left text-lg"  htmlFor="email">
+                        Descripción de tu marca
+                    </label>
+                    <input className="block w-96 py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300 apparance-none  focus_outline-non" id="email" name="email" onChange={handleInput}
+                        type="email"/>
+                    {errors.email && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.email}</span>}
+                </div>
+                <div>
+                    <label className="block text-gray-700 font-bold mb-2 font-inknut text-left text-lg"  htmlFor="email">
+                        Dirección
+                    </label>
+                    <input className="block w-96 py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300 apparance-none  focus_outline-non" id="email" name="email" onChange={handleInput}
+                        type="email"/>
+                    {errors.email && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.email}</span>}
                 </div>
                 <div>
                     <label className="block text-gray-700 font-bold mb-2 font-inknut text-left text-lg"  htmlFor="email">
@@ -140,4 +156,4 @@ const RegisterForm = () =>  {
     )
 }
 
-export default RegisterForm
+export default RegisterFormBrand
