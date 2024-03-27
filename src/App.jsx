@@ -4,6 +4,7 @@ import Home from './pages/home'
 import Login from './pages/login'
 import Dashboard from './pages/dashboard'
 import Register from './pages/register'
+import BrandUser from './pages/brand-user'
 
 import { useSelector } from 'react-redux'
 
@@ -25,7 +26,7 @@ function App() {
         <Routes>
           {/* aqui entra gente de cualquier tipo menos Abcdo, para Abcedo esta .|. */}
           <Route path='/' element={<Home />} />
-
+          <Route path='/brand' element={<BrandUser />} /> {/* perfil de la marca desde usuario */}
           {/* aqui solo hay gente loggeada */}
           <Route element={<PrivateRoutes />}>
             <Route path='/dashboard' element={<Dashboard />} />
