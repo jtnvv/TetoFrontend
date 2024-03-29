@@ -28,7 +28,6 @@ export default function BrandsSearch() {
     // Get current cards
     const indexOfLastCard = currentPage * cardsPerPage;
     const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-    //const currentCards = records.slice(indexOfFirstCard, indexOfLastCard);
     const currentCards = stores.slice(indexOfFirstCard, indexOfLastCard);
 
     // Change page
@@ -42,30 +41,34 @@ export default function BrandsSearch() {
               backgroundSize: 'cover',
               backgroundRepeat: 'no-repeat'}}>
 
-              <h1 className="mt-10 ">MARCA</h1>
+              <h1 className="mt-10 mb-10 ">MARCAS</h1>
+              <div className="mt-3" style={{ width: '1720px', height: '650px' }}>
+                <div className="  grid  xl:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-8 max-w-3x2 ">
 
-              <div className="mt-10  grid xl:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-8 max-w-3x2  ">
+                  {
+                    currentCards.map((val,key)=>{
+                      return (
+                        <div key={val.id}>
+                          <CardBrandsSearch id_brand = {val.id} name_brand = {val.name} description_brand = {val.description} address_brand = {val.city} phone_brand = {val.phone_number} image_brand=""/>
+                        </div>
+                      )
+                    })
+                  }
 
-                {
-                  currentCards.map((val,key)=>{
-                    return (
-                      <div key={val.id}>
-                        <CardBrandsSearch id_brand = {val.id} name_brand = {val.name} description_brand = {val.description} address_brand = {val.city} phone_brand = {val.phone_number} image_brand=""/>
-                      </div>
-                    )
-                  })
-                }
-
+                </div>
               </div>
 
-              <div className="pagination mt-20 ">
+              <div className="pagination mt-10">
                 {Array(Math.ceil(stores.length/ cardsPerPage)).fill().map((_, i) => (
                   <button key={i} onClick={() => paginate(i + 1)} className="mr-1">
                     {i + 1}
                   </button>
                 ))}
               </div>
+
+              
           </div>
+          
           
         
       </Layout>
