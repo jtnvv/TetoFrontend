@@ -8,7 +8,7 @@ export default function Header() {
         </div>
         <div className="flex items-center space-x-4">
           <a href="/" className="text-brand-1 hover:text-gray-300">Inicio</a>
-          <a href="brandsSearch" className="text-brand-1 hover:text-gray-300">Marcas</a>
+          <a href="/brandsSearch" className="text-brand-1 hover:text-gray-300">Marcas</a>
           <a href="#" className="text-brand-1 hover:text-gray-300">Sobre Nosotros</a>
           <button className="flex bg-brand-1 bg-opacity-25 rounded-full pt-2 pb-2 items-center justify-center"><p className="text-xs text-brand-1">Buscar producto por marca, colección</p><img src="../src/assets/searchHeader.png" alt="profile" className="h-5 w-5 ml-2" /></button>
           <a href="/login"><img src="../src/assets/profileHeader.png" alt="profile" className="h-7 w-7 mr-0" /></a>

@@ -28,7 +28,7 @@ function App() {
         <Routes>
           {/* aqui entra gente de cualquier tipo menos Abcdo, para Abcedo esta .|. */}
           <Route path='/' element={<Home />} />
-          <Route path='/brand' element={<BrandUser />} /> {/* perfil de la marca desde usuario */}
+          <Route path='/brand/:idbrand' element={<BrandUser />} /> {/* perfil de la marca desde usuario */}
           <Route path='/brandsSearch' element={<BrandsSearch />} /> {/* vista para ver las marcas disponibles */} 
           {/* aqui solo hay gente loggeada */}
           <Route element={<PrivateRoutes />}>

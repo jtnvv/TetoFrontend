@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
+
 import { fetchItemsByStore } from '../api/item';
 import { fetchStoreById } from '../api/store';
-export default function BrandProfileUser() {
+export default function BrandProfileUser(props) {
+    
+    
     const [products, setProducts] = useState([]);
     const [store, setStore] = useState({});
     const [currentPage, setCurrentPage] = useState(1);
     const [productsPerPage] = useState(6);
-    const store_id = 1; // es 1 porque es el id de la tienda preestablecida con la vista de marcas completas se cambia por la que el usuario seleccione
+    const store_id = props.id_store; // es 1 porque es el id de la tienda preestablecida con la vista de marcas completas se cambia por la que el usuario seleccione
     useEffect(() => {
+        
         fetchStoreById(store_id)
             .then(response => {
                 console.log(response.data);

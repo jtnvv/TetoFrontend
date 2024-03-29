@@ -2,6 +2,7 @@ import CardBrandsSearch from "../Components/card-brands-search";
 import Layout from "../Components/layout"
 import React, { useState, useEffect } from 'react';
 import { fetchStores } from '../api/store'
+import { Link } from "react-router-dom";
 
 export default function BrandsSearch() {
 
@@ -12,15 +13,12 @@ export default function BrandsSearch() {
     const [currentPage, setCurrentPage] = useState(1);
     const [cardsPerPage] = useState(6);
 
-    // Assuming you have an array of records from your database
-    const records = [
-      /* Your records here */
-    ];
+  
     useEffect(() => {
 
       fetchStores()
           .then(response => {
-              console.log(response.data);
+              //console.log(response.data);
               setStores(response.data);
               
           })
@@ -38,7 +36,7 @@ export default function BrandsSearch() {
 
     return (
       <Layout> 
-      
+          
           <div className="flex flex-col justify-start  items-center w-screen h-screen font-inknut" style={{backgroundImage: "url('../src/assets/bgBrandsSearch.png')",
               backgroundPosition: 'center',
               backgroundSize: 'cover',
@@ -46,13 +44,13 @@ export default function BrandsSearch() {
 
               <h1 className="mt-10 ">MARCA</h1>
 
-              <div className="mt-10 grid xl:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-8 max-w-3x2  ">
+              <div className="mt-10  grid xl:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-8 max-w-3x2  ">
 
                 {
                   currentCards.map((val,key)=>{
                     return (
                       <div key={val.id}>
-                        <CardBrandsSearch name_branch = {val.name} description_branch = {val.description} address_branch = {val.city} phone_branch = {val.phone_number} image_branch=""/>
+                        <CardBrandsSearch id_brand = {val.id} name_brand = {val.name} description_brand = {val.description} address_brand = {val.city} phone_brand = {val.phone_number} image_brand=""/>
                       </div>
                     )
                   })
@@ -60,7 +58,7 @@ export default function BrandsSearch() {
 
               </div>
 
-              <div className="pagination mt-10  absolute bottom-0">
+              <div className="pagination mt-20 ">
                 {Array(Math.ceil(stores.length/ cardsPerPage)).fill().map((_, i) => (
                   <button key={i} onClick={() => paginate(i + 1)} className="mr-1">
                     {i + 1}

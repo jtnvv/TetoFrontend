@@ -12,3 +12,11 @@ export async function fetchStores() {
     return await axios.get(`${url}stores`)
     
 }
+
+export async function onRegistrationStore(registrationData) {
+  
+    return await axios.post(
+      `${url}register-store`,
+      registrationData
+    )
+  }
