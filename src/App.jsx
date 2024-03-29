@@ -23,7 +23,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          {/* aqui entra gente de cualquier tipo menos Abcdo, para Abcedo esta .|. */}
+          {/* aqui entra gente de cualquier tipo  */}
           <Route path='/' element={<Home />} />
 
           {/* aqui solo hay gente loggeada */}

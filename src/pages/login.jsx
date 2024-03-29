@@ -34,7 +34,9 @@ const Login = () => {
     }
 
     return (
-        <div className="flex justify-center items-center w-screen h-screen">
+        
+        <div className="flex w-screen h-screen">
+            
             <div className="bg-white rounded-lg shadow-lg p-20 max-w-x1 mx-auto">
                 <BackButton />
                 <div className="flex items-center justify-center mb-20 ">
@@ -42,9 +44,9 @@ const Login = () => {
                     <h1 className="text-5xl font-bold text-center text-gray-700  font-inknut"  >TETO</h1>
                 </div>
                 <form onSubmit={(e) => onSubmit(e)} className="space-y-16">
-                    
+
                     <div>
-                        <label className="block text-gray-700 font-bold mb-2 font-inknut text-left text-lg"  htmlFor='email' >
+                        <label className="block text-gray-700 font-bold mb-2 font-inknut text-left text-lg" htmlFor='email' >
                             Email address
                         </label>
                         <input
@@ -78,12 +80,14 @@ const Login = () => {
                     <div style={{ color: 'red', margin: '10px 0' }}>{error}</div>
 
                     <div >
-                    <button type='submit' className="w-full bg-brand-2 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-lg mt-10">
-                        Siguiente
-                    </button>
+                        <button type='submit' className="w-full bg-brand-2 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-lg mt-10">
+                            Siguiente
+                        </button>
                     </div>
                 </form>
             </div>
+
+
         </div>
 
     )
