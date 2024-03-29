@@ -6,6 +6,7 @@ import Dashboard from './pages/dashboard'
 import Register from './pages/register'
 import RegisterBrand from './pages/register-brand'
 import BrandUser from './pages/brand-user'
+import LoginStore from './pages/login-store'
 
 import { useSelector } from 'react-redux'
 import BrandsSearch from "./pages/brands-search";
@@ -40,6 +41,7 @@ function App() {
             <Route path='/register' element={<Register />} />
             <Route path='/registerBrand' element={<RegisterBrand />} />
             <Route path='/login' element={<Login />} />
+            <Route path='/loginStore' element={<LoginStore />} />
           </Route>
         </Routes>
       </BrowserRouter>
