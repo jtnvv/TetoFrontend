@@ -26,7 +26,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          {/* aqui entra gente de cualquier tipo menos Abcdo, para Abcedo esta .|. */}
+          {/* aqui entra gente de cualquier tipo  */}
           <Route path='/' element={<Home />} />
           <Route path='/brand/:idbrand' element={<BrandUser />} /> {/* perfil de la marca desde usuario */}
           <Route path='/brandsSearch' element={<BrandsSearch />} /> {/* vista para ver las marcas disponibles */} 
