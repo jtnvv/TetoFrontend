@@ -86,7 +86,7 @@ const RegisterFormBrand = () =>  {
         
 
     }
-
+    const [success, setSuccess] = useState()
     //Submit al formulario
 
     const handleSubmit =  async (event) => {
@@ -100,18 +100,21 @@ const RegisterFormBrand = () =>  {
         if(errorL.name === ""  && errorL.password === "" && errorL.email === ""  ){
           
           //añadir función de registro aqui, pues no se ha encontrado errores 
-          
+          event.preventDefault()
           try {
             
             const { data } = await onRegistrationStore(state)
-      
+        
+            alert("EMPRESA CREADA");
             setError('')
             setSuccess(data.message)
-            setState({...state, name:'',email: '', password: '',address:'',description:'',phone:'' })
-            navigate("/login")
-            alert("EMPRESA CREADA");
-          } catch (error) {
-            setError(error.response.data.errors[0].msg)
+           //setState({...state, name:'',email: '', password: '',address:'',description:'',phone:'' })
+            navigate("/loginStore")
+            
+          } catch (err) {
+            //console.log(err.response.data.error)
+            setError(err.response.data.error)
+            alert("EMPRESA NO CREADA: "+ err.response.data.error)
             setSuccess('')
           }
           

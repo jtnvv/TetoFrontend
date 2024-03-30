@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { useDispatch } from 'react-redux'
 import { onLoginStore } from "../api/auth";
+import { authenticateUser } from '../redux/slices/authSlice'
 
 
 const LoginForm = () => {
@@ -36,15 +37,10 @@ const LoginForm = () => {
 
         } catch (err) {
 
-            try{
-                console.log(err.response.data.errors[0].msg)
-                setError(err.response.data.errors[0].msg)
-                alert(err.response.data.errors[0].msg)
-            }catch (err){
-                console.log("Not error found")
-
-            }
-            
+            console.log(err.response.data.errors[0].msg)
+            setError(err.response.data.errors[0].msg)
+            alert(err.response.data.errors[0].msg)
+           
         }
 
     }

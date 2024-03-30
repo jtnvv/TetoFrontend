@@ -13,10 +13,3 @@ export async function fetchStores() {
     
 }
 
-export async function onRegistrationStore(registrationData) {
-  
-    return await axios.post(
-      `${url}register-store`,
-      registrationData
-    )
-  }
