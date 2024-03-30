@@ -35,9 +35,11 @@ const Login = () => {
 
     return (
         
-        <div className="flex w-screen h-screen">
-                <div class="bg-[url('/bgs.png')] w-[500px] h-[500px] bg-cover bg-center"
-                ></div>
+        <div className="flex w-screen h-screen" style={{backgroundImage: "url('../src/assets/bgRegister.png')",
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat'}}>
+                
                 <div className="bg-white rounded-lg shadow-lg p-20 max-w-x1 mx-auto">
                     <BackButton />
                     <div className="flex items-center justify-center mb-20 ">
