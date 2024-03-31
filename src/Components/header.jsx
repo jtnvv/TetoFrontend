@@ -3,7 +3,7 @@ export default function Header() {
     <nav className="bg-brand-6 p-3 font-inknut">
       <div className="mx-auto flex justify-between items-center">
         <div className="flex items-center">
-          <img src="favicon.svg" alt="Logo" className="h-14 w-14 mr-2" />
+          <img src="../public/favicon.svg" alt="Logo" className="h-14 w-14 mr-2" />
           <span className="text-brand-1 font-semibold text-5xl">TETO</span>
         </div>
         <div className="flex items-center space-x-4">
