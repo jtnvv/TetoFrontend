@@ -36,11 +36,11 @@ export default function BrandsSearch() {
     return (
       <Layout> 
           
-          <div className="flex flex-col justify-start  items-center w-screen h-screen font-inknut bg-bgBrandsSearch bg-auto bg-no-repeat bg-center">
+          <div className="flex flex-col justify-start  items-center w-screen h-screen font-inknut bg-bgBrandsSearch bg-no-repeat bg-center bg-cover">
               <div className=" w-max ">
                 <h1 className="mt-10 mb-10 ">MARCAS</h1>
               </div>
-              <div className="mt-3 w-max" >
+              <div className="mt-3 w-max h-3/5" >
                 <div className="  grid  xl:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-8 max-w-3x2 ">
 
                   {
