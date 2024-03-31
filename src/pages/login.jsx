@@ -1,29 +1,27 @@
 import { useState } from "react"
 import{onLogin}from'../api/auth'
-import Layout from '../Components/layout'
 import{useDispatch} from 'react-redux'
 import{authenticateUser} from '../redux/slices/authSlice'
 
 const Login = () => {
+    const dispatch = useDispatch()
+    const [error, setError] = useState(false)
     const [values, setValues] = useState({
         email: '',
         password: ''
     })
-    const [error, setError] = useState(false)
 
-    const onChange = (e) => {
-        setValues({...values, [e.target.name]:e.target.value})
+    const onChange = (event) => {
+        setValues({...values, [event.target.name]:event.target.value})
     }
 
-    const dispatch=useDispatch()
-    const onSubmit = async(e) => {
-        e.preventDefault()
+    const onSubmit = async(event) => {
+        event.preventDefault()
+
         try {
             await onLogin(values)
             dispatch(authenticateUser())
-
             localStorage.setItem('isAuth','true')
-
         } catch (err) {
             console.log(err.response.data.errors[0].msg)
             setError(err.response.data.errors[0].msg)
@@ -32,15 +30,14 @@ const Login = () => {
     }
 
     return (
-        <Layout>
-            <form onSubmit={(e) => onSubmit(e)} className="container mt-3">
+            <form onSubmit={onSubmit} className="container mt-3">
                 <h1>Login</h1>
                 <div className='mb-3'>
                     <label htmlFor='email' className='form-label'>
                         Email address
                     </label>
                     <input
-                        onChange={(e) => onChange(e)}
+                        onChange={onChange}
                         type='email'
                         className='form-control'
                         id='email'
@@ -73,7 +70,6 @@ const Login = () => {
                     Submit
                 </button>
             </form>
-        </Layout>
     )
 }
 export default Login
