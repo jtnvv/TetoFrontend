@@ -18,7 +18,7 @@ const CardBrandsSearch = (props) => {
           </div>
           
           <div className="md:shrink-0">
-            <img className="h-40 w-full object-cover md:h-full md:w-48" src="https://loremflickr.com/g/320/240/team" alt="Imagen de la sucursal" />
+            <img className="h-40 w-full  md:h-full md:w-48" src={props.image_brand} alt="Imagen de la sucursal" />
           </div>
         </div>
       </div>

@@ -49,7 +49,7 @@ export default function BrandsSearch() {
                     currentCards.map((val,key)=>{
                       return (
                         <div key={val.id}>
-                          <CardBrandsSearch id_brand = {val.id} name_brand = {val.name} description_brand = {val.description} address_brand = {val.city} phone_brand = {val.phone_number} image_brand=""/>
+                          <CardBrandsSearch id_brand = {val.id} name_brand = {val.name} description_brand = {val.description} address_brand = {val.city} phone_brand = {val.phone_number} image_brand={val.logo}/>
                         </div>
                       )
                     })
