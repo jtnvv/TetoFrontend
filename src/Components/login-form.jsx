@@ -48,7 +48,7 @@ const LoginForm = () => {
     return (
         <div className="h-screen flex">
         {/* Image Section */}
-        <div className="w-3/5 bg-cover bg-center relative " style={{backgroundImage: `url(../src/assets/imgLoginFormBrand.png)`}}>
+        <div className="w-3/5 bg-cover bg-center relative bg-[url('../src/assets/imgLoginFormBrand.png')]" >
             <div className="absolute bottom-0 left-0 right-0 text-white text-center mb-40">
                 <p>
                     <a href="#" className="underline text-white">Términos y condiciones</a>

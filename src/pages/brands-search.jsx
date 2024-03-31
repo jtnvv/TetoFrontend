@@ -36,14 +36,12 @@ export default function BrandsSearch() {
     return (
       <Layout> 
           
-          <div className="flex flex-col justify-start  items-center w-screen h-screen font-inknut" style={{backgroundImage: "url('../src/assets/bgBrandsSearch.png')",
-              backgroundPosition: 'center',
-              backgroundSize: 'cover',
-              backgroundRepeat: 'no-repeat'}}>
-
-              <h1 className="mt-10 mb-10 ">MARCAS</h1>
-              <div className="mt-3" style={{ width: '1720px', height: '650px' }}>
-                <div className="  grid  xl:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-8 max-w-3x2 ">
+          <div className="flex flex-col justify-start  items-center w-screen h-screen font-inknut bg-bgBrandsSearch">
+              <div className=" w-max ">
+                <h1 className="mt-10 mb-10 ">MARCAS</h1>
+              </div>
+              <div className="mt-3 w-max" >
+                <div className="  grid  xl:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-8 max-w-3x2 ">
 
                   {
                     currentCards.map((val,key)=>{
@@ -56,9 +54,11 @@ export default function BrandsSearch() {
                   }
 
                 </div>
+
+                
               </div>
 
-              <div className="pagination mt-10">
+              <div className="pagination mt-10  w-max">
                 {Array(Math.ceil(stores.length/ cardsPerPage)).fill().map((_, i) => (
                   <button key={i} onClick={() => paginate(i + 1)} className="mr-1">
                     {i + 1}

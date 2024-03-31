@@ -16,6 +16,11 @@ export default {
       },
       fontFamily: {
         'inknut': ['"Inknut Antiqua"', 'serif'],
+      },
+      backgroundImage:{
+        'bgBrandsSearch': "url('./src/assets/bgBrandsSearch.png')",
+        'bgRegisterBrand': "url('./src/assets/bgRegister.png')",
+        'bgRegister': "url('./src/assets/bgRegister.png')"
       }
     },
   },
