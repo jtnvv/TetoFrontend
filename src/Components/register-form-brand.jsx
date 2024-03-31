@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
-
+import { storage } from "../firebase/firebase.js"
+import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage'
+import { v4 } from  'uuid';
 import { onRegistrationStore } from '../api/auth'
 
 
@@ -17,8 +19,13 @@ const RegisterFormBrand = () =>  {
         phone:'',
         email: '',
         password: '',
+        url: ''
+        
     });
     
+    const [imageUpload, setImageUpload] = useState(null)
+    const [imageList, setImageList] = useState([])
+    const imageListRef = ref(storage, "imagesFP/")
     //Errores
     const [errors, setError] = useState({
         
@@ -86,12 +93,31 @@ const RegisterFormBrand = () =>  {
         
 
     }
+    const uploadImage = () => {
+       
+        if(imageUpload== null) return ;
+
+        const imageRef = ref(storage, `imagesFP/${imageUpload.name + v4()}`) //imagenes Foto de perfil
+        uploadBytes(imageRef, imageUpload).then((snapshot)=>{
+            getDownloadURL(snapshot.ref).then((url)=>{
+                setState({
+                    ...state,
+                    url:url
+                })
+                console.log("uploading image")
+            })
+        })
+
+
+    } 
     const [success, setSuccess] = useState()
     //Submit al formulario
 
     const handleSubmit =  async (event) => {
         event.preventDefault();
 
+        //uploading image
+        
         //actualizar los errores y validar
         let errorL = validation(state)
         setError(errorL)
@@ -102,8 +128,10 @@ const RegisterFormBrand = () =>  {
           //añadir función de registro aqui, pues no se ha encontrado errores 
           event.preventDefault()
           try {
-            
+            //subir imagen al servidor
+            uploadImage()
             const { data } = await onRegistrationStore(state)
+
         
             alert("EMPRESA CREADA");
             setError('')
@@ -123,6 +151,8 @@ const RegisterFormBrand = () =>  {
           alert("EMPRESA NO CREADA");
         }
       }
+
+   
 
     return (
       
@@ -185,6 +215,14 @@ const RegisterFormBrand = () =>  {
                     <input className="block w-96 py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300 apparance-none focus_outline-non" id="password" name="password" onChange={handleInput}
                         type="password"/>
                     {errors.password && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.password}</span>}
+                </div>
+                <div>
+                    <label className="block text-gray-700 font-bold mb-1 font-inknut text-left text-lg"  htmlFor="password">
+                        Imagen de la marca
+                    </label>
+                    <input className="mt-4 font-inknut text-sm items-center text-black" id="img" name="imagen" onChange={(event)=>{setImageUpload(event.target.files[0])}}
+                        type="file"/>
+                   
                 </div>
                 <div >
                     <button className="w-full bg-brand-2 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-lg mt-2">
