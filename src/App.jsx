@@ -7,9 +7,12 @@ import Register from './pages/register'
 import RegisterBrand from './pages/register-brand'
 import BrandUser from './pages/brand-user'
 import LoginStore from './pages/login-store'
+import Search from './pages/search'
+import SearchCategory from "./pages/search-category";
 
 import { useSelector } from 'react-redux'
 import BrandsSearch from "./pages/brands-search";
+
 
 const PrivateRoutes = () => {
   const { isAuth } = useSelector(state => state.auth)
@@ -30,7 +33,9 @@ function App() {
           {/* aqui entra gente de cualquier tipo  */}
           <Route path='/' element={<Home />} />
           <Route path='/brand/:idbrand' element={<BrandUser />} /> {/* perfil de la marca desde usuario */}
-          <Route path='/brandsSearch' element={<BrandsSearch />} /> {/* vista para ver las marcas disponibles */} 
+          <Route path='/brandsSearch' element={<BrandsSearch />} /> {/* vista para ver las marcas disponibles */}
+          <Route path='/search' element={<Search />} />
+          <Route path="/category/:category" element={<SearchCategory />} />
           {/* aqui solo hay gente loggeada */}
           <Route element={<PrivateRoutes />}>
             <Route path='/dashboard' element={<Dashboard />} />
