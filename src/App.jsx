@@ -1,11 +1,16 @@
 import { Routes, Route, BrowserRouter, Navigate, Outlet } from "react-router-dom";
-
+import { useSelector } from 'react-redux'
 import Home from './pages/home'
 import Login from './pages/login'
-import Dashboard from './pages/dashboard'
 import Register from './pages/register'
+import RegisterBrand from './pages/register-brand'
+import BrandUser from './pages/brand-user'
+import Search from './pages/search'
+import SearchCategory from "./pages/search-category";
+import RegisterProduct from "./pages/product-register";
+import ErrorPage from "./pages/error-page";
+import BrandsSearch from "./pages/brands-search";
 
-import { useSelector } from 'react-redux'
 
 const PrivateRoutes = () => {
   const { isAuth } = useSelector(state => state.auth)
@@ -14,7 +19,7 @@ const PrivateRoutes = () => {
 
 const RestrictedRoutes = () => {
   const { isAuth } = useSelector(state => state.auth)
-  return <>{!isAuth ? <Outlet /> : <Navigate to='/dashboard' />}</>
+  return <>{!isAuth ? <Outlet /> : <Navigate to='/' />}</>
 }
 
 
@@ -23,24 +28,24 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          {/* aqui entra gente de cualquier tipo  */}
+          {/* <Route path="*" element={<ErrorPage />}/> */}
           <Route path='/' element={<Home />} />
+          <Route path='/brand/:idbrand' element={<BrandUser />} /> {/* perfil de la marca desde usuario */}
+          <Route path='/brandsSearch' element={<BrandsSearch />} /> {/* vista para ver las marcas disponibles */}
+          <Route path='/search' element={<Search />} />
+          <Route path="/category/:category" element={<SearchCategory />} />
 
-          {/* aqui solo hay gente loggeada */}
           <Route element={<PrivateRoutes />}>
-            <Route path='/dashboard' element={<Dashboard />} />
+            <Route path='/product-register' element={<RegisterProduct />} />
           </Route>
 
-          {/* aqui solo gente sin logear */}
           <Route element={<RestrictedRoutes />}>
             <Route path='/register' element={<Register />} />
+            <Route path='/register-brand' element={<RegisterBrand />} />
             <Route path='/login' element={<Login />} />
           </Route>
         </Routes>
       </BrowserRouter>
-
-
-
     </>
   )
 }
