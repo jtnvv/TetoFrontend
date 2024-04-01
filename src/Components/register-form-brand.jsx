@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom'
-import { storage } from "../firebase/firebase.js"
-import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage'
-import { v4 } from  'uuid';
 import { onRegistrationStore } from '../api/auth'
+import { uploadImage as uploader} from "../firebase.js";
 
 
 const RegisterFormBrand = () =>  {
@@ -16,7 +14,7 @@ const RegisterFormBrand = () =>  {
         name: '',
         description:'',
         address:'',
-        phone:'',
+        phone_number:'',
         email: '',
         password: '',
         url: ''
@@ -25,7 +23,6 @@ const RegisterFormBrand = () =>  {
     
     const [imageUpload, setImageUpload] = useState(null)
     const [imageList, setImageList] = useState([])
-    const imageListRef = ref(storage, "imagesFP/")
     //Errores
     const [errors, setError] = useState({
         
@@ -93,22 +90,9 @@ const RegisterFormBrand = () =>  {
         
 
     }
-    const uploadImage = () => {
-       
+    const uploadImage = async () => {
         if(imageUpload== null) return ;
-
-        const imageRef = ref(storage, `imagesFP/${imageUpload.name + v4()}`) //imagenes Foto de perfil
-        uploadBytes(imageRef, imageUpload).then((snapshot)=>{
-            getDownloadURL(snapshot.ref).then((url)=>{
-                setState({
-                    ...state,
-                    url:url
-                })
-                console.log("uploading image")
-            })
-        })
-
-
+        await uploader(imageUpload, "imagesFP/");
     } 
     const [success, setSuccess] = useState()
     //Submit al formulario
@@ -137,7 +121,7 @@ const RegisterFormBrand = () =>  {
             setError('')
             setSuccess(data.message)
            //setState({...state, name:'',email: '', password: '',address:'',description:'',phone:'' })
-            navigate("/loginStore")
+            navigate("/login")
             
           } catch (err) {
             //console.log(err.response.data.error)
