@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import { onLogin } from '../api/auth'
 import Layout from '../Components/layout'
 import { useDispatch } from 'react-redux'
@@ -11,18 +11,18 @@ const Login = () => {
         email: '',
         password: ''
     })
-    const [error, setError] = useState(false)
 
-    const onChange = (e) => {
-        setValues({ ...values, [e.target.name]: e.target.value })
+    const onChange = (event) => {
+        setValues({...values, [event.target.name]:event.target.value})
     }
 
-    const dispatch = useDispatch()
-    const onSubmit = async (e) => {
-        e.preventDefault()
+    const onSubmit = async(event) => {
+        event.preventDefault()
+
         try {
             await onLogin(values)
             dispatch(authenticateUser())
+            localStorage.setItem('isAuth','true')
 
             localStorage.setItem('isAuth', 'true')
 

@@ -13,3 +13,9 @@ export async function fetchStores() {
     
 }
 
+export async function storeItem(itemData) {
+  return await axios.post(
+    `${url}/store-item`,
+    itemData
+  )
+}
