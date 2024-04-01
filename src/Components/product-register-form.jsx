@@ -35,8 +35,12 @@ export default function ProductRegisterForm() {
             <input type="text" placeholder="Nombre" id="colors" name="colors" className={inputStyle} required onChange={onChange}/>
         </div>
         <div className={gropuStyle}>
-            <label htmlFor="stock" className={labelStyle} >Cantidad del lote*:</label>
-            <input type="number" placeholder="Cantidad de artículos" id="stock" name="stock" className={inputStyle} required onChange={onChange}/>
+            <label htmlFor="colors" className={labelStyle} >Tallas*:</label>
+            <input type="text" placeholder="Nombre" id="colors" name="colors" className={inputStyle} required onChange={onChange}/>
+        </div>
+        <div className={gropuStyle}>
+            <label htmlFor="colors" className={labelStyle} >¿De las tallas que elegiste cuales estan disponibles?*:</label>
+            <input type="text" placeholder="Nombre" id="colors" name="colors" className={inputStyle} required onChange={onChange}/>
         </div>
         <div className={gropuStyle}>
             <label htmlFor="price" className={labelStyle} >Precio*:</label>
@@ -45,6 +49,10 @@ export default function ProductRegisterForm() {
         <div className={gropuStyle}>
             <label htmlFor="categories" className={labelStyle} >Categoria(s)*:</label>
             <input type="text" placeholder="Categoria(s) del artículo" id="categories" name="categories" className={inputStyle} required onChange={onChange}/>
+        </div>
+        <div className={gropuStyle}>
+            <label htmlFor="stock" className={labelStyle} >Cantidad del lote*:</label>
+            <input type="number" placeholder="Cantidad de artículos" id="stock" name="stock" className={inputStyle} required onChange={onChange}/>
         </div>
         <div className={gropuStyle}>
             <label htmlFor="image" className={labelStyle} >Imagen del producto*: </label>
