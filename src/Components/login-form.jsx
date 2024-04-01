@@ -9,7 +9,7 @@ import { RecoveryContext } from "../pages/login";
 
 export default function LoginForm (){
     // document.body.style = "background: url('../src/assets/bgRegister.png'); background-size: cover;";
-    const {  setPage, setOTP } = useContext(RecoveryContext);
+    const {  setPage, setOTP, setEmail } = useContext(RecoveryContext);
 
     const [values, setValues] = useState({
         email: '',
@@ -50,6 +50,7 @@ export default function LoginForm (){
                 .then(() => setPage("otp"))
                 .catch(console.log);
             setPage("otp")
+            setEmail(values.email)
           return;
         }
         return alert("Please enter your email");

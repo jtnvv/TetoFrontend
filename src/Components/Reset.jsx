@@ -1,14 +1,13 @@
-import axios from "axios";
+import React from "react";
+import { useState } from "react";
 import { useContext } from "react";
 import { RecoveryContext } from "../pages/login";
-import React, { useState } from "react"
+import axios from "axios";
 
 export default function Reset() {
-
-  const { setPage } = useContext(RecoveryContext);
-
+  const { email, otp, setPage } = useContext(RecoveryContext);
+  console.log(email)
   const [values, setValues] = useState({
-    email: '',
     password: '',
     confirmPassword: '',
   })
@@ -23,7 +22,7 @@ export default function Reset() {
     if (values.password===values.confirmPassword) {
       axios.post("http://localhost:8080/change-password", {
         pass: values.password,
-        email: 'd@f',
+        email: email,
       })
       .then(() => setPage("otp"))
       .catch(console.log);

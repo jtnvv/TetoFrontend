@@ -8,7 +8,7 @@ export default function () {
   const [timerCount, setTimer] = React.useState(60);
   const [OTPinput, setOTPinput] = useState([0, 0, 0, 0]);
   const [disable, setDisable] = useState(true);
-
+  
   function resendOTP() {
     if (disable) return;
     axios
