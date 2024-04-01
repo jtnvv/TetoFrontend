@@ -7,14 +7,17 @@ import OTPInput from "../Components/OTPinput";
 
 export const RecoveryContext = createContext();
 function Login() {
-  const [page, setPage] = useState("login");
+  const [page, setPage] = useState("reset");
   const [email, setEmail] = useState();
   const [otp, setOTP] = useState();
 
   function NavigateComponents() {
     console.log(page)
-    if (page === "login") return <LoginForm />;
-    if (page === "otp") return <OTPInput />;
+    // if (page === "login") return <LoginForm />;
+    // if (page === "otp") return <OTPInput />;
+    // if (page === "reset") return <Reset />;
+    if (page === "login") return <Reset />;
+    if (page === "otp") return <Reset />;
     if (page === "reset") return <Reset />;
 
     return <Recovered />;
