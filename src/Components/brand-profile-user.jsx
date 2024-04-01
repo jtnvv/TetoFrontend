@@ -15,7 +15,6 @@ export default function BrandProfileUser(props) {
 
         fetchStoreById(store_id)
             .then(response => {
-                console.log(response.data);
                 setStore(response.data);
             })
             .catch(error => console.error('Error:', error));
@@ -23,7 +22,6 @@ export default function BrandProfileUser(props) {
     useEffect(() => {
         fetchItemsByStore(store_id)
             .then(response => {
-                // console.log(response.data);
                 setProducts(response.data);
             })
             .catch(error => console.error('Error:', error));

@@ -9,7 +9,6 @@ export default function Search() {
             .then(response => {
                 const categoriesArray = JSON.parse(response.data.categories);
                 setCategories(categoriesArray);
-                console.log(categoriesArray);
             })
     }, []);
     const currentProducts = [

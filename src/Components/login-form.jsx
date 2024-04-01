@@ -8,8 +8,8 @@ import { useContext } from "react";
 import { RecoveryContext } from "../pages/login";
 
 export default function LoginForm (){
-    // document.body.style = "background: url('../src/assets/bgRegister.png'); background-size: cover;";
     const {  setPage, setOTP, setEmail } = useContext(RecoveryContext);
+    const inputStyle = "block w-96 py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300  focus_outline-non outline-none";
 
     const [values, setValues] = useState({
         email: '',
@@ -31,24 +31,21 @@ export default function LoginForm (){
             localStorage.setItem('isAuth', 'true')
 
         } catch (err) {
-            console.log(err.response.data.errors[0].msg)
             setError(err.response.data.errors[0].msg)
         }
 
     }
-    function nagigateToOtp() {
+    async function nagigateToOtp() {
         if (values.email) {
             const OTP = Math.floor(Math.random() * 9000 + 1000);
-            console.log(OTP);
             setOTP(OTP);
-    
-            axios
-                .post("http://localhost:8080/send_recovery_email", {
-                    OTP,
-                    recipient_email: values.email,
-                })
-                .then(() => setPage("otp"))
-                .catch(console.log);
+
+            try {
+                await sendRecoveryEmail({ OTP, recipient_email: values.email, });
+                setPage("otp")
+            } catch (error) {
+                
+            }
             setPage("otp")
             setEmail(values.email)
           return;
@@ -58,14 +55,9 @@ export default function LoginForm (){
 
     return (
 
-        <div className="flex w-screen h-screen" style={{
-            backgroundImage: "url('../src/assets/bgRegister.png')",
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat'
-        }}>
+        <div className="flex justify-end w-screen h-screen bg-[url('/src/assets/bgRegister.png')]">
 
-            <div className="bg-white rounded-lg shadow-lg p-20 max-w-x1 mx-auto">
+            <div className="bg-white rounded-lg shadow-lg p-20 max-w-x1">
                 <BackButton />
                 <div className="flex items-center justify-center mb-20 ">
                     <img className="w-20 mx-5 " src="../src/assets/TetoLogo.png" alt='Teto Logo' />
@@ -80,7 +72,7 @@ export default function LoginForm (){
                         <input
                             onChange={(e) => onChange(e)}
                             type='email'
-                            className="block w-96 py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300  focus_outline-non"
+                            className={inputStyle}
                             id='email'
                             name='email'
                             value={values.email}
@@ -97,7 +89,7 @@ export default function LoginForm (){
                             onChange={(e) => onChange(e)}
                             type='password'
                             value={values.password}
-                            className="block w-96 py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300  focus_outline-non"
+                            className={inputStyle}
                             id='password'
                             name='password'
                             placeholder='Contraseña'

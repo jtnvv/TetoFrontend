@@ -18,7 +18,6 @@ export default function BrandsSearch() {
 
       fetchStores()
           .then(response => {
-              //console.log(response.data);
               setStores(response.data);
               
           })
@@ -36,7 +35,7 @@ export default function BrandsSearch() {
     return (
       <Layout> 
           
-          <div className="flex flex-col justify-start  items-center w-screen h-screen font-inknut bg-bgBrandsSearch bg-no-repeat bg-center bg-cover">
+          <div className="flex flex-col justify-start  items-center w-screen h-screen font-inknut bg-bgBrandsSearch bg-no-repeat bg-center bg-cover text-white">
               <div className=" w-max ">
                 <h1 className="mt-10 mb-10 ">MARCAS</h1>
               </div>

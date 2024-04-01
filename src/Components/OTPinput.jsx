@@ -19,7 +19,7 @@ export default function () {
       .then(() => setDisable(true))
       .then(() => alert("A new OTP has succesfully been sent to your email."))
       .then(() => setTimer(60))
-      .catch(console.log);
+      .catch();
   }
 
   function verfiyOTP() {

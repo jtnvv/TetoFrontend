@@ -6,7 +6,6 @@ import axios from "axios";
 
 export default function Reset() {
   const { email, otp, setPage } = useContext(RecoveryContext);
-  console.log(email)
   const [values, setValues] = useState({
     password: '',
     confirmPassword: '',
@@ -17,15 +16,13 @@ export default function Reset() {
   }
   
   function changePassword() {
-    
-    console.log(values.password," ",values.confirmPassword)
     if (values.password===values.confirmPassword) {
       axios.post("http://localhost:8080/change-password", {
         pass: values.password,
         email: email,
       })
       .then(() => setPage("otp"))
-      .catch(console.log);
+      .catch();
       setPage("recovered");
 
       return;

@@ -124,7 +124,6 @@ const RegisterFormBrand = () =>  {
             navigate("/login")
             
           } catch (err) {
-            //console.log(err.response.data.error)
             setError(err.response.data.error)
             alert("EMPRESA NO CREADA: "+ err.response.data.error)
             setSuccess('')
