@@ -1,9 +1,8 @@
 import React, { useState } from "react"
-import { onLogin } from '../api/auth'
+import { onLogin, sendRecoveryEmail } from '../api/auth'
 import { useDispatch } from 'react-redux'
 import { authenticateUser } from '../redux/slices/authSlice'
 import BackButton from "./back-button";
-import axios from "axios";
 import { useContext } from "react";
 import { RecoveryContext } from "../pages/login";
 
@@ -42,9 +41,10 @@ export default function LoginForm (){
 
             try {
                 await sendRecoveryEmail({ OTP, recipient_email: values.email, });
+                console.log("Sexito");
                 setPage("otp")
             } catch (error) {
-                
+                console.log(error);
             }
             setPage("otp")
             setEmail(values.email)

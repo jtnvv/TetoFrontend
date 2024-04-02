@@ -72,7 +72,7 @@ export default function () {
                   <div className="w-16 h-16 ">
                     <input
                       maxLength="1"
-                      className="w-full h-full flex flex-col items-center justify-center text-center px-5 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-blue-700"
+                      className="text-brand-6 w-full h-full flex flex-col items-center justify-center text-center px-5 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-blue-700"
                       type="text"
                       name=""
                       id=""
@@ -89,7 +89,7 @@ export default function () {
                   <div className="w-16 h-16 ">
                     <input
                       maxLength="1"
-                      className="w-full h-full flex flex-col items-center justify-center text-center px-5 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-blue-700"
+                      className="text-brand-6 w-full h-full flex flex-col items-center justify-center text-center px-5 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-blue-700"
                       type="text"
                       name=""
                       id=""
@@ -106,7 +106,7 @@ export default function () {
                   <div className="w-16 h-16 ">
                     <input
                       maxLength="1"
-                      className="w-full h-full flex flex-col items-center justify-center text-center px-5 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-blue-700"
+                      className="text-brand-6 w-full h-full flex flex-col items-center justify-center text-center px-5 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-blue-700"
                       type="text"
                       name=""
                       id=""
@@ -123,7 +123,7 @@ export default function () {
                   <div className="w-16 h-16 ">
                     <input
                       maxLength="1"
-                      className="w-full h-full flex flex-col items-center justify-center text-center px-5 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-blue-700"
+                      className="text-brand-6 w-full h-full flex flex-col items-center justify-center text-center px-5 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-blue-700"
                       type="text"
                       name=""
                       id=""

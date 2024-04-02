@@ -47,7 +47,7 @@ export default function Search() {
                         </div>
                     </div>
                 </div>
-                <div className="bg-zinc-400 text-brand-6 flex flex-col items-center justify-center p-20">
+                <div className="bg-zinc-400 text-brand-6 flex flex-col items-center justify-center p-20 min-h-fit">
                     <h2 className="font-bold text-2xl">Recomendados</h2>
                     <div className="flex flex-wrap justify-center">
                         {currentProducts.slice(0, 4).map((product) => (

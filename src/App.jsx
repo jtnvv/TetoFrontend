@@ -31,7 +31,7 @@ function App() {
           {/* <Route path="*" element={<ErrorPage />}/> */}
           <Route path='/' element={<Home />} />
           <Route path='/brand/:idbrand' element={<BrandUser />} /> {/* perfil de la marca desde usuario */}
-          <Route path='/brandsSearch' element={<BrandsSearch />} /> {/* vista para ver las marcas disponibles */}
+          <Route path='/brand-search' element={<BrandsSearch />} /> {/* vista para ver las marcas disponibles */}
           <Route path='/search' element={<Search />} />
           <Route path="/category/:category" element={<SearchCategory />} />
 
