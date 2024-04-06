@@ -1,79 +1,32 @@
-import { useState } from "react"
-import{onLogin}from'../api/auth'
-import Layout from '../Components/layout'
-import{useDispatch} from 'react-redux'
-import{authenticateUser} from '../redux/slices/authSlice'
+import { useState } from "react";
+import { createContext } from "react";
+import LoginForm from "../Components/login-form";
+import Recovered from "../Components/Recovered";
+import Reset from "../Components/Reset";
+import OTPInput from "../Components/OTPinput";
 
-const Login = () => {
-    const [values, setValues] = useState({
-        email: '',
-        password: ''
-    })
-    const [error, setError] = useState(false)
+export const RecoveryContext = createContext();
+function Login() {
+  const [page, setPage] = useState("login");
+  const [email, setEmail] = useState();
+  const [otp, setOTP] = useState();
 
-    const onChange = (e) => {
-        setValues({...values, [e.target.name]:e.target.value})
-    }
+  function NavigateComponents() {
+    if (page === "login") return <LoginForm />;
+    if (page === "otp") return <OTPInput />;
+    if (page === "reset") return <Reset />;
+    return <Recovered />;
+  }
 
-    const dispatch=useDispatch()
-    const onSubmit = async(e) => {
-        e.preventDefault()
-        try {
-            await onLogin(values)
-            dispatch(authenticateUser())
-
-            localStorage.setItem('isAuth','true')
-
-        } catch (err) {
-            console.log(err.response.data.errors[0].msg)
-            setError(err.response.data.errors[0].msg)
-        }
-
-    }
-
-    return (
-        <Layout>
-            <form onSubmit={(e) => onSubmit(e)} className="container mt-3">
-                <h1>Login</h1>
-                <div className='mb-3'>
-                    <label htmlFor='email' className='form-label'>
-                        Email address
-                    </label>
-                    <input
-                        onChange={(e) => onChange(e)}
-                        type='email'
-                        className='form-control'
-                        id='email'
-                        name='email'
-                        value={values.email}
-                        placeholder='test@gmail.com'
-                        required
-                    />
-                </div>
-
-                <div className='mb-3'>
-                    <label htmlFor='password' className='form-label'>
-                        Password
-                    </label>
-                    <input
-                        onChange={(e) => onChange(e)}
-                        type='password'
-                        value={values.password}
-                        className='form-control'
-                        id='password'
-                        name='password'
-                        placeholder='passwod'
-                        required
-                    />
-                </div>
-
-                <div style={{ color: 'red', margin: '10px 0' }}>{error}</div>
-
-                <button type='submit' className='btn btn-primary'>
-                    Submit
-                </button>
-            </form>
-        </Layout>
-    )
+  return (
+    <RecoveryContext.Provider
+      value={{ page, setPage, otp, setOTP, setEmail, email }}
+    >
+      <div className="flex justify-center items-center">
+        <NavigateComponents />
+      </div>
+    </RecoveryContext.Provider>
+  );
 }
-export default Login
+
+export default Login;

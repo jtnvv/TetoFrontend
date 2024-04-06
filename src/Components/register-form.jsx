@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { onRegistration } from '../api/auth'
-import BackButton from "./back-button";
+import { useNavigate } from 'react-router-dom'
+
 
 const RegisterForm = () =>  {
 
-    document.body.style = "background: url('../src/assets/bgRegister.png'); background-size: cover;";
+  const navigate = useNavigate()
 
     //Variables del usuario
     const [state, setState] = useState({
@@ -59,7 +60,8 @@ const RegisterForm = () =>  {
         
 
     }
-
+    const [success, setSuccess] = useState()
+    
     //Submit al formulario
 
     const handleSubmit =  async (event) => {
@@ -73,15 +75,17 @@ const RegisterForm = () =>  {
         if(errorL.name === ""  && errorL.password === "" && errorL.email === ""  ){
           
           //añadir función de registro aqui, pues no se ha encontrado errores 
-          alert("CREADO");
+          
           try {
             const { data } = await onRegistration(state)
-      
+            alert(data.message);
             setError('')
             setSuccess(data.message)
-            setState({ name:'',email: '', password: '' })
-          } catch (error) {
-            setError(error.response.data.errors[0].msg)
+            //setState({ name:'',email: '', password: '' })
+            navigate("/login")
+          } catch (err) {
+            setError(err.response.data.error)
+            alert("USUARIO NO CREADO: "+ err.response.data.error)
             setSuccess('')
           }
           
@@ -93,12 +97,13 @@ const RegisterForm = () =>  {
 
     return (
       
-        <div className="bg-white rounded-lg shadow-lg p-20 max-w-x1 mx-auto">
-          <BackButton />
+        <div className="bg-white rounded-lg shadow-lg p-20 max-w-x1 mx-auto"  >
+          
           <div className="flex items-center justify-center mb-20 ">
             <img className="w-20 mx-5 " src="../src/assets/TetoLogo.png" alt='Teto Logo'/>
             <h1  className="text-5xl font-bold text-center text-gray-700  font-inknut"  >TETO</h1>
           </div>
+          
         
 
             <form className="space-y-16" onSubmit={handleSubmit}>
