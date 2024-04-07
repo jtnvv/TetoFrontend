@@ -8,6 +8,7 @@ export async function onRegistration(registrationData) {
     registrationData
   )
 }
+
 export async function onRegistrationStore(registrationData) {
 
   return await axios.post(
@@ -18,11 +19,6 @@ export async function onRegistrationStore(registrationData) {
 
 export async function onLogin(loginData) {
   return await axios.post(`${url}login`, loginData)
-}
-
-export async function onLoginStore(loginData) {
-
-  return await axios.post(`${url}login-store`, loginData)
 }
 
 export async function onLogout() {

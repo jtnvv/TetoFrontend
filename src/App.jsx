@@ -13,7 +13,7 @@ import BrandsSearch from "./pages/brands-search";
 
 
 const PrivateRoutes = () => {
-  const { isAuth } = useSelector(state => state.auth)
+  const { isAuth } = useSelector(state => state.auth);
   return <>{isAuth ? <Outlet /> : <Navigate to='/login' />}</>
 }
 
@@ -22,6 +22,15 @@ const RestrictedRoutes = () => {
   return <>{!isAuth ? <Outlet /> : <Navigate to='/' />}</>
 }
 
+const UserRoutes = () => {
+  const { role } = useSelector(state => state.auth);
+  return <>{role == "brand" ? <Navigate to='/' /> : <Outlet /> }</>
+}
+
+const BrandRoutes = () => {
+  const { role } = useSelector(state => state.auth);
+  return <>{role == "user" ? <Navigate to='/' /> : <Outlet /> }</>
+}
 
 function App() {
   return (
@@ -32,11 +41,15 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/brand/:idbrand' element={<BrandUser />} /> {/* perfil de la marca desde usuario */}
           <Route path='/brand-search' element={<BrandsSearch />} /> {/* vista para ver las marcas disponibles */}
-          <Route path='/search' element={<Search />} />
           <Route path="/category/:category" element={<SearchCategory />} />
-
+          <Route path='/search' element={<Search />} />
+          
           <Route element={<PrivateRoutes />}>
-            <Route path='/product-register' element={<RegisterProduct />} />
+            <Route element={<UserRoutes />}>
+            </Route>
+            <Route element={<BrandRoutes />}>
+              <Route path='/product-register' element={<RegisterProduct />} />
+            </Route>
           </Route>
 
           <Route element={<RestrictedRoutes />}>

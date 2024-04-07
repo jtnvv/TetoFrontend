@@ -70,3 +70,11 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.css-1sb4c5p-control:hover{
+  border-color: #A3A48F !important;
+}
+
+.css-1sb4c5p-control {
+  box-shadow: none !important;
+}

@@ -24,10 +24,12 @@ export default function LoginForm (){
     const onSubmit = async (e) => {
         e.preventDefault()
         try {
-            await onLogin(values)
-            dispatch(authenticateUser())
+            const res = await onLogin(values);
 
             localStorage.setItem('isAuth', 'true')
+            localStorage.setItem('role', res.data.role)
+            
+            dispatch(authenticateUser())
 
         } catch (err) {
             setError(err.response.data.errors[0].msg)
@@ -41,7 +43,6 @@ export default function LoginForm (){
 
             try {
                 await sendRecoveryEmail({ OTP, recipient_email: values.email, });
-                console.log("Sexito");
                 setPage("otp")
             } catch (error) {
                 console.log(error);
