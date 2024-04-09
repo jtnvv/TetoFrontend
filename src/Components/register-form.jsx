@@ -138,6 +138,10 @@ const RegisterForm = () =>  {
                         Registrarse
                     </button>
                 </div>
+                <div className="text-black font-inknut">
+                       ¿Eres una marca? <a href="/register-brand">Regístrate aquí</a>
+
+                    </div>
             </form>
         </div>
       

@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="bg-brand-6 text-brand-1 py-6 font-inknut">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
         <div className="flex items-center mb-4 md:mb-0">
-          <img src="../public/favicon.svg" alt="Logo" className="h-14 w-14 mr-2" />
+          <img src="/favicon.svg" alt="Logo" className="h-14 w-14 mr-2" />
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div>

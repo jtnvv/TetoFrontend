@@ -56,8 +56,7 @@ export default function LoginForm (){
 
     return (
 
-        <div className="flex justify-end w-screen h-screen bg-[url('/src/assets/bgRegister.png')]">
-
+        <div className="flex justify-end w-screen h-screen bg-[url('src/assets/bgRegister.png')] bg-cover bg-no-repeat bg-center">
             <div className="bg-white rounded-lg shadow-lg p-20 max-w-x1">
                 <BackButton />
                 <div className="flex items-center justify-center mb-20 ">
@@ -100,8 +99,8 @@ export default function LoginForm (){
 
                     <div style={{ color: 'red', margin: '10px 0' }}>{error}</div>
 
-                    <div >
-                        <button type='submit' className="w-full bg-brand-2 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-lg mt-10">
+                    <div  className="font-inknut ">
+                        <button type='submit' className="w-full bg-brand-2 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-lg mt-1 mb-4">
                             Iniciar Sesion
                         </button>
                         <a
@@ -111,6 +110,11 @@ export default function LoginForm (){
                         >
                             Forgot password?
                         </a>
+                    </div>
+
+                    <div className="text-black font-inknut">
+                       ¿No estás registrado? <a href="/register">Regístrate aquí</a>
+
                     </div>
                 </form>
             </div>
