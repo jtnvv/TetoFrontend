@@ -11,6 +11,22 @@ export async function fetchCategories() {
     return await axios.get(`${url}get-categories`)
 }
 
+export async function fetchColors() {
+    return await axios.get(`${url}get-colors`)
+}
+
+export async function fetchSizes() {
+    return await axios.get(`${url}get-sizes`)
+}
+
 export async function fetchItemsByCategory(category) {
     return await axios.get(`${url}get-items-by-category/${category}`)
 }
+
+export async function storeItem(itemData) {
+
+    return await axios.post(
+      `${url}store-item`,
+      itemData
+    )
+  }

@@ -17,8 +17,6 @@ const RegisterFormBrand = () =>  {
         phone_number:'',
         email: '',
         password: '',
-        url: ''
-        
     });
     
     const [imageUpload, setImageUpload] = useState(null)
@@ -92,7 +90,7 @@ const RegisterFormBrand = () =>  {
     }
     const uploadImage = async () => {
         if(imageUpload== null) return ;
-        await uploader(imageUpload, "imagesFP/");
+        return await uploader(imageUpload, "imagesFP/");
     } 
     const [success, setSuccess] = useState()
     //Submit al formulario
@@ -113,8 +111,12 @@ const RegisterFormBrand = () =>  {
           event.preventDefault()
           try {
             //subir imagen al servidor
-            uploadImage()
-            const { data } = await onRegistrationStore(state)
+            const url = await uploadImage()
+            const postData = {
+                ...state,
+                logo:url
+            }
+            const { data } = await onRegistrationStore(postData)
 
         
             alert("EMPRESA CREADA");
@@ -124,6 +126,7 @@ const RegisterFormBrand = () =>  {
             navigate("/login")
             
           } catch (err) {
+            console.log(err)
             setError(err.response.data.error)
             alert("EMPRESA NO CREADA: "+ err.response.data.error)
             setSuccess('')
