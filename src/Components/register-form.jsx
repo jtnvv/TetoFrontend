@@ -85,6 +85,7 @@ const RegisterForm = () =>  {
             navigate("/login")
           } catch (err) {
             setError(err.response.data.error)
+      
             alert("USUARIO NO CREADO: "+ err.response.data.error)
             setSuccess('')
           }
