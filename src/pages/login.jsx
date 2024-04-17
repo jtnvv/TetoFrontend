@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { createContext } from "react";
-import LoginForm from "../Components/login-form";
-import Recovered from "../Components/Recovered";
-import Reset from "../Components/Reset";
-import OTPInput from "../Components/OTPinput";
+import Recovered from "../Components/Login/Recovered";
+import Reset from "../Components/Login/Reset";
+import OTPInput from "../Components/Login/OTPinput";
+import LoginForm from "../Components/Login/login-form";
 
 export const RecoveryContext = createContext();
 function Login() {

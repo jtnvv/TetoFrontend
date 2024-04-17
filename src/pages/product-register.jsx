@@ -1,5 +1,5 @@
-import Layout from "../Components/layout"
-import ProductRegisterForm from "../Components/product-register-form"
+import Layout from "../Components/Layout/layout"
+import ProductRegisterForm from "../Components/Register/product-register-form"
 
 export default function RegisterProduct() {
   return (

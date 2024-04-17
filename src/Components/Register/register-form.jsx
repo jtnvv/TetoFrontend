@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { onRegistration } from '../api/auth'
+import { onRegistration } from '../../api/auth'
 import { useNavigate } from 'react-router-dom'
 
 

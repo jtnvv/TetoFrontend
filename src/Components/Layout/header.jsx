@@ -1,4 +1,10 @@
+import { useState } from "react"
+import ShoppingCart from "../Shopping Cart/shopping-cart";
+
 export default function Header() {
+
+  const [isShoppingCartOpen, setIsShoppingCartOpen] = useState(false);
+
   return (
     <nav className="bg-brand-6 p-3 font-inknut">
       <div className="mx-auto flex justify-between items-center">
@@ -13,7 +19,12 @@ export default function Header() {
           <button className="flex bg-brand-1 bg-opacity-25 rounded-full pt-2 pb-2 items-center justify-center"><p className="text-xs text-brand-1">Buscar producto por marca, colección</p><img src="../src/assets/searchHeader.png" alt="profile" className="h-5 w-5 ml-2" /></button>
           <a href="/login"><img src="../src/assets/profileHeader.png" alt="profile" className="h-7 w-7 mr-0" /></a>
           <a href="#"><img src="../src/assets/favoritesHeader.png" alt="favorites" className="h-8 w-8" /></a>
-          <a href="#"><img src="../src/assets/shopHeader.png" alt="profile" className="h-7 w-7" /></a>
+          <div className="static" >
+            <a className="cursor-pointer" onClick={() => setIsShoppingCartOpen(!isShoppingCartOpen)} ><img src="../src/assets/shopHeader.png" alt="profile" className="h-7 w-7" /></a>
+            {isShoppingCartOpen && (
+              <ShoppingCart />
+            )}
+          </div>
         </div>
       </div>
     </nav>

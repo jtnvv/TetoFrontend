@@ -1,10 +1,10 @@
 import React, { useState } from "react"
-import { onLogin, sendRecoveryEmail } from '../api/auth'
+import { onLogin, sendRecoveryEmail } from '../../api/auth'
 import { useDispatch } from 'react-redux'
-import { authenticateUser } from '../redux/slices/authSlice'
-import BackButton from "./back-button";
+import { authenticateUser } from '../../redux/slices/authSlice'
+import BackButton from "../Layout/back-button";
 import { useContext } from "react";
-import { RecoveryContext } from "../pages/login";
+import { RecoveryContext } from "../../pages/login";
 
 export default function LoginForm (){
     const {  setPage, setOTP, setEmail } = useContext(RecoveryContext);

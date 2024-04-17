@@ -1,6 +1,6 @@
 
-import RegisterFormBrand from "../Components/register-form-brand"
-import BackButton from "../Components/back-button"
+import RegisterFormBrand from "../Components/Register/register-form-brand"
+import BackButton from "../Components/Layout/back-button"
 
 
 export default function RegisterBrand() {

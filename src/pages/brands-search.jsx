@@ -1,8 +1,7 @@
-import CardBrandsSearch from "../Components/card-brands-search";
-import Layout from "../Components/layout"
+import CardBrandsSearch from "../Components/Search/card-brands-search";
+import Layout from "../Components/Layout/layout"
 import React, { useState, useEffect } from 'react';
 import { fetchStores } from '../api/store'
-import { Link } from "react-router-dom";
 
 export default function BrandsSearch() {
 

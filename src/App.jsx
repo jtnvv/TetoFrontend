@@ -8,8 +8,9 @@ import BrandUser from './pages/brand-user'
 import Search from './pages/search'
 import SearchCategory from "./pages/search-category";
 import RegisterProduct from "./pages/product-register";
-import ErrorPage from "./pages/error-page";
+// import ErrorPage from "./pages/error-page";
 import BrandsSearch from "./pages/brands-search";
+import Product from "./pages/product";
 
 
 const PrivateRoutes = () => {
@@ -43,6 +44,7 @@ function App() {
           <Route path='/brand-search' element={<BrandsSearch />} /> {/* vista para ver las marcas disponibles */}
           <Route path="/category/:category" element={<SearchCategory />} />
           <Route path='/search' element={<Search />} />
+          <Route path='/product/:product_id' element={<Product />} />
           
           <Route element={<PrivateRoutes />}>
             <Route element={<UserRoutes />}>

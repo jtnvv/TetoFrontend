@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom'
-import { onRegistrationStore } from '../api/auth'
-import { uploadImage as uploader} from "../firebase.js";
+import { onRegistrationStore } from '../../api/auth.js'
+import { uploadImage as uploader} from "../../firebase.js";
 
 
 const RegisterFormBrand = () =>  {

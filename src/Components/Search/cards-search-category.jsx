@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { fetchItemsByCategory } from '../api/item';
+import { useState, useEffect } from 'react';
+import { fetchItemsByCategory } from '../../api/item';
 export default function CardsSearchCategory({ category }) {
     const [products, setProducts] = useState([]);
+    
     useEffect(() => {
         fetchItemsByCategory(category)
             .then(response => {
                 setProducts(response.data);
             })
             .catch(error => console.error('Error:', error));
-    }, []);
+    });
     const [currentPage, setCurrentPage] = useState(1);
     const [productsPerPage] = useState(10);
     const indexOfLastProduct = currentPage * productsPerPage;
@@ -25,11 +26,11 @@ export default function CardsSearchCategory({ category }) {
                 </div>
                 <div className="flex flex-wrap">
                     {currentProducts.map((product) => (
-                        <div key={product.id} className="flex flex-col items-center m-5 bg-brand-6 rounded-2xl text-brand-1 w-60">
+                        <a key={product.id} className="flex flex-col items-center m-5 bg-brand-6 rounded-2xl text-brand-1 w-60" href={'/product/' + product.id}>
                             <h2 className="mt-5 mb-5 font-semibold text-xl">{product.name.substring(0, 13)} ...</h2>
                             <img src={product.image} alt={product.name} className="h-40 w-40 object-cover mb-5" />
                             <p className="text-brand-3 mb-5 text-xl">$ {product.price}</p>
-                        </div>
+                        </a>
                     ))}
                 </div>
                 <div className="bg-brand-1 text-brand-1 mb-5">
