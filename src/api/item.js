@@ -34,3 +34,7 @@ export async function storeItem(itemData) {
 export async function getItem(itemId) {
     return await axios.get(`${url}product/${itemId}`)
 }
+
+export async function fetchItemsByPriority() {
+    return await axios.get(`${url}get-items-by-priority`)
+}
