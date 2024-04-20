@@ -3,7 +3,8 @@ import { useState,useEffect } from "react";
 import Layout from "../Components/layout"
 import CardOrderBrand  from "../Components/card-order-brand"
 import UpdateDataBrand from "../Components/update-data-brand";
-import { FetchBrandInformation } from "../api/store";
+import { FetchBrandInformation, FetchBrandOrders } from "../api/store";
+
 export default function BrandPageProfile() {
 
     const [updateData, setUpdateData] = useState(false);
@@ -15,6 +16,12 @@ export default function BrandPageProfile() {
     const [address, setAddress] = useState()
     const [phone, setPhone] = useState()
     const [imageUrl, setImageUrl] = useState()
+
+    const [orders, setOrders] = useState([]);
+
+    //variables for pagination
+    const [currentPage, setCurrentPage] = useState(1);
+    const [cardsPerPage] = useState(4);
 
 
     useEffect(() => {
@@ -33,6 +40,29 @@ export default function BrandPageProfile() {
             })
             .catch(error => console.error('Error:', error));
       }, []);
+
+      useEffect(() => {
+        
+        FetchBrandOrders()
+            .then(response => {
+               
+                // Aplanar las órdenes y los productos en un solo arreglo
+                const flattenedItems = response.data.flatMap(order => 
+                    order.items.map(item => ({...item, order}))
+                );
+                setOrders(flattenedItems);
+                
+            })
+            .catch(error => console.error('Error:', error));
+      }, []);
+
+    // Get current cards
+    const indexOfLastCard = currentPage * cardsPerPage;
+    const indexOfFirstCard = indexOfLastCard - cardsPerPage;
+    const currentCards = orders.slice(indexOfFirstCard, indexOfLastCard);
+
+     // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
 
     return(
 
@@ -72,11 +102,24 @@ export default function BrandPageProfile() {
                         </div>
 
                         <div className="space-y-8">
+                            {
+                                currentCards.map((item, key) => {
+                                    return (
+                                        <div key={key}>
+                                            <CardOrderBrand item={item}  />
+                                        </div>
+                                    )
+                                })
+                            }
 
                         </div>
-                        <div className=" pagination  text-center  ">
+                        <div className=" pagination  text-center  text-white ">
                         
-                                PAGINACION
+                            {Array(Math.ceil(orders.length/ cardsPerPage)).fill().map((_, i) => (
+                                <button key={i} onClick={() => paginate(i + 1)} className="mr-1">
+                                    {i + 1}
+                                </button>
+                                ))}
 
                         </div>
                     </div>

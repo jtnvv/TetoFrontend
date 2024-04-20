@@ -7,7 +7,12 @@ export async function FetchUserInformation() {
     return await axios.get(`${url}userInformation`)
   }
 
-  export async function UpdateUserInformation(data) {
-   
-    return await axios.post(`${url}updateUserInformation`,data)
-  }
+export async function UpdateUserInformation(data) {
+  
+  return await axios.post(`${url}updateUserInformation`,data)
+}
+
+export async function FetchUserOrders() {
+ 
+  return await axios.get(`${url}fetch-user-orders`)
+}

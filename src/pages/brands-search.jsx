@@ -41,7 +41,7 @@ export default function BrandsSearch() {
                 <h1 className=" ">MARCAS</h1>
               </div>
 
-              <div className="mt-3 " >
+              <div className="m-10 " >
                 <div className="grid 2xl:grid-cols-2 xl:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-8 max-w-3x2 ">
 
                   {

@@ -1,14 +1,21 @@
 import { useState, useEffect } from "react";
 import Layout from "../Components/layout"
+import CardOrderUser from "../Components/card-order-user";
 
 import UpdateDataUser from "../Components/update-data-user";
-import { FetchUserInformation } from "../api/user";
+import { FetchUserInformation, FetchUserOrders } from "../api/user";
 export default function UserPageProfile() {
 
     const [updateData, setUpdateData] = useState(false); 
 
     const [name, setName] = useState()
     const [email, setEmail] = useState()
+
+    const [orders, setOrders] = useState([]);
+
+    //variables for pagination
+    const [currentPage, setCurrentPage] = useState(1);
+    const [cardsPerPage] = useState(4);
 
     useEffect(() => {
         
@@ -21,14 +28,36 @@ export default function UserPageProfile() {
             })
             .catch(error => console.error('Error:', error));
       }, []);
-    
+
+    useEffect(() => {
+        
+        FetchUserOrders()
+            .then(response => {
+               
+                // Aplanar las órdenes y los productos en un solo arreglo
+                const flattenedItems = response.data.flatMap(order => 
+                    order.items.map(item => ({...item, order}))
+                );
+                setOrders(flattenedItems);
+                
+            })
+            .catch(error => console.error('Error:', error));
+      }, []);
+
+    // Get current cards
+    const indexOfLastCard = currentPage * cardsPerPage;
+    const indexOfFirstCard = indexOfLastCard - cardsPerPage;
+    const currentCards = orders.slice(indexOfFirstCard, indexOfLastCard);
+
+     // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
 
     return(
 
         <Layout>
           
-                <div className="flex  font-inknut  min-h-screen  w-screen bg-white   ">
-                    <div className=" bg-white  w-3/12 h-fit  px-20 py-60  space-y-10  ">
+                <div className="flex font-inknut  min-h-screen  w-screen bg-white   ">
+                    <div className=" bg-white  w-3/12 h-fit  px-20 py-40  space-y-10  ">
                         <div className="space-y-2">
                             <p className="text-2xl text-gray-900 dark:text-black font-semibold">Nombre </p>
                             <p className="text-lg text-black ">{name}</p>
@@ -55,13 +84,26 @@ export default function UserPageProfile() {
                             </div>
 
                             <div className="space-y-8">
+                            {
+                                currentCards.map((item, key) => {
+                                    return (
+                                        <div key={key}>
+                                            <CardOrderUser  item={item}  />
+                                        </div>
+                                    )
+                                })
+                            }
                                     
                                     
                             </div>
 
-                            <div className=" pagination  text-center  ">
+                            <div className=" pagination  text-center text-white ">
                             
-                                    AQUI VA LA PAGINACION
+                                {Array(Math.ceil(orders.length/ cardsPerPage)).fill().map((_, i) => (
+                                    <button key={i} onClick={() => paginate(i + 1)} className="mr-1">
+                                        {i + 1}
+                                    </button>
+                                    ))}
 
                             </div>
                             

@@ -24,6 +24,15 @@ export async function UpdateBrandInformation(data) {
   return await axios.post(`${url}updateInformation`,data)
 }
 
+export async function deleteItem(data) {
+  
+  return await axios.delete(`${url}delete-item/${data.id}`);
+}
+
+export async function FetchBrandOrders() {
+ 
+  return await axios.get(`${url}fetch-brand-orders`)
+}
 
 
 export async function storeItem(itemData) {
