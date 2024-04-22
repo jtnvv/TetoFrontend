@@ -17,11 +17,12 @@ export default {
       fontFamily: {
         'inknut': ['"Inknut Antiqua"', 'serif'],
       },
-      backgroundImage:{
+      backgroundImage: {
         'bgBrandsSearch': "url('./src/assets/bgBrandsSearch.png')",
         'bgRegisterBrand': "url('./src/assets/bgRegister.png')",
-        'bgRegister': "url('./src/assets/bgRegister.png')"
-      }
+        'bgRegister': "url('./src/assets/bgRegister.png')",
+        'bgHome': "url('./src/assets/bgHome.png')",
+      },
     },
   },
   plugins: [],
