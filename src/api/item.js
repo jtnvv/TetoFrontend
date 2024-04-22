@@ -26,7 +26,15 @@ export async function fetchItemsByCategory(category) {
 export async function storeItem(itemData) {
 
     return await axios.post(
-      `${url}store-item`,
-      itemData
+        `${url}store-item`,
+        itemData
     )
-  }
+}
+
+export async function getItem(itemId) {
+    return await axios.get(`${url}product/${itemId}`)
+}
+
+export async function fetchItemsByPriority() {
+    return await axios.get(`${url}get-items-by-priority`)
+}

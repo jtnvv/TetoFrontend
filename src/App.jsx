@@ -8,8 +8,12 @@ import BrandUser from './pages/brand-user'
 import Search from './pages/search'
 import SearchCategory from "./pages/search-category";
 import RegisterProduct from "./pages/product-register";
-import ErrorPage from "./pages/error-page";
+// import ErrorPage from "./pages/error-page";
 import BrandsSearch from "./pages/brands-search";
+import BrandPageBrand from "./pages/brandpage-brand";
+import BrandPageProfile from "./pages/brandpage-profile";
+import UserPageProfile from "./pages/userpage-profile";
+import Product from "./pages/product";
 
 
 const PrivateRoutes = () => {
@@ -28,6 +32,7 @@ const UserRoutes = () => {
 }
 
 const BrandRoutes = () => {
+  
   const { role } = useSelector(state => state.auth);
   return <>{role == "user" ? <Navigate to='/' /> : <Outlet /> }</>
 }
@@ -43,12 +48,17 @@ function App() {
           <Route path='/brand-search' element={<BrandsSearch />} /> {/* vista para ver las marcas disponibles */}
           <Route path="/category/:category" element={<SearchCategory />} />
           <Route path='/search' element={<Search />} />
+          <Route path='/product/:product_id' element={<Product />} />
           
           <Route element={<PrivateRoutes />}>
             <Route element={<UserRoutes />}>
+              <Route path='/userpage-profile' element={<UserPageProfile />} />
             </Route>
             <Route element={<BrandRoutes />}>
               <Route path='/product-register' element={<RegisterProduct />} />
+              <Route path='/brandpage-brand' element={<BrandPageBrand />} />
+              <Route path='/brandpage-profile' element={<BrandPageProfile />} />
+              
             </Route>
           </Route>
 

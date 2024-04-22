@@ -1,8 +1,7 @@
-import CardBrandsSearch from "../Components/card-brands-search";
-import Layout from "../Components/layout"
+import CardBrandsSearch from "../Components/Search/card-brands-search";
+import Layout from "../Components/Layout/layout"
 import React, { useState, useEffect } from 'react';
 import { fetchStores } from '../api/store'
-import { Link } from "react-router-dom";
 
 export default function BrandsSearch() {
 
@@ -35,12 +34,14 @@ export default function BrandsSearch() {
     return (
       <Layout> 
           
-          <div className="flex flex-col justify-start  items-center w-screen h-screen font-inknut bg-bgBrandsSearch bg-no-repeat bg-center bg-cover text-white">
-              <div className=" w-max ">
-                <h1 className="mt-10 mb-10 ">MARCAS</h1>
+          <div className=" bg-bgBrandsSearch bg-no-repeat bg-center bg-cover w-screen min-h-screen  text-white  font-inknut justify-between">
+
+              <div className="mb-10 p-10 text-center">
+                <h1 className=" ">MARCAS</h1>
               </div>
-              <div className="mt-3 w-max h-3/5" >
-                <div className="  grid  xl:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-8 max-w-3x2 ">
+
+              <div className="m-10 " >
+                <div className="grid 2xl:grid-cols-2 xl:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-8 max-w-3x2 ">
 
                   {
                     currentCards.map((val,key)=>{
@@ -53,11 +54,9 @@ export default function BrandsSearch() {
                   }
 
                 </div>
-
-                
               </div>
-
-              <div className="pagination mt-10  w-max">
+              
+              <div className="pagination p-10 text-center my-5">
                 {Array(Math.ceil(stores.length/ cardsPerPage)).fill().map((_, i) => (
                   <button key={i} onClick={() => paginate(i + 1)} className="mr-1">
                     {i + 1}
@@ -67,9 +66,12 @@ export default function BrandsSearch() {
 
               
           </div>
-          
-          
-        
+          <div className="relative h-24 w-screen ... font-inknut text-center text-3xl">
+              <div className="absolute inset-x-0 bottom-0 h-16 ...">
+                <p> ¿Eres una marca? <a href="/register-brand" className="text-black">Regístrate aquí</a> </p> 
+              </div>
+            </div>
+
       </Layout>
     )
   }

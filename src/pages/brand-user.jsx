@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
-import BrandProfileUser from "../Components/brand-profile-user"
-import Layout from "../Components/layout"
+import BrandProfileUser from "../Components/Brand/brand-profile-user"
+import Layout from "../Components/Layout/layout"
 export default function BrandUser() {
     const id  = useParams();
     return (

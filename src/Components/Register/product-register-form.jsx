@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { uploadImage } from "../firebase";
-import { fetchCategories, fetchColors, fetchSizes, storeItem } from "../api/item";
+import { uploadImage } from "../../firebase";
+import { fetchCategories, fetchColors, fetchSizes, storeItem } from "../../api/item";
 import SelectOption from "./select-option";
 
 export default function ProductRegisterForm() {

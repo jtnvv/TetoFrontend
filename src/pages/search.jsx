@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Layout from "../Components/layout";
+import Layout from "../Components/Layout/layout";
 import { fetchCategories } from "../api/item";
 
 export default function Search() {

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useContext } from "react";
-import { RecoveryContext } from "../pages/login";
+import { RecoveryContext } from "../../pages/login";
 import axios from "axios";
 
 export default function Reset() {
