@@ -85,6 +85,7 @@ const RegisterForm = () =>  {
             navigate("/login")
           } catch (err) {
             setError(err.response.data.error)
+      
             alert("USUARIO NO CREADO: "+ err.response.data.error)
             setSuccess('')
           }
@@ -138,6 +139,10 @@ const RegisterForm = () =>  {
                         Registrarse
                     </button>
                 </div>
+                <div className="text-black font-inknut">
+                       ¿Eres una marca? <a href="/register-brand">Regístrate aquí</a>
+
+                    </div>
             </form>
         </div>
       
