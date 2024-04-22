@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { deleteItem } from "../api/store";
-import { deleteImage} from "../firebase.js";
+import { deleteItem } from "../../api/store.js";
+import { deleteImage} from "../../firebase.js";
 
 export default function PublishedProductsBrand(props){
 

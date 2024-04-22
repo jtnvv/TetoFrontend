@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import Layout from "../Components/layout"
-import CardOrderUser from "../Components/card-order-user";
+import Layout from "../Components/Layout/layout"
 
-import UpdateDataUser from "../Components/update-data-user";
+import UpdateDataUser from "../Components/User/update-data-user";
 import { FetchUserInformation, FetchUserOrders } from "../api/user";
+import CardOrderUser from "../Components/Order/card-order-user";
 export default function UserPageProfile() {
 
     const [updateData, setUpdateData] = useState(false); 

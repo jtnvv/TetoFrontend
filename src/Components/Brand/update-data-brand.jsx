@@ -1,12 +1,12 @@
 import React from "react";
 
 import { useState,useEffect } from "react";
-import { UpdateBrandInformation} from "../api/store";
-import { uploadImage as uploader, deleteImage} from "../firebase.js";
+import { UpdateBrandInformation} from "../../api/store.js";
+import { uploadImage as uploader, deleteImage} from "../../firebase.js";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux'
-import { unauthenticateUser } from '../redux/slices/authSlice'
-import { onLogout } from "../api/auth.js";
+import { unauthenticateUser } from '../../redux/slices/authSlice.js'
+import { onLogout } from "../../api/auth.js";
 
 
 
