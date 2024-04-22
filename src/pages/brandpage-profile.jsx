@@ -1,8 +1,8 @@
 import { useState,useEffect } from "react";
 
-import Layout from "../Components/layout"
-import CardOrderBrand  from "../Components/card-order-brand"
-import UpdateDataBrand from "../Components/update-data-brand";
+import Layout from "../Components/Layout/layout"
+import CardOrderBrand  from "../Components/Order/card-order-brand"
+import UpdateDataBrand from "../Components/Brand/update-data-brand";
 import { FetchBrandInformation, FetchBrandOrders } from "../api/store";
 
 export default function BrandPageProfile() {

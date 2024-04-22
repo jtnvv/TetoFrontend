@@ -1,10 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { UpdateUserInformation } from "../api/user";
+import { UpdateUserInformation } from "../../api/user.js";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux'
-import { unauthenticateUser } from '../redux/slices/authSlice'
-import { onLogout } from "../api/auth.js";
+import { unauthenticateUser } from '../../redux/slices/authSlice.js'
+import { onLogout } from "../../api/auth.js";
 
 
 export default function UpdateDataUser({onClose,name, email}){

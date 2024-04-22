@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import Layout from "../Components/layout"
+import Layout from "../Components/Layout/layout"
 
-import PublishedProductsBrand from "../Components/published-products-brand";
+import PublishedProductsBrand from "../Components/Brand/published-products-brand";
 import { FetchBrandInformation } from "../api/store";
 import { fetchItemsByStore } from "../api/item";
 export default function BrandPageBrand() {
