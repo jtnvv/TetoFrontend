@@ -34,11 +34,11 @@ export default function BrandsSearch() {
     return (
       <Layout> 
           
-          <div className="flex flex-col justify-start  items-center w-screen h-screen font-inknut bg-bgBrandsSearch bg-no-repeat bg-center bg-cover text-white">
+          <div className="flex flex-col items-center w-screen h-screen font-inknut bg-bgBrandsSearch bg-no-repeat bg-center bg-cover text-white justify-between">
               <div className=" w-max ">
                 <h1 className="mt-10 mb-10 ">MARCAS</h1>
               </div>
-              <div className="mt-3 w-max h-3/5" >
+              <div className="mt-3 w-max" >
                 <div className="  grid  xl:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-8 max-w-3x2 ">
 
                   {
@@ -52,11 +52,9 @@ export default function BrandsSearch() {
                   }
 
                 </div>
-
-                
               </div>
 
-              <div className="pagination mt-10  w-max">
+              <div className="pagination my-5  w-max">
                 {Array(Math.ceil(stores.length/ cardsPerPage)).fill().map((_, i) => (
                   <button key={i} onClick={() => paginate(i + 1)} className="mr-1">
                     {i + 1}

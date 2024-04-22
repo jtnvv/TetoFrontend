@@ -5,6 +5,10 @@ export default function Header() {
 
   const [isShoppingCartOpen, setIsShoppingCartOpen] = useState(false);
 
+  const handleIsShoppingCartOpen = (state) => {
+    setIsShoppingCartOpen(state);
+  };
+
   return (
     <nav className="bg-brand-6 p-3 font-inknut">
       <div className="mx-auto flex justify-between items-center">
@@ -22,7 +26,7 @@ export default function Header() {
           <div className="static" >
             <a className="cursor-pointer" onClick={() => setIsShoppingCartOpen(!isShoppingCartOpen)} ><img src="../src/assets/shopHeader.png" alt="profile" className="h-7 w-7" /></a>
             {isShoppingCartOpen && (
-              <ShoppingCart />
+              <ShoppingCart showShoppingCart={handleIsShoppingCartOpen}/>
             )}
           </div>
         </div>
