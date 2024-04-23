@@ -35,14 +35,14 @@ export default function BrandProfileUser(props) {
     const totalPages = Math.ceil(products.length / productsPerPage);
 
     return (
-        <div className="flex font-inknut h-screen">
+        <div className="flex font-inknut min-h-screen">
             <div className="bg-zinc-400 text-brand-6 flex flex-col items-center justify-center pr-40 pl-40">
                 <img src={store.logo} alt="Logo" className="h-32 w-32 m-5" />
                 <h1 className="m-2">{store.name}</h1>x
                 <p>{store.description}</p>
             </div>
-            <div className="bg-brand-1 text-brand-6 w-full h-full">
-                <div className='pt-10 pb-10 pl-40 pr-40'>
+            <div className="bg-brand-1 text-brand-6 w-full">
+                <div className='py-10 px-40'>
                     <div className="flex flex-wrap justify-center">
                         {currentProducts.map((product) => (
                             <a key={product.id} className="flex flex-col items-center m-5 bg-brand-6 rounded-2xl text-brand-1 w-60" href={'/product/' + product.id}>
@@ -52,7 +52,7 @@ export default function BrandProfileUser(props) {
                             </a>
                         ))}
                     </div>
-                    <div className="bg-brand-1 text-brand-1">
+                    <div className="bg-brand-1 text-brand-1 text-center">
                         {totalPages > 1 && [...Array(Math.ceil(products.length / productsPerPage)).keys()].map(number => (
                             <button key={number + 1} onClick={() => paginate(number + 1)} className='mr-1'>
                                 {number + 1}

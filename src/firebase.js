@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, getStorage, ref, uploadBytes, deleteObject } from "firebase/storage";
 import { v4 } from "uuid";
 
 const firebaseConfig = {
@@ -25,4 +25,20 @@ export async function uploadImage(file, folder) {
     const storageRef = ref(storage, fileName);
     await uploadBytes(storageRef, file);
     return await getDownloadURL(storageRef);
+}
+
+export async function deleteImage(url){
+  
+
+  // Create a reference to the file to delete
+  const imageRef = ref(storage, url);
+  await deleteObject(imageRef).then(() => { // also remove the image from Firebase
+    console.log("la imagen se elimino");
+  }).catch((error) => {
+    console.log("ocurrio un error: ", error)
+  })
+
+
+
+
 }
