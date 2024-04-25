@@ -3,6 +3,7 @@ import Layout from "../Components/Layout/layout";
 import { fetchCategories } from "../api/item";
 import { fetchItemsByPriority } from "../api/item";
 import CardItem from "../Components/item/card-item";
+import { FaSearch } from "react-icons/fa";
 
 export default function Search() {
     const [categories, setCategories] = useState([]);
@@ -66,7 +67,7 @@ export default function Search() {
                     <div className="flex flex-col items-center mb-7">
                         <h2 className="text-3xl mt-20">Productos</h2>
                         <div className="flex items-center">
-                            <img src="../src/assets/search.png" alt="Search" className="h-30 w-30 m-5" />
+                            <FaSearch color="black" size="1.5em" className="mr-2" />
                             <input type="text" value={searchTerm} onChange={handleSearchChange} placeholder="Busca por nombre de producto" className="bg-transparent underline underline-offset-4 text-brand-6"></input>
                         </div>
                         <div className="flex flex-wrap justify-center">
