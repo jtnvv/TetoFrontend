@@ -19,16 +19,18 @@ export default function PublishedProductsBrand(props){
   
   
   return (
-      <div  className=" relative flex flex-col items-center m-5 bg-brand-6 rounded-2xl text-brand-1 w-60">
-          <h2 className="mt-5 mb-2 font-semibold text-xl">{name}</h2>
-          <img src={image} alt="prueba" className="h-40 w-40 object-cover mb-2" />
-          <StarRating rating={rating} />
-          <p className="text-brand-3 mb-5 text-xl">{"$"+price}</p>
-          <div  className="absolute bottom-2 right-2 cursor-pointer" >
-            <img src="../src/assets/eliminar.png" alt="Eliminar producto" onClick={() => setDeleteProduct(true)}/>
-          </div>
-          {deleteProduct && <DeleteProductModal onClose={() => setDeleteProduct(false)} id={id} image={image} />}
-      </div>
+    <a key={id} href={'/product/' +id}>
+        <div  className=" relative flex flex-col items-center m-5 bg-brand-6 rounded-2xl text-brand-1 w-60">
+            <h2 className="mt-5 mb-2 font-semibold text-xl">{name}</h2>
+            <img src={image} alt="prueba" className="h-40 w-40 object-cover mb-2" />
+            <StarRating rating={rating} />
+            <p className="text-brand-3 mb-5 text-xl">{"$"+price}</p>
+            <div  className="absolute bottom-2 right-2 cursor-pointer" >
+                <img src="../src/assets/eliminar.png" alt="Eliminar producto" onClick={() => setDeleteProduct(true)}/>
+            </div>
+            {deleteProduct && <DeleteProductModal onClose={() => setDeleteProduct(false)} id={id} image={image} />}
+        </div>
+    </a>
   )
 }
 
