@@ -1,33 +1,74 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route, BrowserRouter, Navigate, Outlet } from "react-router-dom";
+import { useSelector } from 'react-redux'
+import Home from './pages/home'
+import Login from './pages/login'
+import Register from './pages/register'
+import RegisterBrand from './pages/register-brand'
+import BrandUser from './pages/brand-user'
+import Search from './pages/search'
+import SearchCategory from "./pages/search-category";
+import RegisterProduct from "./pages/product-register";
+// import ErrorPage from "./pages/error-page";
+import BrandsSearch from "./pages/brands-search";
+import BrandPageBrand from "./pages/brandpage-brand";
+import BrandPageProfile from "./pages/brandpage-profile";
+import UserPageProfile from "./pages/userpage-profile";
+import Product from "./pages/product";
+
+
+const PrivateRoutes = () => {
+  const { isAuth } = useSelector(state => state.auth);
+  return <>{isAuth ? <Outlet /> : <Navigate to='/login' />}</>
+}
+
+const RestrictedRoutes = () => {
+  const { isAuth } = useSelector(state => state.auth)
+  return <>{!isAuth ? <Outlet /> : <Navigate to='/' />}</>
+}
+
+const UserRoutes = () => {
+  const { role } = useSelector(state => state.auth);
+  return <>{role == "brand" ? <Navigate to='/' /> : <Outlet /> }</>
+}
+
+const BrandRoutes = () => {
+  
+  const { role } = useSelector(state => state.auth);
+  return <>{role == "user" ? <Navigate to='/' /> : <Outlet /> }</>
+}
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React = Teto</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <BrowserRouter>
+        <Routes>
+          {/* <Route path="*" element={<ErrorPage />}/> */}
+          <Route path='/' element={<Home />} />
+          <Route path='/brand/:idbrand' element={<BrandUser />} /> {/* perfil de la marca desde usuario */}
+          <Route path='/brand-search' element={<BrandsSearch />} /> {/* vista para ver las marcas disponibles */}
+          <Route path="/category/:category" element={<SearchCategory />} />
+          <Route path='/search' element={<Search />} />
+          <Route path='/product/:product_id' element={<Product />} />
+          
+          <Route element={<PrivateRoutes />}>
+            <Route element={<UserRoutes />}>
+              <Route path='/userpage-profile' element={<UserPageProfile />} />
+            </Route>
+            <Route element={<BrandRoutes />}>
+              <Route path='/product-register' element={<RegisterProduct />} />
+              <Route path='/brandpage-brand' element={<BrandPageBrand />} />
+              <Route path='/brandpage-profile' element={<BrandPageProfile />} />
+              
+            </Route>
+          </Route>
+
+          <Route element={<RestrictedRoutes />}>
+            <Route path='/register' element={<Register />} />
+            <Route path='/register-brand' element={<RegisterBrand />} />
+            <Route path='/login' element={<Login />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
