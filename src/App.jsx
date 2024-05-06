@@ -14,6 +14,7 @@ import BrandPageBrand from "./pages/brandpage-brand";
 import BrandPageProfile from "./pages/brandpage-profile";
 import UserPageProfile from "./pages/userpage-profile";
 import Product from "./pages/product";
+import AboutUs from "./pages/about-us";
 
 
 const PrivateRoutes = () => {
@@ -49,6 +50,7 @@ function App() {
           <Route path="/category/:category" element={<SearchCategory />} />
           <Route path='/search' element={<Search />} />
           <Route path='/product/:product_id' element={<Product />} />
+          <Route path='/about-us' element={<AboutUs/>} />
           
           <Route element={<PrivateRoutes />}>
             <Route element={<UserRoutes />}>
