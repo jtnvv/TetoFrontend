@@ -13,9 +13,13 @@ const CardTeamMember = (props) => {
                         <h2 className=" m-2  text-sm">{props.job}</h2>
                     </div>
                     
-                    <div className="flex space-x-3 justify-center mt-10 ">
-                        <FaGithub size={20}  />
-                        <FaLinkedinIn size={20}  />
+                    <div className="flex space-x-3 justify-center mt-10 cursor-pointer" >
+                        <a className="text-white" href={props.github}>
+                            <FaGithub size={20}   />
+                        </a>
+                        <a className="text-white" href={props.linkedin}>
+                            <FaLinkedinIn size={20}  />
+                        </a>
                     </div>
                     
                 </div>
