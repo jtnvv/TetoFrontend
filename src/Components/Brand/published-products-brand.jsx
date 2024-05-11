@@ -54,10 +54,6 @@ function DeleteProductModal({ onClose, id, image }) {
 
     const [idState, setIdState] = useState(id)
 
-
-
-
-
     const handleSubmit = async (event) => {
 
         event.preventDefault();

@@ -18,12 +18,23 @@ export default function ProductRegisterForm() {
     const [sizesResponse, setSizesResponse] = useState({});
     const [responseMessage, setResponseMessage] = useState(false);
 
+
     const onChange = (event) => {
         setPostData({...postData, [event.target.name]:event.target.value});
     };
 
     const onSubmit = async (event) => {
         event.preventDefault();
+
+        
+        if(priority){
+
+            const confirmation = window.confirm("¿Estás seguro de que quieres agregar este producto con prioridad? hay una tasa por cada compra ");
+            if (!confirmation) {
+                return;
+            }
+
+        }
         const photo_url = await uploadImage(productImage, "product-images/");
         const postDataParameter = {
             ...postData,
@@ -41,7 +52,9 @@ export default function ProductRegisterForm() {
         .catch((err) => {
             console.log(err.message)
         });
+    
     };
+
 
     useEffect(() => {
         const setUpFormData = async () => {
@@ -85,7 +98,7 @@ export default function ProductRegisterForm() {
         </div>
         <div className={gropuStyle}>
             <label htmlFor="image" className={labelStyle} >Imagen del producto*: </label>
-            <input type="file" placeholder="Descripción" id="image" accept="image/*" onChange={(event) => setProductImage(event.target.files[0])} required/>
+            <input type="file" placeholder="Descripción" id="image" accept="image/*" onChange={(event) => setProductImage(event.target.files[0])} required />
         </div>
         {responseMessage && (
             <div className={responseMessage[1]}>
@@ -96,7 +109,7 @@ export default function ProductRegisterForm() {
         <div className="flex flex-col items-center space-y-7 font-bold">
             <h2 className="text-xl">Haz que tu producto se destaque sobre los demas*</h2>
             <div className="flex space-x-3">
-                <button type="submit" className="w-96 bg-brand-5 text-white border border-brand-5 hover:border-brand-3 hover:bg-brand-3" onClick={() => setPriority(1)} >Agregar</button>
+                <button type="submit" name="addWithPriority" className="w-96 bg-brand-5 text-white border border-brand-5 hover:border-brand-3 hover:bg-brand-3"  onClick={() => setPriority(1)} >Agregar</button>
                 <button type="submit" className="w-96 bg-transparent border border-brand-5 text-brand-2 hover:bg-brand-2 hover:border-brand-2 hover:text-white" onClick={() => setPriority(0)} >Agregar sin prioridad</button>
             </div>
             <h2 className="font-normal">*El valor de la publicidad es del 7% del total de la prenda</h2>
@@ -104,3 +117,4 @@ export default function ProductRegisterForm() {
     </form>
   )
 }
+
