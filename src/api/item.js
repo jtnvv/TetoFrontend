@@ -38,3 +38,16 @@ export async function getItem(itemId) {
 export async function fetchItemsByPriority() {
     return await axios.get(`${url}get-items-by-priority`)
 }
+
+export async function togleFavorite(itemId) {
+    return await axios.post(
+        `${url}add-to-favorite`,
+        {
+            item_id: itemId
+        }
+    )
+}
+
+export async function isFavorite(itemId) {
+    return await axios.get(`${url}is-favorite/${itemId}`); 
+}

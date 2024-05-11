@@ -27,11 +27,11 @@ export default function Header() {
   };
 
   return (
-    <nav className="bg-brand-6 p-3 font-inknut">
+    <nav className="bg-brand-6 p-3 font-default">
       <div className="mx-auto flex justify-between items-center">
-        <div className="flex items-center">
+        <div className="flex items-center font-logo">
           <img src="/favicon.svg" alt="Logo" className="h-14 w-14 mr-2" />
-          {role=='brand' ? (<>
+          {role === 'brand' ? (<>
           <div className=' flex flex-col'>
           <span className="text-brand-1 font-semibold text-5xl">TETO </span>
           <span className="text-brand-1 font-semibold text-3xl">marcas</span> </div></>):(<span className="text-brand-1 font-semibold text-5xl">TETO</span>)}
@@ -61,12 +61,13 @@ export default function Header() {
 
           <a href={link}><img src="../src/assets/profileHeader.png" alt="profile" className="h-7 w-7 mr-0" /></a>
           <a href="#"><img src="../src/assets/favoritesHeader.png" alt="favorites" className="h-8 w-8" /></a>
-          <div className="static" >
-            <a className="cursor-pointer" onClick={() => setIsShoppingCartOpen(!isShoppingCartOpen)} ><img src="../src/assets/shopHeader.png" alt="profile" className="h-7 w-7" /></a>
+          <div className="responsive:relative">
+            <a className="cursor-pointer" onClick={() => setIsShoppingCartOpen(!isShoppingCartOpen)} ><img src="../src/assets/shopHeader.png" id="shopping-cart-icon" alt="profile" className="h-7 w-7" /></a>
             {isShoppingCartOpen && (
               <ShoppingCart showShoppingCart={handleIsShoppingCartOpen}/>
             )}
-          </div></>)}
+          </div>
+          </>)}
 
 
 

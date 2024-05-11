@@ -61,12 +61,12 @@ export default function LoginForm (){
                 <BackButton />
                 <div className="flex items-center justify-center mb-20 ">
                     <img className="w-20 mx-5 " src="../src/assets/TetoLogo.png" alt='Teto Logo' />
-                    <h1 className="text-5xl font-bold text-center text-gray-700  font-inknut"  >TETO</h1>
+                    <h1 className="text-5xl font-bold text-center text-gray-700  font-default"  >TETO</h1>
                 </div>
                 <form onSubmit={(e) => onSubmit(e)} className="space-y-16">
 
                     <div>
-                        <label className="block text-gray-700 font-bold mb-2 font-inknut text-left text-lg" htmlFor='email' >
+                        <label className="block text-gray-700 font-bold mb-2 font-default text-left text-lg" htmlFor='email' >
                             Email address
                         </label>
                         <input
@@ -82,7 +82,7 @@ export default function LoginForm (){
                     </div>
 
                     <div className='mb-3'>
-                        <label htmlFor='password' className="block text-gray-700 font-bold mb-2 font-inknut text-left text-lg">
+                        <label htmlFor='password' className="block text-gray-700 font-bold mb-2 font-default text-left text-lg">
                             Contraseña
                         </label>
                         <input
@@ -99,7 +99,7 @@ export default function LoginForm (){
 
                     <div style={{ color: 'red', margin: '10px 0' }}>{error}</div>
 
-                    <div  className="font-inknut ">
+                    <div  className="font-default ">
                         <button type='submit' className="w-full bg-brand-2 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-lg mt-1 mb-4">
                             Iniciar Sesion
                         </button>
@@ -112,7 +112,7 @@ export default function LoginForm (){
                         </a>
                     </div>
 
-                    <div className="text-black font-inknut">
+                    <div className="text-black font-default">
                        ¿No estás registrado? <a href="/register">Regístrate aquí</a>
 
                     </div>

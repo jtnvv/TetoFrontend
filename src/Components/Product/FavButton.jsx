@@ -1,20 +1,40 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { isFavorite, togleFavorite } from "../../api/item";
 
-export default function FavButton({isInitialSelected = false}) {
+export default function FavButton({itemId}) {
 
-    const [isSelected, setIsSelected] = useState(isInitialSelected);
-    const notify = () => toast("Añadido a Favoritos!");
-    const upDateStateAndNotify = () => {
-        notify();
-        setIsSelected(!isSelected);
+    const [isSelected, setIsSelected] = useState(null);
+    const notify = (message) => toast(message);
+
+    const addItemToFavoriteAndNotify = async () => {
+        await togleFavorite(itemId)
+        .then(res => {
+            notify(res.data.message);
+            setIsSelected(!isSelected);
+        })
+        .catch(err => {
+            toast.error("Para agregar a favoritos debes iniciar sesión", {
+                position: "top-left"
+            });
+        });
     };
+
+    useEffect(() => {
+        const getIsFavorite = async () => {
+            await isFavorite(itemId)
+            .then(res => {
+                setIsSelected(res.data.message);
+            });
+        };
+        getIsFavorite();
+    }, []);
 
     return (
         <>
         <ToastContainer />
-            <svg className={"cursor-pointer max-w-10 transition-colors ease-in-out " + (isSelected ? "fill-[#FF793B]" : "fill-brand-1 hover:fill-[#FF793B]")} onClick={upDateStateAndNotify} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 368 368" xmlSpace="preserve" fill="#000000">
+            <svg className={"cursor-pointer max-w-10 transition-colors ease-in-out " + (isSelected ? "fill-[#FF793B]" : "fill-brand-1 hover:fill-[#FF793B]")} onClick={addItemToFavoriteAndNotify} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 368 368" xmlSpace="preserve" fill="#000000">
                 <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                 <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
                 <g id="SVGRepo_iconCarrier"> 

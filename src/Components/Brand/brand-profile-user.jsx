@@ -35,7 +35,7 @@ export default function BrandProfileUser(props) {
     const totalPages = Math.ceil(products.length / productsPerPage);
 
     return (
-        <div className="flex font-inknut min-h-screen">
+        <div className="flex font-default min-h-screen">
             <div className="bg-zinc-400 text-brand-6 flex flex-col items-center justify-center pr-40 pl-40">
                 <img src={store.logo} alt="Logo" className="h-32 w-32 m-5" />
                 <h1 className="m-2">{store.name}</h1>x

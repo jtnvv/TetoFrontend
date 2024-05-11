@@ -120,7 +120,7 @@ export default function UpdateDataBrand({onClose, name,email, description, addre
 
     return(
         <div className="fixed  z-50 inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full px-4  ">
-            <div className="relative top-20 mx-auto shadow-xl rounded-md bg-white max-w-md font-inknut  ">
+            <div className="relative top-20 mx-auto shadow-xl rounded-md bg-white max-w-md font-default  ">
             <button onClick={onClose} className="absolute right-0 top-0 m-2 bg-transparent ">
                 <img src={'../src/assets/cerrar.png'} alt="Close" />
             </button>
@@ -178,7 +178,7 @@ export default function UpdateDataBrand({onClose, name,email, description, addre
                         )}
                         <div>
                             <p> Foto de la marca: </p>
-                            <input  onChange={handleImageChange} className="mt-4 font-inknut text-sm items-center text-black mb-3" id="imageUrl" name="imageUrl" 
+                            <input  onChange={handleImageChange} className="mt-4 font-default text-sm items-center text-black mb-3" id="imageUrl" name="imageUrl" 
                             type="file" />
                             {imageStateShow && <img src={imageStateShow} alt="brand" className="h-20 w-full  md:h-full md:w-20 " />}
                         </div>

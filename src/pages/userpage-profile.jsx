@@ -56,7 +56,7 @@ export default function UserPageProfile() {
 
         <Layout>
           
-                <div className="flex font-inknut  min-h-screen  w-screen bg-white   ">
+                <div className="flex font-default  min-h-screen  w-screen bg-white   ">
                     <div className=" bg-white  w-3/12 h-fit  px-20 py-40  space-y-10  ">
                         <div className="space-y-2">
                             <p className="text-2xl text-gray-900 dark:text-black font-semibold">Nombre </p>

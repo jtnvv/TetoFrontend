@@ -18,7 +18,7 @@ export default function CardsSearchCategory({ category }) {
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
     const totalPages = Math.ceil(products.length / productsPerPage);
     return (
-        <div className="flex items-center bg-brand-1 font-inknut h-full w-full justify-center text-brand-1 px-48">
+        <div className="flex items-center bg-brand-1 font-default h-full w-full justify-center text-brand-1 px-48">
             <div className="flex flex-col">
                 <div className="bg-brand-6 flex items-center rounded-full mt-5 mb-5 w-56">
                     <img src="../src/assets/category.png" alt="category" className="h-3 w-3 m-3" />

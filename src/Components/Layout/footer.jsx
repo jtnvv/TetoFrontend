@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="bg-brand-6 text-brand-1 py-6 font-inknut">
+    <footer className="bg-brand-6 text-brand-1 py-6 font-default">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
         <div className="flex items-center mb-4 md:mb-0">
           <img src="/favicon.svg" alt="Logo" className="h-14 w-14 mr-2" />

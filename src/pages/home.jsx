@@ -46,7 +46,7 @@ const Home = () => {
 
   return (
     <Layout>
-      <div className="h-full flex flex-col font-inknut">
+      <div className="h-full flex flex-col font-default">
         <div className="flex flex-col lg:flex-row">
           <div className="w-full lg:w-8/12 bg-brand-2">
             {firstItem && <img src={firstItem.photo} alt="imagen del producto" className="w-full object-cover h-full lg:max-h-[39rem] lg:min-h-[39rem]" />}

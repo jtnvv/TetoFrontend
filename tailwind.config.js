@@ -15,7 +15,8 @@ export default {
         'brand-6': '#101010',
       },
       fontFamily: {
-        'inknut': ['"Inknut Antiqua"', 'serif'],
+        'default': ['"Sora"', 'sans-serif'],
+        'logo': ['"Inknut Antiqua"', 'serif'],
       },
       backgroundImage: {
         'bgBrandsSearch': "url('./src/assets/bgBrandsSearch.png')",
@@ -23,6 +24,9 @@ export default {
         'bgRegister': "url('./src/assets/bgRegister.png')",
         'bgHome': "url('./src/assets/bgHome.png')",
       },
+      screens: {
+        'responsive': '1040px',
+      }
     },
   },
   plugins: [],

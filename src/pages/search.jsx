@@ -21,7 +21,7 @@ export default function Search() {
     ];
     return (
         <Layout>
-            <div className="flex font-inknut h-full">
+            <div className="flex font-default h-full">
                 <div className="bg-brand-1 text-brand-6 w-full flex flex-col items-center">
                     <div className="flex items-center mt-20">
                         <img src="../src/assets/search.png" alt="Search" className="h-30 w-30 m-5" />
