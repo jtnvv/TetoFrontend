@@ -1,31 +1,49 @@
 import { useState, useEffect } from "react";
 import Layout from "../Components/Layout/layout";
 import { fetchCategories } from "../api/item";
+import { fetchItemsByPriority } from "../api/item";
+import CardItem from "../Components/item/card-item";
+import { FaSearch } from "react-icons/fa";
 
 export default function Search() {
     const [categories, setCategories] = useState([]);
+    const [items, setItems] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 12;
+
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+    }
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    }
     useEffect(() => {
         fetchCategories()
             .then(response => {
                 const categoriesArray = JSON.parse(response.data.categories);
                 setCategories(categoriesArray);
             })
+        fetchItemsByPriority()
+            .then(items => {
+                setItems(items.data);
+            })
+            .catch(error => console.error('Error fetching items:', error));
     }, []);
-    const currentProducts = [
-        { id: 1, name: 'Producto 1', image: '/ruta/a/la/imagen1.jpg', price: '20$' },
-        { id: 2, name: 'Producto 2', image: '/ruta/a/la/imagen2.jpg', price: '30$' },
-        { id: 3, name: 'Producto 3', image: '/ruta/a/la/imagen3.jpg', price: '50$' },
-        { id: 4, name: 'Producto 4', image: '/ruta/a/la/imagen4.jpg', price: '15$' },
-        { id: 5, name: 'Producto 5', image: '/ruta/a/la/imagen5.jpg', price: '25$' },
-        { id: 6, name: 'Producto 6', image: '/ruta/a/la/imagen6.jpg', price: '35$' },
-    ];
+
+    const filteredItems = items.filter(item => item.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+
+
     return (
         <Layout>
-            <div className="flex font-default h-full">
+            <div className="flex font-default xl:flex-row 2xl:flex-row flex-col h-full">
                 <div className="bg-brand-1 text-brand-6 w-full flex flex-col items-center">
                     <div className="flex items-center mt-20">
-                        <img src="../src/assets/search.png" alt="Search" className="h-30 w-30 m-5" />
-                        <p>Busca por producto, marca, colección, etc.</p>
+                        <h2 className="text-3xl">Categorias</h2>
                     </div>
                     <div className="flex mt-10 justify-center align-items-start">
                         <div className="flex flex-wrap w-1/2 border-r-2 border-gray-300 pr-2">
@@ -46,16 +64,31 @@ export default function Search() {
                             ))}
                         </div>
                     </div>
+                    <div className="flex flex-col items-center mb-7">
+                        <h2 className="text-3xl mt-20">Productos</h2>
+                        <div className="flex items-center">
+                            <FaSearch color="black" size="1.5em" className="mr-2" />
+                            <input type="text" value={searchTerm} onChange={handleSearchChange} placeholder="Busca por nombre de producto" className="bg-transparent underline underline-offset-4 text-brand-6"></input>
+                        </div>
+                        <div className="flex flex-wrap justify-center">
+                            {currentItems.map((product, index) => (
+                                <CardItem key={index} id={product.id} name={product.name} price={product.price} photo={product.photo} />
+                            ))}
+                        </div>
+                        <div className="pagination text-brand-1 space-x-1">
+                            {[...Array(totalPages).keys()].map((page) => (
+                                <button key={page + 1} onClick={() => handlePageChange(page + 1)}>
+                                    {page + 1}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
                 </div>
-                <div className="bg-zinc-400 text-brand-6 flex flex-col items-center justify-center p-20 min-h-fit">
+                <div className="bg-zinc-400 text-brand-6 flex flex-col items-center p-20 min-h-fit">
                     <h2 className="font-bold text-2xl">Recomendados</h2>
                     <div className="flex flex-wrap justify-center">
-                        {currentProducts.slice(0, 4).map((product) => (
-                            <div key={product.id} className="flex flex-col items-center m-5 bg-brand-6 rounded-2xl text-brand-1 w-5/12">
-                                <h2 className="mt-5 mb-5 font-semibold text-xl">{product.name.substring(0, 13)} ...</h2>
-                                <img src={product.image} alt={product.name} className="h-40 w-40 object-cover mb-5" />
-                                <p className="text-brand-3 mb-5 text-xl">$ {product.price}</p>
-                            </div>
+                        {items.slice(0, 4).map((product, index) => (
+                            <CardItem key={index} id={product.id} name={product.name} price={product.price} photo={product.photo} />
                         ))}
                     </div>
                 </div>

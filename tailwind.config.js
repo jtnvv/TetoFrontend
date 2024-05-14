@@ -19,10 +19,10 @@ export default {
         'logo': ['"Inknut Antiqua"', 'serif'],
       },
       backgroundImage: {
-        'bgBrandsSearch': "url('./src/assets/bgBrandsSearch.png')",
-        'bgRegisterBrand': "url('./src/assets/bgRegister.png')",
-        'bgRegister': "url('./src/assets/bgRegister.png')",
-        'bgHome': "url('./src/assets/bgHome.png')",
+        'bgBrandsSearch': "url('https://raw.githubusercontent.com/jtnvv/TetoFrontend/main/src/assets/bgBrandsSearch.png')",
+        'bgRegisterBrand': "url('https://raw.githubusercontent.com/jtnvv/TetoFrontend/main/src/assets/bgRegister.png')",
+        'bgRegister': "url('https://raw.githubusercontent.com/jtnvv/TetoFrontend/main/src/assets/bgRegister.png')",
+        'bgHome': "url('https://raw.githubusercontent.com/jtnvv/TetoFrontend/main/src/assets/bgHome.png')",
       },
       screens: {
         'responsive': '1040px',

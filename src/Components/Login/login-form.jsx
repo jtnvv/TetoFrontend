@@ -6,8 +6,8 @@ import BackButton from "../Layout/back-button";
 import { useContext } from "react";
 import { RecoveryContext } from "../../pages/login";
 
-export default function LoginForm (){
-    const {  setPage, setOTP, setEmail } = useContext(RecoveryContext);
+export default function LoginForm() {
+    const { setPage, setOTP, setEmail } = useContext(RecoveryContext);
     const inputStyle = "block w-96 py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300  focus_outline-non outline-none";
 
     const [values, setValues] = useState({
@@ -28,7 +28,7 @@ export default function LoginForm (){
 
             localStorage.setItem('isAuth', 'true')
             localStorage.setItem('role', res.data.role)
-            
+
             dispatch(authenticateUser())
 
         } catch (err) {
@@ -49,14 +49,14 @@ export default function LoginForm (){
             }
             setPage("otp")
             setEmail(values.email)
-          return;
+            return;
         }
         return alert("Please enter your email");
-      }
+    }
 
     return (
 
-        <div className="flex justify-end w-screen h-screen bg-[url('src/assets/bgRegister.png')] bg-cover bg-no-repeat bg-center">
+        <div className="flex justify-end w-screen h-screen bg-bgRegister bg-cover bg-no-repeat bg-center">
             <div className="bg-white rounded-lg shadow-lg p-20 max-w-x1">
                 <BackButton />
                 <div className="flex items-center justify-center mb-20 ">

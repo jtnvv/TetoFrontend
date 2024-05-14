@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { fetchItemsByCategory } from '../../api/item';
+import { FaTag } from "react-icons/fa";
+
 export default function CardsSearchCategory({ category }) {
     const [products, setProducts] = useState([]);
-    
+
     useEffect(() => {
         fetchItemsByCategory(category)
             .then(response => {
@@ -21,7 +23,7 @@ export default function CardsSearchCategory({ category }) {
         <div className="flex items-center bg-brand-1 font-default h-full w-full justify-center text-brand-1 px-48">
             <div className="flex flex-col">
                 <div className="bg-brand-6 flex items-center rounded-full mt-5 mb-5 w-56">
-                    <img src="../src/assets/category.png" alt="category" className="h-3 w-3 m-3" />
+                    <FaTag color='white' size='2.5em' className='p-3' />
                     <p className="pr-3">{category}</p>
                 </div>
                 <div className="flex flex-wrap">

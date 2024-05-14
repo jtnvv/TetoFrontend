@@ -1,3 +1,5 @@
+import { FaInstagram, FaTwitter, FaFacebookF } from "react-icons/fa";
+
 export default function Footer() {
   return (
     <footer className="bg-brand-6 text-brand-1 py-6 font-default">
@@ -34,14 +36,14 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold">Emprendimientos</h4>
             <ul className="mt-2 text-sm">
-              <li><a href="#" className="text-gray-300 hover:text-brand-1">Marcas asociadas</a></li>
+              <li><a href="/brand-search" className="text-gray-300 hover:text-brand-1">Marcas asociadas</a></li>
             </ul>
           </div>
         </div>
         <div className="flex justify-between items-center">
-          <a href="#" className="mr-4"><img src="../src/assets/igFooter.png" alt="profile" className="h-11 w-11" /></a>
-          <a href="#" className="mr-4"><img src="../src/assets/xFooter.png" alt="favorites" className="h-8 w-8" /></a>
-          <a href="#"><img src="../src/assets/facebookFooter.png" alt="profile" className="h-8 w-8" /></a>
+          <a href="#" className="mr-4"><FaInstagram color="white" size="2.5em" className="pl-2" /></a>
+          <a href="#" className="mr-4"><FaTwitter color="white" size="2.5em" className="pl-2" /></a>
+          <a href="#"><FaFacebookF color="white" size="2em" className="pl-2" /></a>
         </div>
       </div>
     </footer>
