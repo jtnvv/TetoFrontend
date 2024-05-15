@@ -2,7 +2,7 @@ import { FaInstagram, FaTwitter, FaFacebookF } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-6 text-brand-1 py-6 font-inknut">
+    <footer className="bg-brand-6 text-brand-1 py-6 font-default">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
         <div className="flex items-center mb-4 md:mb-0">
           <img src="/favicon.svg" alt="Logo" className="h-14 w-14 mr-2" />
@@ -28,9 +28,9 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold">TETO</h4>
             <ul className="mt-2 text-sm">
-              <li><a href="#" className="text-gray-300 hover:text-brand-1">Misión</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-brand-1">Visión</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-brand-1">¿Quienes somes?</a></li>
+              <li><a href="/about-us" className="text-gray-300 hover:text-brand-1">Misión</a></li>
+              <li><a href="/about-us" className="text-gray-300 hover:text-brand-1">Visión</a></li>
+              <li><a href="/about-us" className="text-gray-300 hover:text-brand-1">¿Quienes somos?</a></li>
             </ul>
           </div>
           <div>

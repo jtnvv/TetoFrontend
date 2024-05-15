@@ -34,20 +34,20 @@ export default function BrandsSearch() {
     return (
       <Layout> 
           
-          <div className=" bg-bgBrandsSearch bg-no-repeat bg-center bg-cover w-screen min-h-screen  text-white  font-inknut justify-between">
+          <div className=" bg-bgBrandsSearch bg-no-repeat bg-center bg-cover w-screen min-h-screen  text-white  font-default justify-between">
 
               <div className="mb-10 p-10 text-center">
                 <h1 className=" ">MARCAS</h1>
               </div>
 
               <div className="m-10 " >
-                <div className="grid 2xl:grid-cols-2 xl:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-8 max-w-3x2 ">
+                <div className="flex flex-wrap items-center justify-center">
 
                   {
-                    currentCards.map((val,key)=>{
+                    currentCards.map((val)=>{
                       return (
-                        <div key={val.id}>
-                          <CardBrandsSearch id_brand = {val.id} name_brand = {val.name} description_brand = {val.description} address_brand = {val.city} phone_brand = {val.phone_number} image_brand={val.logo}/>
+                        <div key={val.id} className="m-5">
+                          <CardBrandsSearch key={val.id} id_brand = {val.id} name_brand = {val.name} description_brand = {val.description} address_brand = {val.city} phone_brand = {val.phone_number} image_brand={val.logo}/>
                         </div>
                       )
                     })
@@ -56,7 +56,7 @@ export default function BrandsSearch() {
                 </div>
               </div>
               
-              <div className="pagination p-10 text-center my-5">
+              <div className="pagination p-10 text-center mt-5">
                 {Array(Math.ceil(stores.length/ cardsPerPage)).fill().map((_, i) => (
                   <button key={i} onClick={() => paginate(i + 1)} className="mr-1">
                     {i + 1}
@@ -66,11 +66,7 @@ export default function BrandsSearch() {
 
               
           </div>
-          <div className="relative h-24 w-screen ... font-inknut text-center text-3xl">
-              <div className="absolute inset-x-0 bottom-0 h-16 ...">
-                <p> ¿Eres una marca? <a href="/register-brand" className="text-black">Regístrate aquí</a> </p> 
-              </div>
-            </div>
+          
 
       </Layout>
     )

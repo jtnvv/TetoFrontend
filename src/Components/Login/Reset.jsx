@@ -16,7 +16,7 @@ export default function Reset() {
   }
   
   function changePassword() {
-    if (values.password===values.confirmPassword) {
+    if (values.password === values.confirmPassword) {
       axios.post("http://localhost:8080/change-password", {
         pass: values.password,
         email: email,
@@ -36,14 +36,14 @@ return (
     <section className="bg-gray-50 w-screen dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-gray-800 dark:border-gray-700 sm:p-8">
-          <h2 className="block text-gray-700 font-bold mb-2 font-inknut text-left text-lg">
+          <h2 className="block text-gray-700 font-bold mb-2 font-default text-left text-lg">
             Cambiar Contraseña
           </h2>
           <form className="mt-4 space-y-4 lg:mt-5 md:space-y-5">
             <div>
               <label
                 htmlFor="password"
-                className="block text-gray-700 font-bold mb-2 font-inknut text-left text-lg"
+                className="block text-gray-700 font-bold mb-2 font-default text-left text-lg"
               >
                 Nueva Contraseña
               </label>
@@ -60,7 +60,7 @@ return (
             <div>
               <label
                 htmlFor="confirm-password"
-                className="block text-gray-700 font-bold mb-2 font-inknut text-left text-lg"
+                className="block text-gray-700 font-bold mb-2 font-default text-left text-lg"
               >
                 Confirmar contraseña
               </label>
@@ -87,7 +87,7 @@ return (
               <div className="ml-3 text-sm">
                 <label
                   htmlFor="newsletter"
-                  className="block text-gray-700 font-bold mb-2 font-inknut text-left text-lg"
+                  className="block text-gray-700 font-bold mb-2 font-default text-left text-lg"
                 >
                   Acepto que he leido los{" "}
                   <a
@@ -102,7 +102,7 @@ return (
           </form>
           <button
             onClick={() => changePassword()}
-            className="block text-gray-700 font-bold mb-2 font-inknut text-left text-lg"
+            className="block text-gray-700 font-bold mb-2 font-default text-left text-lg"
           >
             Cambiar Contraseña
           </button>

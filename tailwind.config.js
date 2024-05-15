@@ -15,13 +15,33 @@ export default {
         'brand-6': '#101010',
       },
       fontFamily: {
-        'inknut': ['"Inknut Antiqua"', 'serif'],
+        'default': ['"Sora"', 'sans-serif'],
+        'logo': ['"Inknut Antiqua"', 'serif'],
       },
       backgroundImage: {
         'bgBrandsSearch': "url('https://raw.githubusercontent.com/jtnvv/TetoFrontend/main/src/assets/bgBrandsSearch.png')",
         'bgRegisterBrand': "url('https://raw.githubusercontent.com/jtnvv/TetoFrontend/main/src/assets/bgRegister.png')",
         'bgRegister': "url('https://raw.githubusercontent.com/jtnvv/TetoFrontend/main/src/assets/bgRegister.png')",
         'bgHome': "url('https://raw.githubusercontent.com/jtnvv/TetoFrontend/main/src/assets/bgHome.png')",
+        'bgMision': "url('https://raw.githubusercontent.com/jtnvv/TetoFrontend/99dbde2595b325dcabe5352fc34ec3607c7fe092/src/assets/AboutUsMisi%C3%B3n.png')",
+        'bgVision': "url('https://raw.githubusercontent.com/jtnvv/TetoFrontend/gestionar-publicidad-sobre-nosotros/src/assets/AboutUsVision.png')"
+        
+      },
+      screens: {
+        'responsive': '1040px',
+        'responsive-sm': '580px',
+      },
+      keyframes: {
+        'move-l-out': {
+          'to': { 
+            display: 'none',
+            transform: 'translateX(110%)',
+            opacity: 0,
+          },
+        }
+      },
+      animation: {
+        'move-l-out': 'move-l-out .5s ease-in-out forwards',
       },
     },
   },

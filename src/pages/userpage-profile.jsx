@@ -29,17 +29,19 @@ export default function UserPageProfile() {
             .catch(error => console.error('Error:', error));
       }, []);
 
-    useEffect(() => {
+      useEffect(() => {
         
         FetchUserOrders()
             .then(response => {
                
-                // Aplanar las órdenes y los productos en un solo arreglo
-                const flattenedItems = response.data.flatMap(order => 
-                    order.items.map(item => ({...item, order}))
-                );
-                setOrders(flattenedItems);
-                
+                // Extraer el item de cada orden
+                const items = response.data.map(order => {
+                    // Asegúrate de que el item exista en la orden
+                    if (order.item) {
+                        return {...order.item, order};
+                    }
+                });
+                setOrders(items);
             })
             .catch(error => console.error('Error:', error));
       }, []);
@@ -56,7 +58,7 @@ export default function UserPageProfile() {
 
         <Layout>
           
-                <div className="flex font-inknut  min-h-screen  w-screen bg-white   ">
+                <div className="flex font-default  min-h-screen  w-screen bg-white   ">
                     <div className=" bg-white  w-3/12 h-fit  px-20 py-40  space-y-10  ">
                         <div className="space-y-2">
                             <p className="text-2xl text-gray-900 dark:text-black font-semibold">Nombre </p>

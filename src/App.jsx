@@ -8,12 +8,14 @@ import BrandUser from './pages/brand-user'
 import Search from './pages/search'
 import SearchCategory from "./pages/search-category";
 import RegisterProduct from "./pages/product-register";
-// import ErrorPage from "./pages/error-page";
 import BrandsSearch from "./pages/brands-search";
 import BrandPageBrand from "./pages/brandpage-brand";
 import BrandPageProfile from "./pages/brandpage-profile";
 import UserPageProfile from "./pages/userpage-profile";
 import Product from "./pages/product";
+import ShoppingCartPage from "./pages/shopping-cart-page";
+import Favorites from "./pages/favorites";
+import AboutUs from "./pages/about-us";
 
 
 const PrivateRoutes = () => {
@@ -32,9 +34,12 @@ const UserRoutes = () => {
 }
 
 const BrandRoutes = () => {
-  
   const { role } = useSelector(state => state.auth);
   return <>{role == "user" ? <Navigate to='/' /> : <Outlet /> }</>
+}
+
+const MobileRoutes = () => {
+  return <>{window.innerWidth > 1040 ? <Navigate to='/' /> : <Outlet /> }</>
 }
 
 function App() {
@@ -42,17 +47,18 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          {/* <Route path="*" element={<ErrorPage />}/> */}
           <Route path='/' element={<Home />} />
           <Route path='/brand/:idbrand' element={<BrandUser />} /> {/* perfil de la marca desde usuario */}
           <Route path='/brand-search' element={<BrandsSearch />} /> {/* vista para ver las marcas disponibles */}
           <Route path="/category/:category" element={<SearchCategory />} />
           <Route path='/search' element={<Search />} />
           <Route path='/product/:product_id' element={<Product />} />
+          <Route path='/about-us' element={<AboutUs/>} />
           
           <Route element={<PrivateRoutes />}>
             <Route element={<UserRoutes />}>
               <Route path='/userpage-profile' element={<UserPageProfile />} />
+              <Route path='/favorites' element={<Favorites />} />
             </Route>
             <Route element={<BrandRoutes />}>
               <Route path='/product-register' element={<RegisterProduct />} />
@@ -66,6 +72,10 @@ function App() {
             <Route path='/register' element={<Register />} />
             <Route path='/register-brand' element={<RegisterBrand />} />
             <Route path='/login' element={<Login />} />
+          </Route>
+          
+          <Route element={<MobileRoutes />}>
+            <Route path="/shopping-cart" element={<ShoppingCartPage/>} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -40,7 +40,7 @@ export default function Search() {
 
     return (
         <Layout>
-            <div className="flex font-inknut xl:flex-row 2xl:flex-row flex-col h-full">
+            <div className="flex font-default xl:flex-row 2xl:flex-row flex-col h-full">
                 <div className="bg-brand-1 text-brand-6 w-full flex flex-col items-center">
                     <div className="flex items-center mt-20">
                         <h2 className="text-3xl">Categorias</h2>

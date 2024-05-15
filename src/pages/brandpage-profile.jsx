@@ -46,11 +46,14 @@ export default function BrandPageProfile() {
         FetchBrandOrders()
             .then(response => {
                
-                // Aplanar las órdenes y los productos en un solo arreglo
-                const flattenedItems = response.data.flatMap(order => 
-                    order.items.map(item => ({...item, order}))
-                );
-                setOrders(flattenedItems);
+                // Extraer el item de cada orden
+                const items = response.data.map(order => {
+                    // Asegúrate de que el item exista en la orden
+                    if (order.item) {
+                        return {...order.item, order};
+                    }
+                });
+                setOrders(items);
                 
             })
             .catch(error => console.error('Error:', error));
@@ -67,7 +70,7 @@ export default function BrandPageProfile() {
     return(
 
         <Layout>
-            <div className="flex font-inknut bg-white w-screen  min-h-screen ">
+            <div className="flex font-default bg-white w-screen  min-h-screen ">
                 <div className=" bg-white  w-4/12 h-fit   px-20 py-5  space-y-10  ">
                     <div className="space-y-2">
                         <p className="text-2xl text-gray-900 dark:text-black font-semibold">Nombre de la marca</p>

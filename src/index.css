@@ -1,12 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Mukta:wght@200;300;400;500;600;700;800&family=Noto+Sans+SC:wght@100..900&family=Radio+Canada:ital,wght@0,300..700;1,300..700&family=Reddit+Sans:ital,wght@0,200..900;1,200..900&family=Sen:wght@400..800&family=Sora:wght@100..800&display=swap');
+
+/* Fuentes presentes (Así deben aparecer en tailwind.config.js para que funcione) */
+/* Logo Font */
+/*'"Reddit Sans"', 'sans-serif'*/
+/*'"Mukta"', 'sans-serif'*/
+/*'"Noto Sans SC"', 'sans-serif'*/
+/*'"Sora"', 'sans-serif'*/
+/*'"ABeeZee"', 'sans-serif'*/
+/*'"Sen"', 'sans-serif'*/
+/*'"Radio Canada"', 'sans-serif'*/
+/*'"Varela"', 'sans-serif'*/
+/*'"Pontano Sans"', 'sans-serif'*/
+/*'"Hind Guntur"', 'sans-serif'*/
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
-  font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
@@ -18,7 +31,6 @@
 }
 
 a {
-  font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
@@ -45,7 +57,6 @@ button {
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
-  font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
@@ -74,4 +85,20 @@ button:focus-visible {
 
 .css-1sb4c5p-control {
   box-shadow: none !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

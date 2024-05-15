@@ -54,10 +54,6 @@ function DeleteProductModal({ onClose, id, image }) {
 
     const [idState, setIdState] = useState(id)
 
-
-
-
-
     const handleSubmit = async (event) => {
 
         event.preventDefault();
@@ -89,8 +85,8 @@ function DeleteProductModal({ onClose, id, image }) {
 
     return (
         <div className="fixed  z-50 inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full px-4 ">
-            <div className="relative top-40 mx-auto shadow-xl rounded-md bg-[#8E8E7C] max-w-md font-inknut space-y-10  ">
-
+            <div className="relative top-40 mx-auto shadow-xl rounded-md bg-[#8E8E7C] max-w-md font-default space-y-10  ">
+                
 
                 <div className="p-10 items-center" onSubmit={handleSubmit}>
 

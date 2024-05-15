@@ -8,7 +8,7 @@ import { RecoveryContext } from "../../pages/login";
 
 export default function LoginForm() {
     const { setPage, setOTP, setEmail } = useContext(RecoveryContext);
-    const inputStyle = "block w-96 py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300  focus_outline-non outline-none";
+    const inputStyle = "text-brand-6 bg-brand-1 border border-brand-6 p-4 w-full";
 
     const [values, setValues] = useState({
         email: '',
@@ -56,18 +56,18 @@ export default function LoginForm() {
 
     return (
 
-        <div className="flex justify-end w-screen h-screen bg-bgRegister bg-cover bg-no-repeat bg-center">
-            <div className="bg-white rounded-lg shadow-lg p-20 max-w-x1">
+        <div className="flex justify-end w-screen responsive:h-screen min-h-screen bg-bgRegister bg-cover bg-no-repeat bg-center">
+            <div className="bg-white rounded-lg shadow-lg responsive:p-20 p-10 pt-16 max-w-x1 min-h-screen">
                 <BackButton />
                 <div className="flex items-center justify-center mb-20 ">
                     <img className="w-20 mx-5 " src="https://raw.githubusercontent.com/jtnvv/TetoFrontend/main/src/assets/TetoLogo.png" alt='Teto Logo' />
-                    <h1 className="text-5xl font-bold text-center text-gray-700  font-inknut"  >TETO</h1>
+                    <h1 className="text-5xl font-bold text-center text-brand-6  font-logo"  >TETO</h1>
                 </div>
                 <form onSubmit={(e) => onSubmit(e)} className="space-y-16">
 
                     <div>
-                        <label className="block text-gray-700 font-bold mb-2 font-inknut text-left text-lg" htmlFor='email' >
-                            Email address
+                        <label className="block text-brand-6 font-bold mb-2 font-default text-left text-lg" htmlFor='email' >
+                            Correo Electrónico
                         </label>
                         <input
                             onChange={(e) => onChange(e)}
@@ -76,13 +76,13 @@ export default function LoginForm() {
                             id='email'
                             name='email'
                             value={values.email}
-                            placeholder='ejemplo@gmail.com'
+                            placeholder='correo@gmail.com'
                             required
                         />
                     </div>
 
                     <div className='mb-3'>
-                        <label htmlFor='password' className="block text-gray-700 font-bold mb-2 font-inknut text-left text-lg">
+                        <label htmlFor='password' className="block text-brand-6 font-bold mb-2 font-default text-left text-lg">
                             Contraseña
                         </label>
                         <input
@@ -99,7 +99,7 @@ export default function LoginForm() {
 
                     <div style={{ color: 'red', margin: '10px 0' }}>{error}</div>
 
-                    <div className="font-inknut ">
+                    <div  className="font-default ">
                         <button type='submit' className="w-full bg-brand-2 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-lg mt-1 mb-4">
                             Iniciar Sesion
                         </button>
@@ -108,12 +108,12 @@ export default function LoginForm() {
                             onClick={() => nagigateToOtp()}
                             className="text-gray-800"
                         >
-                            Forgot password?
+                            Olvidaste tu contraseña?
                         </a>
                     </div>
 
-                    <div className="text-black font-inknut">
-                        ¿No estás registrado? <a href="/register">Regístrate aquí</a>
+                    <div className="text-black font-default">
+                       ¿No estás registrado? <a href="/register">Regístrate aquí</a>
 
                     </div>
                 </form>

@@ -80,7 +80,7 @@ export default function UpdateDataUser({ onClose, name, email }) {
 
     return (
         <div className="fixed  z-50 inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full px-4 ">
-            <div className="relative top-40 mx-auto shadow-xl rounded-md bg-white max-w-md font-inknut  ">
+            <div className="relative top-40 mx-auto shadow-xl rounded-md bg-white max-w-md font-default  ">
                 <button onClick={onClose} className="absolute right-0 top-0 m-2 bg-transparent ">
                     X
                 </button>

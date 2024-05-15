@@ -46,7 +46,7 @@ const Home = () => {
 
   return (
     <Layout>
-      <div className="h-full flex flex-col font-inknut">
+      <div className="h-full flex flex-col font-default">
         <div className="flex flex-col lg:flex-row">
           <div className="w-full lg:w-8/12 bg-brand-2">
             {firstItem && <img src={firstItem.photo} alt="imagen del producto" className="w-full object-cover h-full lg:max-h-[39rem] lg:min-h-[39rem]" />}
@@ -63,7 +63,7 @@ const Home = () => {
             )}
           </div>
         </div>
-        <div className='mt-5 mb-5'>
+        <div className='my-5'>
           <div className="flex justify-center space-x-4">
             {categories.map((category, index) => (
               <p
@@ -80,20 +80,20 @@ const Home = () => {
               <CardItem key={index} id={item.id} name={item.name} photo={item.photo} price={item.price} />
             ))}
           </div>
-          <p className='underline underline-offset-8 text-xl md:text-2xl text-right mr-20'><a className='text-brand-6' href={'/category/' + selectedCategory}>Ver más - &gt;</a></p>
+          <p className='underline underline-offset-8 text-xl md:text-2xl responsive:text-right text-center responsive:mr-20 responsive:mt-20 mt-10'><a className='text-brand-6' href={'/category/' + selectedCategory}>Ver más - &gt;</a></p>
         </div>
         <div className='flex flex-col items-center justify-center bg-bgHome text-brand-1 pt-32 pb-32'>
-          <h1 className='text-4xl md:text-8xl mb-2'>TETO</h1>
-          <p className='text-2xl md:text-2xl'>La mejor forma de vestirte y apoyar a los nuestros</p>
+          <h1 className='text-4xl md:text-8xl mb-2 font-logo'>TETO</h1>
+          <p className='text-2xl md:text-2xl text-center'>La mejor forma de vestirte y apoyar a los nuestros</p>
         </div>
-        <div className='mt-7 mb-7'>
+        <div className='my-7'>
           <h1 className='text-center mb-5'>TIENDAS</h1>
-          <div className="mt-3 w-full md:w-max h-full mx-auto text-center">
-            <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-8 max-w-3x2 mx-auto">
+          <div className="flex mt-3 justify-center">
+            <div className='flex flex-wrap justify-around'>
               {
                 stores.map((val, key) => {
                   return (
-                    <div key={val.id} className='text-brand-1'>
+                    <div key={val.id} className='text-brand-1 m-5'>
                       <CardBrandsSearch id_brand={val.id} name_brand={val.name} description_brand={val.description} address_brand={val.city} phone_brand={val.phone_number} image_brand={val.logo} />
                     </div>
                   )
@@ -102,7 +102,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <p className='underline underline-offset-8 text-xl md:text-2xl text-right mr-20 mb-8'><a className='text-brand-6' href='/brand-search'>Ver más - &gt;</a></p>
+        <p className='underline underline-offset-8 text-xl md:text-2xl responsive:text-right text-center  responsive:mr-20 mb-8'><a className='text-brand-6' href='/brand-search'>Ver más - &gt;</a></p>
       </div>
     </Layout>
   );
