@@ -83,7 +83,7 @@ const Home = () => {
           <p className='underline underline-offset-8 text-xl md:text-2xl text-right mr-20'><a className='text-brand-6' href={'/category/' + selectedCategory}>Ver más - &gt;</a></p>
         </div>
         <div className='flex flex-col items-center justify-center bg-bgHome text-brand-1 pt-32 pb-32'>
-          <h1 className='text-4xl md:text-8xl mb-2'>TETO</h1>
+          <h1 className='text-4xl md:text-8xl mb-2 font-logo'>TETO</h1>
           <p className='text-2xl md:text-2xl'>La mejor forma de vestirte y apoyar a los nuestros</p>
         </div>
         <div className='mt-7 mb-7'>

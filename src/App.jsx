@@ -8,13 +8,13 @@ import BrandUser from './pages/brand-user'
 import Search from './pages/search'
 import SearchCategory from "./pages/search-category";
 import RegisterProduct from "./pages/product-register";
-// import ErrorPage from "./pages/error-page";
 import BrandsSearch from "./pages/brands-search";
 import BrandPageBrand from "./pages/brandpage-brand";
 import BrandPageProfile from "./pages/brandpage-profile";
 import UserPageProfile from "./pages/userpage-profile";
 import Product from "./pages/product";
 import ShoppingCartPage from "./pages/shopping-cart-page";
+import Favorites from "./pages/favorites";
 
 
 const PrivateRoutes = () => {
@@ -56,6 +56,7 @@ function App() {
           <Route element={<PrivateRoutes />}>
             <Route element={<UserRoutes />}>
               <Route path='/userpage-profile' element={<UserPageProfile />} />
+              <Route path='/favorites' element={<Favorites />} />
             </Route>
             <Route element={<BrandRoutes />}>
               <Route path='/product-register' element={<RegisterProduct />} />
@@ -70,7 +71,7 @@ function App() {
             <Route path='/register-brand' element={<RegisterBrand />} />
             <Route path='/login' element={<Login />} />
           </Route>
-
+          
           <Route element={<MobileRoutes />}>
             <Route path="/shopping-cart" element={<ShoppingCartPage/>} />
           </Route>

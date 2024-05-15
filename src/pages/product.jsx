@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { getItem } from '../api/item';
 import FavButton from '../Components/Product/FavButton';
 import QuantityInput from '../Components/Shopping Cart/quantity-input';
+import { priceFormatterCOP } from '../formatter/formaters';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -57,11 +58,7 @@ export default function Product() {
     useEffect(() => {
         const setItem = async () => {
             const response = await getItem(product_id);
-            const priceFormatter = new Intl.NumberFormat('es-CO', {
-                style: 'currency',
-                currency: 'COP',
-            });
-            response.data.item.price = priceFormatter.format(parseFloat(response.data.item.price));
+            response.data.item.price = priceFormatterCOP.format(parseFloat(response.data.item.price));
             setProduct(response.data.item);
             setOwner(response.data.owner);
         };
@@ -70,10 +67,10 @@ export default function Product() {
 
     return (
         <Layout>
-            <ToastContainer containerId={product_id} limit={3} />
+            <ToastContainer/>
             <div className='flex flex-col responsive:flex-row responsive:p-32 p-4 justify-center'>
                 <img src={product.photo} alt="product-image" className='w-full responsive:w-2/4 responsive:pr-12'/>
-                <div className='flex flex-col'>
+                <div className='flex flex-col responsive:min-w-[40rem] responsive:max-w-[40rem]'>
                     <h2 className='text-sm'>Publicado por: <a href={`/brand/${owner.id}`}>{owner.name}</a></h2>
                     <h1 className='text-brand-6'>{product.name}</h1>
                     <h2>Puntuación: {product.rating === 0 ? 'Sin calificaciones aún' : product.rating}</h2>

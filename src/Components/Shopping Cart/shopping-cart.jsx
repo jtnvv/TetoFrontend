@@ -3,13 +3,24 @@ import CartItem from "./cart-item.jsx";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getPaymentLink } from "../../api/order.js";
+import { priceFormatterCOP } from "../../formatter/formaters";
 
 export default function ShoppingCart({showShoppingCart}) {
     const [address, setAddress] = useState(null);
     const [error, setError] = useState("");
     const [isWaitingForResponse, setIsWaitingForResponse] = useState(false);
+    const [totalPayment, setTotalPayment] = useState(false);
     const [cartContent, setCartContent] = useState(JSON.parse(localStorage.getItem("cart_content")));  
     const cartRef = useRef(null);
+
+    const getItemTotalPrice = (item) => {
+        return parseFloat(item.price.replace(/[^0-9.,-]/g, '')) * 1000 * item.quantity;
+    }
+
+    const getCartTotal = () => {
+        const total = cartContent.reduce((acumulator, current) => acumulator + getItemTotalPrice(current), 0);
+        return priceFormatterCOP.format(total);
+    };
 
     const handlePayment = async (event) => {
         event.preventDefault();
@@ -25,7 +36,7 @@ export default function ShoppingCart({showShoppingCart}) {
         })
         .catch(err => {
             setError(err.message);
-            err.response.status === 403 && setError('Debes iniciar sesión para poder finalizar la compra');
+            (err.response.status === 403 || err.response.status === 401) && setError('Debes iniciar sesión para poder finalizar la compra');
         })
         .finally(() => {
             setIsWaitingForResponse(false);
@@ -58,6 +69,7 @@ export default function ShoppingCart({showShoppingCart}) {
     const updateItemQuantity = (index, quantity) => {
         cartContent[index].quantity = quantity;
         localStorage.setItem("cart_content", JSON.stringify(cartContent));
+        setTotalPayment(getCartTotal());
     };
 
     const handleOutsideClick = (event) => {
@@ -76,18 +88,32 @@ export default function ShoppingCart({showShoppingCart}) {
     return(
         <>
         <ToastContainer containerId="shopping-cart" limit={3}/>
-        <div className="flex flex-col responsive:absolute responsive:right-5 responsive:mt-5 bg-brand-1 text-brand-6 responsive:rounded responsive:border border-brand-5 responsive:z-40 responsive:min-w-fit" ref={cartRef}>
+        <div className="flex flex-col relative responsive:absolute responsive:right-5 responsive:mt-5 bg-brand-1 text-brand-6 responsive:rounded responsive:border border-brand-5 responsive:z-40 responsive:min-w-fit" ref={cartRef}>
             {isWaitingForResponse && (
-                <div className="absolute bg-brand-6 w-full h-full z-50 bg-opacity-60 flex justify-center items-center">
+                <div className="absolute w-full h-full bg-brand-6 z-50 bg-opacity-60 flex justify-center items-center">
                     <div className="border-8 border-b-brand-4 rounded-full w-20 h-20 animate-spin ease-linear"></div>
                 </div>
             )}
            {cartContent ? (
                <>
-               <button onClick={emptyCart} className="bg-brand-2 text-brand-1 w-60 mr-3 my-5 self-end">Vaciar carrito</button>
-               {cartContent.map((item, index) => {
-                  return <CartItem key={index} id={item.id} index={index} name={item.name} price={item.price} photo={item.photo} color={item.color} size={item.size} itemQuantity={item.quantity} onDelete={() => handleDeleteItem(index)} updateItemQuantity={updateItemQuantity} />
-               })}
+               <div className="flex justify-between mx-5 mt-5 mb-4 items-center">
+                    <div>
+                        <h2>
+                            <b>Cantidad de articulos:</b> 
+                            <br /> ({Object.keys(cartContent).length})
+                        </h2>
+                        <h2>
+                            <b>Total a pagar:</b> 
+                            <br /> {totalPayment} COP
+                        </h2>
+                    </div>
+                    <button onClick={emptyCart} className="bg-brand-2 text-brand-1 responsive:w-60 h-14 w-40">Vaciar carrito</button>
+               </div>
+               <div className="responsive:max-h-[40vh] overflow-auto">
+                    {cartContent.map((item, index) => {
+                        return <CartItem key={index} id={item.id} index={index} name={item.name} price={item.price} photo={item.photo} color={item.color} size={item.size} itemQuantity={item.quantity} onDelete={() => handleDeleteItem(index)} updateItemQuantity={updateItemQuantity} />
+                    })}
+               </div>
                 <form className="flex flex-col p-5 space-y-5" onSubmit={(event) => handlePayment(event)}>
                     <label htmlFor="address">Ingresa tu dirección de envio:</label>
                     <input id="address" onChange={(event) =>  setAddress(event.target.value)} type="text" placeholder="Calle 12 # 5 - 48" className="text-brand-6 bg-brand-1 border border-brand-6 p-4" required/>

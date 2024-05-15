@@ -60,7 +60,7 @@ export default function Header() {
 
 
           <a href={link}><img src="../src/assets/profileHeader.png" alt="profile" className="h-7 w-7 mr-0" /></a>
-          <a href="#"><img src="../src/assets/favoritesHeader.png" alt="favorites" className="h-8 w-8" /></a>
+          <a href="/favorites"><img src="../src/assets/favoritesHeader.png" alt="favorites" className="h-8 w-8" /></a>
           <div className="responsive:relative">
             <a className="cursor-pointer" onClick={() => setIsShoppingCartOpen(!isShoppingCartOpen)} ><img src="../src/assets/shopHeader.png" id="shopping-cart-icon" alt="profile" className="h-7 w-7" /></a>
             {isShoppingCartOpen && (

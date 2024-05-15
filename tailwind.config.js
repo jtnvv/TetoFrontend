@@ -26,7 +26,19 @@ export default {
       },
       screens: {
         'responsive': '1040px',
-      }
+      },
+      keyframes: {
+        'move-l-out': {
+          'to': { 
+            display: 'none',
+            transform: 'translateX(110%)',
+            opacity: 0,
+          },
+        }
+      },
+      animation: {
+        'move-l-out': 'move-l-out .5s ease-in-out forwards',
+      },
     },
   },
   plugins: [],

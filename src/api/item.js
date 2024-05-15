@@ -51,3 +51,7 @@ export async function togleFavorite(itemId) {
 export async function isFavorite(itemId) {
     return await axios.get(`${url}is-favorite/${itemId}`); 
 }
+
+export async function getFavorites() {
+    return await axios.get(`${url}get-favorites`); 
+}
