@@ -12,8 +12,9 @@ const CardOrderUser = (props) => {
                 </div>
                 <div className="w-8/12">
                         <p className="text-lg text-white-900 dark:text-white font-semibold ">{props.item.name}</p>
-                        <p className="text-sm text-white-900 dark:text-white ">Enviar a:</p>
-                        <p className="text-sm text-white-900 dark:text-white ">{props.item.order.delivery_addresss}</p>
+                        <p className="text-sm text-white-900 dark:text-white ">Color: {props.item.order.color}</p>
+                        <p className="text-sm text-white-900 dark:text-white ">talla: {props.item.order.size}</p>
+                        <p className="text-sm text-white-900 dark:text-white ">Enviar a: {props.item.order.delivery_addresss}</p>
 
 
                 </div>

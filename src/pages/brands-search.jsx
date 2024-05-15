@@ -66,11 +66,7 @@ export default function BrandsSearch() {
 
               
           </div>
-          <div className="relative h-24 w-screen ... font-default text-center text-3xl">
-              <div className="absolute inset-x-0 bottom-0 h-16 ...">
-                <p> ¿Eres una marca? <a href="/register-brand" className="text-black">Regístrate aquí</a> </p> 
-              </div>
-            </div>
+          
 
       </Layout>
     )

@@ -46,11 +46,14 @@ export default function BrandPageProfile() {
         FetchBrandOrders()
             .then(response => {
                
-                // Aplanar las órdenes y los productos en un solo arreglo
-                const flattenedItems = response.data.flatMap(order => 
-                    order.items.map(item => ({...item, order}))
-                );
-                setOrders(flattenedItems);
+                // Extraer el item de cada orden
+                const items = response.data.map(order => {
+                    // Asegúrate de que el item exista en la orden
+                    if (order.item) {
+                        return {...order.item, order};
+                    }
+                });
+                setOrders(items);
                 
             })
             .catch(error => console.error('Error:', error));
