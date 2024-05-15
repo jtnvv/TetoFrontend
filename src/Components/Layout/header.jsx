@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { FaFileUpload, FaShoppingCart, FaSearch, FaUserCircle, FaHeart } from "react-icons/fa";
 
 import ShoppingCart from "../Shopping Cart/shopping-cart";
 
@@ -39,40 +40,34 @@ export default function Header() {
         </div>
         <div className="flex items-center space-x-4">
 
-        {location.pathname=='/brandpage-brand' ? (
-          <>
-          <a href="/" className="text-brand-1 hover:text-gray-300 ">Sobre Nosotros</a>
-          <a href="/product-register" className='flex items-center space-x-2'>
-            <img src="../src/assets/AddFile.png" alt="Anhadir producto" />
+          {location.pathname == '/brandpage-brand' ? (
+            <>
+              <a href="/" className="text-brand-1 hover:text-gray-300 ">Sobre Nosotros</a>
+              <a href="/product-register" className='flex items-center space-x-2'>
+                <FaFileUpload color="white" size="2em" />
                 <span className="text-brand-1 hover:text-gray-300">Agregar productos</span>
-          </a>
+              </a>
 
-          <a href="/" className='flex items-center space-x-2'>
-                <img src="../src/assets/iconCart.png" alt="Descripción de la imagen" />
+              <a href="/" className='flex items-center space-x-2'>
+                <FaShoppingCart color="white" size="2em" />
                 <span className="text-brand-1 hover:text-gray-300">Pedidos</span>
-          </a>
-          </> ):
+              </a>
+            </>) :
 
-          (<><a href="/" className="text-brand-1 hover:text-gray-300">Inicio</a>
-          <a href="/brand-search" className="text-brand-1 hover:text-gray-300">Marcas</a>
-          <a href="#" className="text-brand-1 hover:text-gray-300">Sobre Nosotros</a>
-          <button className="flex bg-brand-1 bg-opacity-25 rounded-full pt-2 pb-2 items-center justify-center"><p className="text-xs text-brand-1">Buscar producto por marca, colección</p><img src="../src/assets/searchHeader.png" alt="profile" className="h-5 w-5 ml-2" /></button>
-
-
-          <a href={link}><img src="../src/assets/profileHeader.png" alt="profile" className="h-7 w-7 mr-0" /></a>
-          <a href="/favorites"><img src="../src/assets/favoritesHeader.png" alt="favorites" className="h-8 w-8" /></a>
-          <div className="responsive:relative">
-            <a className="cursor-pointer" onClick={() => setIsShoppingCartOpen(!isShoppingCartOpen)} ><img src="../src/assets/shopHeader.png" id="shopping-cart-icon" alt="profile" className="h-7 w-7" /></a>
-            {isShoppingCartOpen && (
-              <ShoppingCart showShoppingCart={handleIsShoppingCartOpen}/>
-            )}
-          </div>
-          </>)}
+            (<><a href="/" className="text-brand-1 hover:text-gray-300">Inicio</a>
+              <a href="/brand-search" className="text-brand-1 hover:text-gray-300">Marcas</a>
+              <a href="#" className="text-brand-1 hover:text-gray-300">Sobre Nosotros</a>
+              <a href="/search"><button className="flex bg-brand-1 bg-opacity-25 rounded-full pt-2 pb-2 items-center justify-center"><p className="text-xs text-brand-1">Buscar producto por marca, colección</p><FaSearch color="white" size="1.5em" className="pl-2" /></button></a>
 
 
-
-
-
+              <a href={link}><FaUserCircle color="white" size="2em" className="pl-2" /></a>
+              <a href="#"><FaHeart color="white" size="2em" className="pl-2" /></a>
+              <div className="static" >
+                <a className="cursor-pointer" onClick={() => setIsShoppingCartOpen(!isShoppingCartOpen)} ><FaShoppingCart color="white" size="2.5em" className="pl-2 pr-2" /></a>
+                {isShoppingCartOpen && (
+                  <ShoppingCart showShoppingCart={handleIsShoppingCartOpen} />
+                )}
+              </div></>)}
         </div>
       </div>
     </nav>
