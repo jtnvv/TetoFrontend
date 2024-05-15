@@ -1,9 +1,11 @@
 import { useState } from "react"
 import { useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { FaFileUpload, FaShoppingCart, FaSearch, FaUserCircle, FaHeart } from "react-icons/fa";
-
+import { FaFileUpload, FaShoppingCart, FaSearch, FaUserCircle, FaHeart, FaSignOutAlt } from "react-icons/fa";
+import { onLogout } from "../../api/auth";
+import { useDispatch } from "react-redux";
 import ShoppingCart from "../Shopping Cart/shopping-cart";
+import { unauthenticateUser } from '../../redux/slices/authSlice.js'
 
 export default function Header() {
 
@@ -12,7 +14,7 @@ export default function Header() {
   const { role } = useSelector(state => state.auth);
   const { isAuth } = useSelector(state => state.auth)
   const location = useLocation()
-
+  const dispatch = useDispatch();
   let link;
 
   if (isAuth && role === 'brand') {
@@ -22,7 +24,13 @@ export default function Header() {
   } else {
     link = "/login";
   }
-
+  const handleLogout = async () => {
+    await onLogout();
+    localStorage.removeItem('isAuth');
+    localStorage.removeItem('role');
+    dispatch(unauthenticateUser());
+    window.location.href = '/login';
+  };
   const handleIsShoppingCartOpen = (state) => {
     setIsShoppingCartOpen(state);
   };
@@ -33,14 +41,14 @@ export default function Header() {
         <div className="flex items-center font-logo">
           <img src="/favicon.svg" alt="Logo" className="h-14 w-14 mr-2" />
           {role === 'brand' ? (<>
-          <div className=' flex flex-col'>
-          <span className="text-brand-1 font-semibold text-5xl">TETO </span>
-          <span className="text-brand-1 font-semibold text-3xl">marcas</span> </div></>):(<span className="text-brand-1 font-semibold text-5xl">TETO</span>)}
+            <div className=' flex flex-col'>
+              <span className="text-brand-1 font-semibold text-5xl">TETO </span>
+              <span className="text-brand-1 font-semibold text-3xl">marcas</span> </div></>) : (<span className="text-brand-1 font-semibold text-5xl">TETO</span>)}
 
         </div>
         <div className="flex items-center space-x-4">
 
-          {location.pathname == '/brandpage-brand' ? (
+          {role === 'brand' ? (
             <>
               <a href="/about-us" className="text-brand-1 hover:text-gray-300 ">Sobre Nosotros</a>
               <a href="/product-register" className='flex items-center space-x-2'>
@@ -52,6 +60,17 @@ export default function Header() {
                 <FaShoppingCart color="white" size="2em" />
                 <span className="text-brand-1 hover:text-gray-300">Pedidos</span>
               </a>
+
+              <a href={link} className="flex items-center space-x-2">
+                <FaUserCircle color="white" size="2em" className="pl-2" />
+                <span className="text-brand-1 hover:text-gray-300">Tu marca de ropa</span>
+              </a>
+              {isAuth && (
+                <button onClick={handleLogout} className="p-0 m-0">
+                  <FaSignOutAlt color="white" size="2em" className="pr-2" />
+                </button>
+              )}
+
             </>) :
 
             (<><a href="/" className="text-brand-1 hover:text-gray-300">Inicio</a>
@@ -63,20 +82,26 @@ export default function Header() {
               <a href={link}><FaUserCircle color="white" size="2em" className="pl-2" /></a>
               <a href="/favorites"><FaHeart color="white" size="2em" className="pl-2" /></a>
               <div className="static" id="shopping-cart-icon" >
-                <a 
-                className="cursor-pointer" 
-                onClick={(event) => {
-                  handleIsShoppingCartOpen(!isShoppingCartOpen);
-                  event.preventDefault();
-                }} 
-                id="shopping-cart-icon" 
-                href="/shopping-cart">
-                  <FaShoppingCart color="white" size="2.5em" className="pl-2 pr-2" id="shopping-cart-icon" />
+                <a
+                  className="cursor-pointer"
+                  onClick={(event) => {
+                    handleIsShoppingCartOpen(!isShoppingCartOpen);
+                    event.preventDefault();
+                  }}
+                  id="shopping-cart-icon"
+                  href="/shopping-cart">
+                  <FaShoppingCart color="white" size="2em" className="pl-2 mr-2" id="shopping-cart-icon" />
                 </a>
                 {isShoppingCartOpen && (
                   <ShoppingCart showShoppingCart={handleIsShoppingCartOpen} />
                 )}
-              </div></>)}
+              </div>
+              {isAuth && (
+                <button onClick={handleLogout} className="p-0 m-0">
+                  <FaSignOutAlt color="white" size="2em" className="pr-2" />
+                </button>
+              )}
+            </>)}
         </div>
       </div>
     </nav>
