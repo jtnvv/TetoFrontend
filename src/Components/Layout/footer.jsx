@@ -28,9 +28,9 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold">TETO</h4>
             <ul className="mt-2 text-sm">
-              <li><a href="#" className="text-gray-300 hover:text-brand-1">Misión</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-brand-1">Visión</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-brand-1">¿Quienes somes?</a></li>
+              <li><a href="/about-us" className="text-gray-300 hover:text-brand-1">Misión</a></li>
+              <li><a href="/about-us" className="text-gray-300 hover:text-brand-1">Visión</a></li>
+              <li><a href="/about-us" className="text-gray-300 hover:text-brand-1">¿Quienes somos?</a></li>
             </ul>
           </div>
           <div>

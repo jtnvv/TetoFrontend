@@ -29,7 +29,7 @@ export default function UserPageProfile() {
             .catch(error => console.error('Error:', error));
       }, []);
 
-    useEffect(() => {
+      useEffect(() => {
         
         FetchUserOrders()
             .then(response => {

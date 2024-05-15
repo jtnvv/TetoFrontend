@@ -105,8 +105,8 @@ const RegisterFormBrand = () => {
         setError(errorL)
 
 
-        if (errorL.name === "" && errorL.password === "" && errorL.email === "") {
-
+        if (errorL.name === "" && errorL.password === "" && errorL.email === "" && errorL.description ==="" && errorL.phone==="" && errorL.address==="") {
+            
             //añadir función de registro aqui, pues no se ha encontrado errores 
             event.preventDefault()
             try {

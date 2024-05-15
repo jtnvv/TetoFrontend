@@ -42,7 +42,7 @@ export default function Header() {
 
           {location.pathname == '/brandpage-brand' ? (
             <>
-              <a href="/" className="text-brand-1 hover:text-gray-300 ">Sobre Nosotros</a>
+              <a href="/about-us" className="text-brand-1 hover:text-gray-300 ">Sobre Nosotros</a>
               <a href="/product-register" className='flex items-center space-x-2'>
                 <FaFileUpload color="white" size="2em" />
                 <span className="text-brand-1 hover:text-gray-300">Agregar productos</span>
@@ -56,7 +56,7 @@ export default function Header() {
 
             (<><a href="/" className="text-brand-1 hover:text-gray-300">Inicio</a>
               <a href="/brand-search" className="text-brand-1 hover:text-gray-300">Marcas</a>
-              <a href="#" className="text-brand-1 hover:text-gray-300">Sobre Nosotros</a>
+              <a href="/about-us" className="text-brand-1 hover:text-gray-300">Sobre Nosotros</a>
               <a href="/search"><button className="flex bg-brand-1 bg-opacity-25 rounded-full pt-2 pb-2 items-center justify-center"><p className="text-xs text-brand-1">Buscar producto por marca, colección</p><FaSearch color="white" size="1.5em" className="pl-2" /></button></a>
 
 
