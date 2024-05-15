@@ -61,7 +61,7 @@ export default function Header() {
 
 
               <a href={link}><FaUserCircle color="white" size="2em" className="pl-2" /></a>
-              <a href="#"><FaHeart color="white" size="2em" className="pl-2" /></a>
+              <a href="/favorites"><FaHeart color="white" size="2em" className="pl-2" /></a>
               <div className="static" id="shopping-cart-icon" >
                 <a 
                 className="cursor-pointer" 

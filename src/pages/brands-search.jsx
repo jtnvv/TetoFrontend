@@ -41,13 +41,13 @@ export default function BrandsSearch() {
               </div>
 
               <div className="m-10 " >
-                <div className="grid 2xl:grid-cols-2 xl:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-8 max-w-3x2 ">
+                <div className="flex flex-wrap items-center justify-center">
 
                   {
                     currentCards.map((val,key)=>{
                       return (
-                        <div key={val.id}>
-                          <CardBrandsSearch id_brand = {val.id} name_brand = {val.name} description_brand = {val.description} address_brand = {val.city} phone_brand = {val.phone_number} image_brand={val.logo}/>
+                        <div  className="m-5">
+                          <CardBrandsSearch key={val.id} id_brand = {val.id} name_brand = {val.name} description_brand = {val.description} address_brand = {val.city} phone_brand = {val.phone_number} image_brand={val.logo}/>
                         </div>
                       )
                     })

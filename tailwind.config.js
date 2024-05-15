@@ -29,6 +29,7 @@ export default {
       },
       screens: {
         'responsive': '1040px',
+        'responsive-sm': '580px',
       },
       keyframes: {
         'move-l-out': {
