@@ -1,4 +1,10 @@
 import React from "react";
+import { UpdateSend } from "../../api/store";
+// import { FetchBrandInformation, FetchBrandOrders } from "../api/store";
+
+const markSend = () => {
+    UpdateSend()
+};
 
 const CardOrderBrand = (props) => {
 
@@ -19,6 +25,7 @@ const CardOrderBrand = (props) => {
                 </div>
                 <div className="w-2/12">
                     <p className="text-lg text-white-900 dark:text-white font-semibold mb-3 ">{"$"+props.item.price}</p>
+                    <button className='text-white grow bg-brand-3 hover:bg-brand-2 ml-5' onClick={markSend}>Enviado</button>
                     <p className="text-sm text-white-900 dark:text-white ">enviado</p>
                     
 
