@@ -73,7 +73,7 @@ export default function ShoppingCart({showShoppingCart}) {
     };
 
     const handleOutsideClick = (event) => {
-        if(cartRef.current && !cartRef.current.contains(event.target) && event.target.id != "shopping-cart-icon"){
+        if(cartRef.current && !cartRef.current.contains(event.target) && event.target.id != "shopping-cart-icon" && event.target.parentNode.parentNode.id != "shopping-cart-icon"){
             return showShoppingCart(false);
         }
     };

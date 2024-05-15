@@ -62,8 +62,17 @@ export default function Header() {
 
               <a href={link}><FaUserCircle color="white" size="2em" className="pl-2" /></a>
               <a href="#"><FaHeart color="white" size="2em" className="pl-2" /></a>
-              <div className="static" >
-                <a className="cursor-pointer" onClick={() => setIsShoppingCartOpen(!isShoppingCartOpen)} ><FaShoppingCart color="white" size="2.5em" className="pl-2 pr-2" /></a>
+              <div className="static" id="shopping-cart-icon" >
+                <a 
+                className="cursor-pointer" 
+                onClick={(event) => {
+                  handleIsShoppingCartOpen(!isShoppingCartOpen);
+                  event.preventDefault();
+                }} 
+                id="shopping-cart-icon" 
+                href="/shopping-cart">
+                  <FaShoppingCart color="white" size="2.5em" className="pl-2 pr-2" id="shopping-cart-icon" />
+                </a>
                 {isShoppingCartOpen && (
                   <ShoppingCart showShoppingCart={handleIsShoppingCartOpen} />
                 )}
