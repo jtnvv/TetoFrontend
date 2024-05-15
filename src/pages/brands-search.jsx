@@ -44,9 +44,9 @@ export default function BrandsSearch() {
                 <div className="flex flex-wrap items-center justify-center">
 
                   {
-                    currentCards.map((val,key)=>{
+                    currentCards.map((val)=>{
                       return (
-                        <div  className="m-5">
+                        <div key={val.id} className="m-5">
                           <CardBrandsSearch key={val.id} id_brand = {val.id} name_brand = {val.name} description_brand = {val.description} address_brand = {val.city} phone_brand = {val.phone_number} image_brand={val.logo}/>
                         </div>
                       )
@@ -56,7 +56,7 @@ export default function BrandsSearch() {
                 </div>
               </div>
               
-              <div className="pagination p-10 text-center my-5">
+              <div className="pagination p-10 text-center mt-5">
                 {Array(Math.ceil(stores.length/ cardsPerPage)).fill().map((_, i) => (
                   <button key={i} onClick={() => paginate(i + 1)} className="mr-1">
                     {i + 1}

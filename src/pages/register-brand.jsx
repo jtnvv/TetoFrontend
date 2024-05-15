@@ -6,7 +6,7 @@ import BackButton from "../Components/Layout/back-button"
 export default function RegisterBrand() {
   return (
    
-    <div className="flex justify-center items-center w-screen h-screen bg-bgRegisterBrand bg-cover bg-no-repeat bg-center" >
+    <div className="flex justify-center items-center responsive:w-screen responsive:h-screen responsive:bg-bgRegisterBrand responsive:bg-cover responsive:bg-no-repeat responsive:bg-center" >
          <BackButton />
          <RegisterFormBrand />
     </div>

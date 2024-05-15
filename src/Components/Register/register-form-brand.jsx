@@ -6,6 +6,7 @@ import { uploadImage as uploader } from "../../firebase.js";
 
 const RegisterFormBrand = () => {
 
+    const inputStyle = "responsive:w-full block py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300  focus_outline-non";
 
     const navigate = useNavigate()
 
@@ -142,22 +143,22 @@ const RegisterFormBrand = () => {
 
     return (
 
-        <div className="bg-white rounded-lg shadow-lg p-11 max-w-x1 mx-auto"  >
+        <div className="flex flex-col bg-white rounded-lg shadow-lg responsive:p-11 p-5 pt-20 responsive:w-[30rem] responsive:h-max w-screen h-full"  >
 
             <div className="flex items-center justify-center mb-5 ">
                 <img className="w-20 mx-5 " src="https://raw.githubusercontent.com/jtnvv/TetoFrontend/main/src/assets/TetoLogo.png" alt='Teto Logo' />
-                <h1 className="text-5xl font-bold text-center text-gray-700  font-default"  >TETO</h1>
+                <h1 className="text-5xl font-bold text-center text-gray-700 font-logo"  >TETO</h1>
             </div>
 
 
 
-            <form className="space-y-8" onSubmit={handleSubmit}>
+            <form className="space-y-8 flex flex-col items-center responsive:block" onSubmit={handleSubmit}>
 
                 <div>
                     <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg "  htmlFor="name">
                         Nombre de la marca
                     </label>
-                    <input className="block w-96 py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300  focus_outline-non" id="name" name="name" onChange={handleInput}
+                    <input className={inputStyle} id="name" name="name" onChange={handleInput}
                         type="text" />
                     {errors.name && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.name}</span>}
 
@@ -166,7 +167,7 @@ const RegisterFormBrand = () => {
                     <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg"  htmlFor="descripcion">
                         Descripción de tu marca
                     </label>
-                    <input className="block w-96 py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300 apparance-none  focus_outline-non" id="description" name="description" onChange={handleInput}
+                    <input className={inputStyle} id="description" name="description" onChange={handleInput}
                         type="text" />
                     {errors.description && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.description}</span>}
                 </div>
@@ -174,7 +175,7 @@ const RegisterFormBrand = () => {
                     <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg"  htmlFor="direccion">
                         Dirección
                     </label>
-                    <input className="block w-96 py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300 apparance-none  focus_outline-non" id="address" name="address" onChange={handleInput}
+                    <input className={inputStyle} id="address" name="address" onChange={handleInput}
                         type="text" />
                     {errors.address && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.address}</span>}
                 </div>
@@ -182,7 +183,7 @@ const RegisterFormBrand = () => {
                     <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg"  htmlFor="telefono">
                         Telefono
                     </label>
-                    <input className="block w-96 py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300 apparance-none  focus_outline-non" id="phone" name="phone" onChange={handleInput}
+                    <input className={inputStyle} id="phone" name="phone" onChange={handleInput}
                         type="text" />
                     {errors.phone && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.phone}</span>}
                 </div>
@@ -190,7 +191,7 @@ const RegisterFormBrand = () => {
                     <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg"  htmlFor="email">
                         Correo Electronico
                     </label>
-                    <input className="block w-96 py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300 apparance-none  focus_outline-non" id="email" name="email" onChange={handleInput}
+                    <input className={inputStyle} id="email" name="email" onChange={handleInput}
                         type="email" />
                     {errors.email && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.email}</span>}
                 </div>
@@ -198,7 +199,7 @@ const RegisterFormBrand = () => {
                     <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg"  htmlFor="password">
                         Contraseña
                     </label>
-                    <input className="block w-96 py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300 apparance-none focus_outline-non" id="password" name="password" onChange={handleInput}
+                    <input className={inputStyle} id="password" name="password" onChange={handleInput}
                         type="password" />
                     {errors.password && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.password}</span>}
                 </div>
@@ -206,12 +207,11 @@ const RegisterFormBrand = () => {
                     <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg"  htmlFor="password">
                         Imagen de la marca
                     </label>
-                    <input className="mt-4 font-default text-sm items-center text-black" id="img" name="imagen" onChange={(event) => { setImageUpload(event.target.files[0]) }}
+                    <input className="text-brand-6 w-60" id="img" name="imagen" onChange={(event) => { setImageUpload(event.target.files[0]) }}
                         type="file" />
-
                 </div>
                 <div >
-                    <button className="w-full bg-brand-2 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-lg mt-2">
+                    <button className="responsive:w-full bg-brand-2 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-lg mt-2">
                         Registrarse
                     </button>
                 </div>
