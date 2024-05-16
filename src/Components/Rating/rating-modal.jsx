@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { FaStar } from "react-icons/fa";
 import { updateOrderRating } from '../../api/order';
-
-const RatingModal = ({ showModal, toggleModal, idext, ratingext, notify }) => {
+import { updateItemRating } from '../../api/item';
+const RatingModal = ({ showModal, toggleModal, idext, ratingext, notify, iditem }) => {
     const [rating, setRating] = useState(0);
 
     if (!showModal) return null;
@@ -16,6 +16,11 @@ const RatingModal = ({ showModal, toggleModal, idext, ratingext, notify }) => {
             "rating": parseInt(rating)
         };
         await updateOrderRating(order);
+        const item_id = {
+            "id": iditem
+        };
+        console.log(item_id);
+        await updateItemRating(item_id);
         notify();
     };
     return (

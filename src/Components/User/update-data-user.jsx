@@ -15,6 +15,8 @@ export default function UpdateDataUser({ onClose, name, email }) {
     const [emailState, setEmailState] = useState(email);
     const [updatePassword, setUpdatePassword] = useState(false);
     const [passwordState, setPasswordState] = useState("");
+    const inputStyle = "py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300";
+    const buttonStyle = "bg-[#D9D9D9] rounded mr-5";
 
 
     //Errors
@@ -85,20 +87,20 @@ export default function UpdateDataUser({ onClose, name, email }) {
                     X
                 </button>
 
-                <div className="p-10" onSubmit={handleSubmit}>
+                <div className="responsive:p-10 p-5" onSubmit={handleSubmit}>
 
                     <form className="space-y-5" >
                         <p className="font-bold text-2xl">MODIFICAR DATOS</p>
 
-                        <div>
-                            <p> Nombre de la marca: </p>
-                            <input value={nameState} onChange={(e) => setNameState(e.target.value)} className="block w-96 py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300  focus_outline-non" id="name" name="name"
+                        <div className="flex flex-col">
+                            <p> Nombre de la cuenta: </p>
+                            <input value={nameState} onChange={(e) => setNameState(e.target.value)} className={inputStyle} id="name" name="name"
                                 type="text" required />
                         </div>
 
-                        <div>
+                        <div className="flex flex-col">
                             <p> Correo electronico: </p>
-                            <input value={emailState} onChange={(e) => setEmailState(e.target.value)} className="block w-96 py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300  focus_outline-non" id="email" name="email"
+                            <input value={emailState} onChange={(e) => setEmailState(e.target.value)} className={inputStyle} id="email" name="email"
                                 type="email" required />
                             <p className="text-sm text-red-500 mt-3">* Al modificar este campo, se cerrará la sesión</p>
                         </div>
@@ -111,19 +113,19 @@ export default function UpdateDataUser({ onClose, name, email }) {
                         </div>
 
                         {updatePassword && (
-                            <div>
+                            <div className="flex flex-col">
                                 <p> Nueva contraseña: </p>
-                                <input value={passwordState} onChange={(e) => setPasswordState(e.target.value)} className="block w-96 py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300  focus_outline-non" id="password" name="password"
+                                <input value={passwordState} onChange={(e) => setPasswordState(e.target.value)} className="py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300" id="password" name="password"
                                     type="password" required />
                                 {passwordError && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{passwordError}</span>}
                             </div>
                         )}
 
-                        <div className="pagination space-x-5 items-center text-black ">
-                            <button className=" bg-[#D9D9D9] rounded " type="button" onClick={onClose}>
+                        <div className="flex flex-wrap text-black ">
+                            <button className={buttonStyle} type="button" onClick={onClose}>
                                 Cancelar
                             </button>
-                            <button className=" bg-[#D9D9D9] rounded " type="submit">
+                            <button className={buttonStyle} type="submit">
                                 Actualizar
                             </button>
                         </div>

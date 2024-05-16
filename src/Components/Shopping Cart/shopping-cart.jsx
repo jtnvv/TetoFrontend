@@ -31,6 +31,7 @@ export default function ShoppingCart({showShoppingCart}) {
             address: address
         })
         .then(res => {
+            emptyCart();
             window.open(res.data.payment_link, '_blank').focus();
             setError("");
         })

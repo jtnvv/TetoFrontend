@@ -38,7 +38,7 @@ export default function Header() {
   return (
     <nav className="bg-brand-6 p-3 font-default">
       <div className="mx-auto flex justify-between items-center">
-        <div className="flex items-center font-logo">
+        <div className="flex items-center font-logo cursor-pointer" onClick={() => window.location.href = "/"}>
           <img src="/favicon.svg" alt="Logo" className="h-14 w-14 mr-2" />
           {role === 'brand' ? (<>
             <div className=' flex flex-col'>
