@@ -14,6 +14,7 @@ const Home = () => {
   const [stores, setStores] = useState([]);
 
   useEffect(() => {
+
     fetchItemsByPriority()
       .then(items => {
         setFirstItem(items.data[0]);
@@ -28,11 +29,13 @@ const Home = () => {
         handleCategoryClick(categoriesArray[0]);
       })
       .catch(error => console.error('Error fetching categories:', error));
+
     fetchStores()
       .then(response => {
         setStores(response.data.slice(0, 2));
       })
       .catch(error => console.error('Error:', error));
+
   }, []);
 
   const handleCategoryClick = (category) => {
