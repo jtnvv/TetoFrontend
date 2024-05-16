@@ -45,7 +45,7 @@ const CardOrderUser = (props) => {
                     {props.item.order.received_status === true ? (
                         <>
                             <button onClick={toggleModal} className="bg-brand-3 rounded px-2 py-1 text-brand-1 dark:text-white">Calificar</button>
-                            <RatingModal showModal={showModal} toggleModal={toggleModal} idext={props.item.order.id} ratingext={props.item.order.rating} notify={notifyAndCloseModal} />
+                            <RatingModal showModal={showModal} toggleModal={toggleModal} idext={props.item.order.id} ratingext={props.item.order.rating} notify={notifyAndCloseModal} iditem={props.item.order.item_id} />
                         </>
                     ) : (
                         <>
