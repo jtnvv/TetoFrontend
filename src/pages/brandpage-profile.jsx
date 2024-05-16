@@ -71,7 +71,7 @@ export default function BrandPageProfile() {
 
         <Layout>
             <div className="flex font-default bg-white w-screen  min-h-screen ">
-                <div className=" bg-white  w-4/12 h-fit   px-20 py-5  space-y-10  ">
+                <div className=" flex flex-col bg-white   h-fit   px-20 py-5  space-y-10  ">
                     <div className="space-y-2">
                         <p className="text-2xl text-gray-900 dark:text-black font-semibold">Nombre de la marca</p>
                         <p className="text-lg text-black ">{name}</p>
@@ -97,7 +97,7 @@ export default function BrandPageProfile() {
                     </div>
 
                 </div>
-                <div className="bg-[#D9D9D9] w-8/12 ">
+                <div className="bg-[#D9D9D9] w-screen ">
                     <div className=" py-5 px-20 space-y-5 ">
 
                         <div className="mb-10  ">

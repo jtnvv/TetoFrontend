@@ -22,8 +22,9 @@ export default function PublishedProductsBrand(props) {
     return (
 
         <div className=" relative flex flex-col items-center m-5 bg-brand-6 rounded-2xl text-brand-1 w-60">
+            
+            <h2 className="mt-5 mb-2 font-semibold text-xl">{name}</h2>
             <a key={id} href={'/product/' + id}>
-                <h2 className="mt-5 mb-2 font-semibold text-xl">{name}</h2>
                 <img src={image} alt="prueba" className="h-40 w-40 object-cover mb-2" />
                 <StarRating rating={rating} />
                 <p className="text-brand-3 mb-5 text-xl">{"$" + price}</p>
