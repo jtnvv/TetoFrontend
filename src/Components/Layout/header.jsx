@@ -56,7 +56,7 @@ export default function Header() {
                 <span className="text-brand-1 hover:text-gray-300">Agregar productos</span>
               </a>
 
-              <a href="/" className='flex items-center space-x-2'>
+              <a href="/brandpage-profile" className='flex items-center space-x-2'>
                 <FaShoppingCart color="white" size="2em" />
                 <span className="text-brand-1 hover:text-gray-300">Pedidos</span>
               </a>
