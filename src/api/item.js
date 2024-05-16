@@ -49,9 +49,13 @@ export async function togleFavorite(itemId) {
 }
 
 export async function isFavorite(itemId) {
-    return await axios.get(`${url}is-favorite/${itemId}`); 
+    return await axios.get(`${url}is-favorite/${itemId}`);
 }
 
 export async function getFavorites() {
-    return await axios.get(`${url}get-favorites`); 
+    return await axios.get(`${url}get-favorites`);
+}
+
+export async function updateItemRating(item) {
+    return await axios.post(`${url}update-item-rating`, item)
 }
