@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { priceFormatterCOP } from "../../formatter/formaters.js";
 import RatingModal from "../Rating/rating-modal.jsx";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const CardOrderUser = (props) => {
     let status_message;
     if (props.item.order.sent_status === null) {
@@ -13,12 +16,17 @@ const CardOrderUser = (props) => {
 
     const [showModal, setShowModal] = React.useState(false);
     const toggleModal = () => setShowModal(!showModal);
+    const notifyAndCloseModal = () => {
+        toggleModal();
+        toast.info('Calificación guardada', {
+            autoClose: 500
+        });
+    };
 
-    const handleReceived = () => { };
     return (
 
         <div className="text-white ">
-
+            <ToastContainer />
             <div className="flex  bg-[#646458] rounded px-10 py-1 gap-3  items-center">
 
                 <div className="mt-2 mb-2 w-2/12">
@@ -37,7 +45,7 @@ const CardOrderUser = (props) => {
                     {props.item.order.received_status === true ? (
                         <>
                             <button onClick={toggleModal} className="bg-brand-3 rounded px-2 py-1 text-brand-1 dark:text-white">Calificar</button>
-                            <RatingModal showModal={showModal} toggleModal={toggleModal} idext={props.item.order.id} ratingext={props.item.order.rating} />
+                            <RatingModal showModal={showModal} toggleModal={toggleModal} idext={props.item.order.id} ratingext={props.item.order.rating} notify={notifyAndCloseModal} />
                         </>
                     ) : (
                         <p className="text-sm text-white-900 dark:text-white ">Estado: {status_message}</p>

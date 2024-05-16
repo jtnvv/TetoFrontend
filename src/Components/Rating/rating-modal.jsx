@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { FaStar } from "react-icons/fa";
 import { updateOrderRating } from '../../api/order';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
-const RatingModal = ({ showModal, toggleModal, idext, ratingext }) => {
+const RatingModal = ({ showModal, toggleModal, idext, ratingext, notify }) => {
     const [rating, setRating] = useState(0);
 
     if (!showModal) return null;
@@ -18,17 +16,10 @@ const RatingModal = ({ showModal, toggleModal, idext, ratingext }) => {
             "rating": parseInt(rating)
         };
         await updateOrderRating(order);
-        toast.info('Calificación guardada', {
-            autoClose: 500,
-            onClose: () => {
-                toggleModal();
-                window.location.reload();
-            }
-        });
+        notify();
     };
     return (
         <div className="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-            <ToastContainer limit={2} />
             <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                 <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
 
