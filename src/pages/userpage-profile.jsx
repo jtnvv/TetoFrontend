@@ -59,7 +59,7 @@ export default function UserPageProfile() {
         <Layout>
           
                 <div className=" flex font-default  min-h-screen  w-screen bg-white   ">
-                    <div className=" flex flex-col bg-white   h-fit  px-20 py-40  space-y-10  ">
+                    <div className=" flex flex-col bg-white   h-fit  px-20 py-40  space-y-5  ">
                         <div className="space-y-2">
                             <p className="text-2xl text-gray-900 dark:text-black font-semibold">Nombre </p>
                             <p className="text-lg text-black ">{name}</p>
@@ -72,7 +72,7 @@ export default function UserPageProfile() {
                     
                         <div className="space-y-2 ">
                             <button   className="bg-[#646458] hover:bg-gray-500 text-white hover:bg-grey-500 w-fit" onClick={() => setUpdateData(true)}>
-                                MODIFICAR DATOS
+                                Modificar Datos
                             </button>
                         </div>
 
