@@ -24,24 +24,24 @@ export default function AboutUs() {
             <Layout>
                 <div className="w-screeen min-h-screen font-default">
                     <div className="responsive:flex  w-screen h-auto text-white ">
-                        <div className="w-full h-3/4 responsive:w-1/2 bg-bgMision bg-cover" >
-                            <div className="px-20 text-center py-32">
+                        <div className="flex flex-col justify-center w-full responsive:w-1/2 bg-bgMision bg-cover" >
+                            <div className="text-center py-20 responsive:py-40">
                                 <div className="text-6xl font-semibold font-logo">
                                     MISIÓN
                                 </div>
-                                <div className="text-xl mt-3 leading-15 responsive:p-10">
+                                <div className="text-xl mt-3 leading-15 px-2 responsive:px-32">
                                     Promover el crecimiento de las marcas de ropa colombianas, mostrando sus productos sostenibles y auténticos a compradores, reuniendo estas marcas en un mismo e-commerce haciendo las compras más confiables y convenientes.
                                 </div>
 
                             </div>
 
                         </div>
-                        <div className="w-full responsive:w-1/2 bg-bgVision bg-cover">
-                            <div className="px-20 py-32 text-center">
+                        <div className="flex flex-col justify-center w-full responsive:w-1/2 bg-bgVision bg-cover">
+                            <div className="text-center py-20 responsive:py-40">
                                 <div className="text-6xl font-semibold font-logo">
                                     VISIÓN
                                 </div>
-                                <div className="text-xl mt-3 leading-15 responsive:p-10">
+                                <div className="text-xl mt-3 leading-15 px-2 responsive:px-32">
                                     Para el 2028, TETO será la plataforma de confianza para compradores, y vendedores de ropa auténtica y sostenible en Colombia.
                                 </div>
 

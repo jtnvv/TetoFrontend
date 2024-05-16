@@ -15,10 +15,10 @@ const CardTeamMember = (props) => {
 
                     <div className="flex space-x-3 justify-center mt-10 cursor-pointer" >
                         <a className="text-white" href={props.github}>
-                            <FaGithub size={20} />
+                            <FaGithub size="1.5em" />
                         </a>
                         <a className="text-white" href={props.linkedin}>
-                            <FaLinkedinIn size={20} />
+                            <FaLinkedinIn size="1.5em" />
                         </a>
                     </div>
 
