@@ -12,13 +12,15 @@ export default function () {
   function resendOTP() {
     if (disable) return;
     axios
-      .post("http://localhost:5000/send_recovery_email", {
+      .post(import.meta.env.VITE_LOCAL_URL + "send_recovery_email", {
         OTP: otp,
         recipient_email: email,
       })
-      .then(() => setDisable(true))
-      .then(() => alert("A new OTP has succesfully been sent to your email."))
-      .then(() => setTimer(60))
+      .then(() => {
+        setDisable(true)
+        toast.inf("A new OTP has succesfully been sent to your email.")
+        setTimer(60)
+      })
       .catch();
   }
 

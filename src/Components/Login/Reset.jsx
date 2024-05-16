@@ -17,7 +17,7 @@ export default function Reset() {
   
   function changePassword() {
     if (values.password === values.confirmPassword) {
-      axios.post("http://localhost:8080/change-password", {
+      axios.post(import.meta.env.VITE_LOCAL_URL + "change-password", {
         pass: values.password,
         email: email,
       })
