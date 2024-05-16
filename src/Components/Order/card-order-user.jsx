@@ -53,8 +53,8 @@ const CardOrderUser = (props) => {
                     ) : (
                         <>
                         <p className="text-sm text-white-900 dark:text-white ">Estado: {status_message}</p>
-                        {!props.item.order.sent_status && (
-                            <a href={props.item.order.payment_link} target="_blank" >Paga aquí</a>
+                        {props.item.order.payment_link && (
+                            <a className="underline" href={props.item.order.payment_link} target="_blank" >Paga aquí</a>
                         )}
                         </>
                     )}
