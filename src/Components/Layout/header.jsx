@@ -46,7 +46,7 @@ export default function Header() {
               <span className="text-brand-1 font-semibold text-3xl">marcas</span> </div></>) : (<span className="text-brand-1 font-semibold text-5xl">TETO</span>)}
 
         </div>
-        <div className="flex items-center space-x-4">
+        <div className="responsive:flex responsive:items-center responsive:space-x-4">
 
           {role === 'brand' ? (
             <>

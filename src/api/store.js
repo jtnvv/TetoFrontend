@@ -34,9 +34,16 @@ export async function FetchBrandOrders() {
   return await axios.get(`${url}fetch-brand-orders`)
 }
 
-export async function UpdateSend() {
- 
-  return await axios.get(`${url}update-send`)
+export async function updateSend(id) {
+  return await axios.post(`${url}update-send`, {
+    "id": id
+  })
+}
+
+export async function updateReceived(id) {
+  return await axios.post(`${url}update-received`, {
+    "id": id
+  })
 }
 
 export async function storeItem(itemData) {

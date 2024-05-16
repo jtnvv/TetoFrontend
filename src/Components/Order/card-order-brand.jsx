@@ -1,37 +1,68 @@
-import React from "react";
-import { UpdateSend } from "../../api/store";
-// import { FetchBrandInformation, FetchBrandOrders } from "../api/store";
-
-const markSend = () => {
-    UpdateSend()
-};
+import { useState } from "react";
+import { updateReceived, updateSend } from "../../api/store";
+import { priceFormatterCOP } from "../../formatter/formaters";
 
 const CardOrderBrand = (props) => {
+    const [isWaitingResponse, setIsWaitingResponse] = useState(false);
+    const [sentStatus, setSentStatus] = useState(props.item.order.sent_status);
+    const [receivedStatus, setReceivedStatus] = useState(props.item.order.received_status);
 
+    const markSend = () => {
+        setIsWaitingResponse(true);
+
+        updateSend(props.item.order.id)
+        .then(res => {
+            setIsWaitingResponse(false);
+        });
+
+        setSentStatus(true);
+    };
+
+    const markReceive = () => {
+        setIsWaitingResponse(true);
+
+        updateReceived(props.item.order.id)
+        .then(res => {
+            setIsWaitingResponse(false);
+        });
+
+        setReceivedStatus(true);
+    };
 
     return (
 
-        <div className="text-white ">
-            <div className="flex  bg-[#646458] rounded px-10 py-3 gap-3  items-center">
-                <div className="mt-2 mb-2 w-max">
+        <div className="text-white relative flex">
+            {isWaitingResponse && (
+                <div className="absolute h-full w-full bg-brand-6 bg-opacity-50 flex justify-center items-center">
+                    <div className="rounded-full w-16 h-16 border-8 border-brand-3 border-t-brand-1 animate-spin"></div>
+                </div>
+            )}
+            <div className="flex bg-brand-4 rounded p-5 items-center w-full">
+                <div className="mt-2 mb-2 mr-7 w-max">
                     <a key={props.item.id} href={'/product/' + props.item.id}>
-                        <img src={props.item.photo} alt="prueba" className="h-20 w-20 object-cover " />
+                        <img src={props.item.photo} alt="prueba" className="min-w-32 h-32" />
                     </a>
                 </div>
-                <div className=" w-8/12 mb-3 space-y-1 ">
+                <div className="mb-3 space-y-1 w-full">
+
                     <p className="text-lg text-white-900 dark:text-white font-semibold ">{props.item.name}</p>
-                    
                     <p className="text-sm text-white-900 dark:text-white ">Color: {props.item.order.color}</p>
                     <p className="text-sm text-white-900 dark:text-white ">talla: {props.item.order.size}</p>
                     <p className="text-sm text-white-900 dark:text-white ">Cantidad: {props.item.order.quantity}</p>
-                    <p className="text-sm text-white-900 dark:text-white ">Enviar a: {props.item.order.delivery_addresss}</p>
-                    
-
+                    <p className="text-sm text-white-900 (dark:text-white ">Enviar a: {props.item.order.delivery_addresss}</p>
+                    {props.item.order.received_status && (
+                        <p className="text-sm text-brand-1 font-bold">¡Pedido Entregado!</p>
+                    )}
 
                 </div>
-                <div className="w-2/12">
-                    <p className="text-lg text-white-900 dark:text-white font-semibold mb-3 ">{"$"+props.item.price}</p>
-                    <button className='text-white grow bg-brand-3 hover:bg-brand-2 ml-5' onClick={markSend}>Enviado</button>
+                <div className="flex flex-col items-center">
+                    <p className="text-lg text-white-900 dark:text-white font-semibold mb-3 ">{priceFormatterCOP.format(parseFloat(props.item.price)) + " COP"}</p>
+                    {!sentStatus && (
+                        <button className='text-white grow bg-brand-3 hover:bg-brand-2 ml-5' onClick={markSend}>Marcar como enviado</button>
+                    )}
+                    {(sentStatus && !receivedStatus) && (
+                        <button className='text-white grow bg-brand-3 hover:bg-brand-2 ml-5' onClick={markReceive}>Marcar como recibido</button>
+                    )}
                     <p className="text-sm text-white-900 dark:text-white ">{props.item.order.sent_status}</p>
                     
 
