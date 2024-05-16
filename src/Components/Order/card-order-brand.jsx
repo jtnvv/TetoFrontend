@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { updateReceived, updateSend } from "../../api/store";
 import { priceFormatterCOP } from "../../formatter/formaters";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CardOrderBrand = (props) => {
     const [isWaitingResponse, setIsWaitingResponse] = useState(false);
@@ -13,6 +15,7 @@ const CardOrderBrand = (props) => {
         updateSend(props.item.order.id)
         .then(res => {
             setIsWaitingResponse(false);
+            toast.success("Orden marcada como enviada");
         });
 
         setSentStatus(true);
@@ -30,8 +33,8 @@ const CardOrderBrand = (props) => {
     };
 
     return (
-
         <div className="text-white relative flex">
+            <ToastContainer containerId="order-brand" />
             {isWaitingResponse && (
                 <div className="absolute h-full w-full bg-brand-6 bg-opacity-50 flex justify-center items-center">
                     <div className="rounded-full w-16 h-16 border-8 border-brand-3 border-t-brand-1 animate-spin"></div>
