@@ -1,5 +1,6 @@
 import { Routes, Route, BrowserRouter, Navigate, Outlet } from "react-router-dom";
 import { useSelector } from 'react-redux'
+import ShoppingCartPage from "./pages/shopping-cart-page";
 import Home from './pages/home'
 import Login from './pages/login'
 import Register from './pages/register'
@@ -13,9 +14,11 @@ import BrandPageBrand from "./pages/brandpage-brand";
 import BrandPageProfile from "./pages/brandpage-profile";
 import UserPageProfile from "./pages/userpage-profile";
 import Product from "./pages/product";
-import ShoppingCartPage from "./pages/shopping-cart-page";
 import Favorites from "./pages/favorites";
 import AboutUs from "./pages/about-us";
+import PaymentSuccess from "./pages/payment-success";
+import PaymentFailure from "./pages/payment-failure";
+import PaymentPending from "./pages/payment-pending";
 
 
 const PrivateRoutes = () => {
@@ -56,16 +59,21 @@ function App() {
           <Route path='/about-us' element={<AboutUs/>} />
           
           <Route element={<PrivateRoutes />}>
+
             <Route element={<UserRoutes />}>
               <Route path='/userpage-profile' element={<UserPageProfile />} />
               <Route path='/favorites' element={<Favorites />} />
+              <Route path='/success' element={<PaymentSuccess />} />
+              <Route path='/failure' element={<PaymentFailure />} />
+              <Route path='/pending' element={<PaymentPending />} />
             </Route>
+
             <Route element={<BrandRoutes />}>
               <Route path='/product-register' element={<RegisterProduct />} />
               <Route path='/brandpage-brand' element={<BrandPageBrand />} />
               <Route path='/brandpage-profile' element={<BrandPageProfile />} />
-              
             </Route>
+
           </Route>
 
           <Route element={<RestrictedRoutes />}>
