@@ -85,7 +85,7 @@ const Home = () => {
           </div>
         </div>
         <div className='my-5'>
-          <div className="flex justify-center space-x-4 mt-4">
+          <div className="flex flex-wrap justify-center space-x-4 mt-4 responsive:mx-0 mx-4">
             {categories.map((category, index) => (
               <p
                 key={index}

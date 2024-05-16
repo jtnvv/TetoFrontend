@@ -1,7 +1,6 @@
 import { priceFormatterCOP } from "../../formatter/formaters";
 import { FaStar } from "react-icons/fa";
 const CardItem = (props) => {
-    console.log(props.rating);
     return (
         <div className="flex flex-wrap">
             <a className="flex flex-col items-center responsive:m-5 m-1 bg-brand-6 rounded-2xl text-brand-1 responsive:w-60 w-40" href={'/product/' + props.id}>

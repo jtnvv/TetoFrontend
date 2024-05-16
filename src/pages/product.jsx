@@ -75,10 +75,10 @@ export default function Product() {
                     <h1 className='text-brand-6'>{product.name}</h1>
                     <h2>Puntuación: {product.rating === 0 ? 'Sin calificaciones aún' : product.rating}</h2>
                     <h2 className='text-brand-5 text-2xl'>{product.price} COP</h2>
-                    <div className='flex justify-start space-x-2'>
+                    <div className='flex flex-wrap justify-start my-3'>
                         {product.categories && product.categories.map((category, index) => {
                             return (
-                                <div className="bg-brand-6 flex items-center rounded-full mt-5 mb-5 text-brand-1" key={index}>
+                                <div className="bg-brand-6 flex items-center rounded-full m-2 ml-0 text-brand-1" key={index}>
                                     <img src="../src/assets/category.png" alt="category" className="h-3 w-3 m-3" />
                                     <p className="pr-3">{category}</p>
                                 </div>
@@ -86,7 +86,7 @@ export default function Product() {
                         })}
                     </div>
                     <h2 className='mb-3'>Tamaño:</h2>
-                    <div className='flex space-x-3 mb-3'>
+                    <div className='flex flex-wrap mb-3'>
                         {product.sizes && product.sizes.map((size, index) => {
                             return (
                                 <div id={index} key={index} className={"px-4 border border-brand-6 hover:bg-brand-3 cursor-pointer " + (selectedSize == size && 'bg-brand-3')} onClick={() => handleSelectSize(size)}>
@@ -99,7 +99,7 @@ export default function Product() {
                     <div className='flex flex-wrap max-w-[45rem]'>
                         {product.colors && product.colors.map((color, index) => {
                             return (
-                                <div id={index} key={index} className={"border border-brand-6 hover:bg-brand-3 cursor-pointer h-7 mr-2 mt-3 px-4 " + (selectedColor == color && 'bg-brand-3')} onClick={() => handleSelectColor(color)}>
+                                <div id={index} key={index} className={"border border-brand-6 hover:bg-brand-3 cursor-pointer h-7 mt-4 px-4 " + (selectedColor == color && 'bg-brand-3')} onClick={() => handleSelectColor(color)}>
                                     {color}
                                 </div>
                             );
