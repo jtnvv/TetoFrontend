@@ -10,3 +10,12 @@ export async function getPaymentLink(order) {
 export async function updateOrderRating(order) {
     return await axios.post(`${url}update-order-rating`, order)
 }
+
+export async function userCancelOrder(data) {
+    
+    return await axios.delete(`${url}delete-order/${data.id}`);
+}
+
+export async function sendCancelOrderEmail(data) {
+    return await axios.post(`${url}send_cancel_order__email`, data)
+  };

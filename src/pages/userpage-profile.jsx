@@ -9,6 +9,7 @@ export default function UserPageProfile() {
     const [updateData, setUpdateData] = useState(false); 
 
     const [name, setName] = useState()
+    const [id,setId] = useState()
     const [email, setEmail] = useState()
 
     const [orders, setOrders] = useState([]);
@@ -21,7 +22,9 @@ export default function UserPageProfile() {
         
         FetchUserInformation()
             .then(response => {
-               
+
+
+                setId(response.data[0].id)
                 setName(response.data[0].name)
                 setEmail(response.data[0].email)
                 
@@ -58,8 +61,9 @@ export default function UserPageProfile() {
 
         <Layout>
           
-                <div className=" flex font-default  min-h-screen  w-screen bg-white   ">
-                    <div className=" flex flex-col bg-white   h-fit  px-20 py-40  space-y-5  ">
+                <div className=" flex  font-default  min-h-screen    bg-white   ">
+                    
+                    <div className=" bg-white w-fit   h-fit  px-20 py-40  space-y-5  ">
                         <div className="space-y-2">
                             <p className="text-2xl text-gray-900 dark:text-black font-semibold">Nombre </p>
                             <p className="text-lg text-black ">{name}</p>
@@ -77,7 +81,7 @@ export default function UserPageProfile() {
                         </div>
 
                     </div>
-                    <div className="bg-[#D9D9D9] w-screen  ">
+                    <div className="bg-[#D9D9D9] col-span-5 w-screen ">
                         <div className="  space-y-10 py-5 px-20">
 
                             <div className="mb-10  ">
@@ -90,7 +94,7 @@ export default function UserPageProfile() {
                                 currentCards.length !== 0 ? currentCards.map((item, key) => {
                                     return (
                                         <div key={key}>
-                                            <CardOrderUser  item={item}  />
+                                            <CardOrderUser  item={item}  id ={id} email={email} name={name}/>
                                         </div>
                                     )
                                 }) : (
