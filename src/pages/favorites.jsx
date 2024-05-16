@@ -38,7 +38,7 @@ export default function Favorites() {
               <p>
                 No tienes articulos seleccionados como favoritos. <a href="/" className="underline"> Haz click aquí para explorar!</a>
               </p>
-              <img src="https://d.furaffinity.net/art/tigekiari/1612542170/1612542170.tigekiari_psaroo-raffle.gif" alt="dance image" className="w-36" />
+              <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGY0cnM5cWs5NWtnNm4yNGk4cXl6NnN0azJmNDdtamVocmM4ZjlyNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5oYgxQKHhEjEk/giphy.gif" alt="dance image" className="w-60 h-48" />
               </>
             )}
           </h1>

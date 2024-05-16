@@ -48,7 +48,12 @@ const CardOrderUser = (props) => {
                             <RatingModal showModal={showModal} toggleModal={toggleModal} idext={props.item.order.id} ratingext={props.item.order.rating} notify={notifyAndCloseModal} />
                         </>
                     ) : (
+                        <>
                         <p className="text-sm text-white-900 dark:text-white ">Estado: {status_message}</p>
+                        {!props.item.order.sent_status && (
+                            <a href={props.item.order.payment_link} target="_blank" >Paga aquí</a>
+                        )}
+                        </>
                     )}
 
                 </div>

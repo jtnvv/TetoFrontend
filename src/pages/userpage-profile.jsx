@@ -75,8 +75,7 @@ export default function UserPageProfile() {
                                 MODIFICAR DATOS
                             </button>
                         </div>
-                        
-                    
+
                     </div>
                     <div className="bg-[#D9D9D9] w-9/12 ">
                         <div className="  space-y-10 py-5 px-20">
@@ -86,17 +85,22 @@ export default function UserPageProfile() {
                             </div>
 
                             <div className="space-y-8">
+
                             {
-                                currentCards.map((item, key) => {
+                                currentCards.length !== 0 ? currentCards.map((item, key) => {
                                     return (
                                         <div key={key}>
                                             <CardOrderUser  item={item}  />
                                         </div>
                                     )
-                                })
+                                }) : (
+                                    <div className="text-center flex flex-col items-center">
+                                        <h1 className="responsive:text-5xl text-4xl">No tienes ordenes aún, explora y haz tu primer orden! <a href="/" className="underline" >Haz click aquí para explorar</a></h1>
+                                        <img className="responsive:w-80 w-60 responsive:mt-20 mt-10" src="https://media1.tenor.com/m/lx2WSGRk8bcAAAAC/pulp-fiction-john-travolta.gif" alt="no-orders-image" />
+                                    </div>
+                                )
                             }
-                                    
-                                    
+                                     
                             </div>
 
                             <div className=" pagination  text-center text-white ">
@@ -108,8 +112,6 @@ export default function UserPageProfile() {
                                     ))}
 
                             </div>
-                            
-                            
 
                         </div>
                     </div>
