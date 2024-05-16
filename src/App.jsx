@@ -17,8 +17,6 @@ import Product from "./pages/product";
 import Favorites from "./pages/favorites";
 import AboutUs from "./pages/about-us";
 import PaymentSuccess from "./pages/payment-success";
-import PaymentFailure from "./pages/payment-failure";
-import PaymentPending from "./pages/payment-pending";
 
 
 const PrivateRoutes = () => {
@@ -64,8 +62,6 @@ function App() {
               <Route path='/userpage-profile' element={<UserPageProfile />} />
               <Route path='/favorites' element={<Favorites />} />
               <Route path='/success' element={<PaymentSuccess />} />
-              <Route path='/failure' element={<PaymentFailure />} />
-              <Route path='/pending' element={<PaymentPending />} />
             </Route>
 
             <Route element={<BrandRoutes />}>
