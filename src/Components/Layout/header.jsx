@@ -37,7 +37,7 @@ export default function Header() {
   return (
     <nav className="bg-brand-6 p-3 font-default sticky top-0 w-full z-50 min-h-24">
       <div className="mx-auto flex justify-between items-center">
-        
+
         {/* Logo */}
         <div className="flex items-center font-logo cursor-pointer" onClick={() => window.location.href = "/"}>
           <img src="/favicon.svg" alt="Logo" className="h-14 w-14 mr-2" />
@@ -81,7 +81,7 @@ export default function Header() {
               )}
 
             </>
-            ) : (
+          ) : (
             <>
               <a href="/search" className="flex responsive:hidden responsive:w-auto w-full justify-center">
                 <button className="flex bg-brand-1 bg-opacity-25 rounded-full pt-2 pb-2 items-center justify-center">
@@ -97,10 +97,10 @@ export default function Header() {
                 </button>
               </a>
 
-              <div className="flex responsive:space-x-0 space-x-5 responsive:w-auto w-full justify-center">
+              <div className="flex responsive:space-x-2 space-x-5 responsive:w-auto w-full justify-center">
                 <a href={link}><FaUserCircle color="white" size="2em" className="responsive:pl-2" /></a>
                 <a href="/favorites"><FaHeart color="white" size="2em" className="responsive:pl-2" /></a>
-                
+
                 <div className="static" id="flex shopping-cart-icon" >
                   <a
                     className="cursor-pointer"
@@ -123,7 +123,7 @@ export default function Header() {
                   </button>
                 )}
               </div>
-             
+
             </>
           )}
         </div>
