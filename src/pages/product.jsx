@@ -7,6 +7,7 @@ import QuantityInput from '../Components/Shopping Cart/quantity-input';
 import { priceFormatterCOP } from '../formatter/formaters';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaTag } from 'react-icons/fa';
 
 export default function Product() {
     const [product, setProduct] = useState({});
@@ -79,7 +80,7 @@ export default function Product() {
                         {product.categories && product.categories.map((category, index) => {
                             return (
                                 <div className="bg-brand-6 flex items-center rounded-full m-2 ml-0 text-brand-1" key={index}>
-                                    <img src="../src/assets/category.png" alt="category" className="h-3 w-3 m-3" />
+                                    <FaTag className='m-2' color='white' />
                                     <p className="pr-3">{category}</p>
                                 </div>
                             )

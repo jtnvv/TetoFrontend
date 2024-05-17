@@ -5,7 +5,7 @@ const CardItem = (props) => {
         <div className="flex flex-wrap">
             <a className="flex flex-col items-center responsive:m-5 m-1 bg-brand-6 rounded-2xl text-brand-1 responsive:w-60 w-40" href={'/product/' + props.id}>
                 <img src={props.photo} alt={props.name} className="responsive:h-52 h-36 w-full object-cover mb-5 rounded-t-lg" />
-                <h2 className="mb-3 max-w-32 font-semibold responsive:text-2xl text-base truncate">{props.name.substring(0, 13)} ...</h2>
+                <h2 className="mb-3 max-w-32 font-semibold responsive:text-2xl text-base truncate">{props.name}</h2>
                 {
                     props.rating !== 0 ?
                         <div className="flex items-center mb-3">
