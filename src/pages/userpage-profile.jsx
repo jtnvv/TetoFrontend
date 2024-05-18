@@ -61,7 +61,7 @@ export default function UserPageProfile() {
 
         <Layout>
           
-                <div className=" flex  font-default  min-h-screen    bg-white   ">
+                <div className="grid sm:grid-cols-4  font-default w-screen min-h-screen    bg-white   ">
                     
                     <div className=" bg-white w-fit   h-fit  px-20 py-40  space-y-5  ">
                         <div className="space-y-2">
@@ -81,7 +81,7 @@ export default function UserPageProfile() {
                         </div>
 
                     </div>
-                    <div className="bg-[#D9D9D9] col-span-5 w-screen ">
+                    <div className="bg-[#D9D9D9] col-span-3  ">
                         <div className="  space-y-10 py-5 px-20">
 
                             <div className="mb-10  ">
