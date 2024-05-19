@@ -51,7 +51,7 @@ export default function BrandProfileUser(props) {
                     <div className="flex flex-wrap justify-center mb-10">
                         {currentProducts.map((product, index) => (
                             console.log(product),
-                            <CardItem key={index} id={product.id} name={product.name} photo={product.photo} price={product.price} rating={product.rating} />
+                            <CardItem key={index} id={product.id} name={product.name} photo={product.photo} price={product.price} rating={product.rating} stock={item.stock} />
                         ))}
                     </div>
                     <div className="bg-brand-1 text-brand-1 text-center">

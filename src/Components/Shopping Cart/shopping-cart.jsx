@@ -17,8 +17,8 @@ export default function ShoppingCart({showShoppingCart}) {
         return parseFloat(item.price.replace(/[^0-9.,-]/g, '')) * 1000 * item.quantity;
     }
 
-    const getCartTotal = () => {
-        const total = cartContent.reduce((acumulator, current) => acumulator + getItemTotalPrice(current), 0);
+    const getCartTotal = (cart) => {
+        const total = cart.reduce((acumulator, current) => acumulator + getItemTotalPrice(current), 0);
         return priceFormatterCOP.format(total);
     };
 
@@ -46,7 +46,12 @@ export default function ShoppingCart({showShoppingCart}) {
     
     const handleDeleteItem = (index) => {
         const newCart = [...cartContent];
+        const item = newCart[index];
+        const newTotal = priceFormatterCOP.format((parseFloat(totalPayment.replace(/[^0-9.,-]/g, '')) * 1000) - getItemTotalPrice(item));
+
+        setTotalPayment(newTotal);
         newCart.splice(index, 1);
+
         if (Object.keys(newCart).length === 0) {
             localStorage.removeItem("cart_content");
             toast.info('El carrito esta vacio', {
@@ -56,7 +61,9 @@ export default function ShoppingCart({showShoppingCart}) {
         } else {
             localStorage.setItem("cart_content", JSON.stringify(newCart));
         }
+
         setCartContent(newCart);
+        setTotalPayment(getCartTotal(newCart));
     };
 
     const emptyCart = () => {
@@ -70,7 +77,7 @@ export default function ShoppingCart({showShoppingCart}) {
     const updateItemQuantity = (index, quantity) => {
         cartContent[index].quantity = quantity;
         localStorage.setItem("cart_content", JSON.stringify(cartContent));
-        setTotalPayment(getCartTotal());
+        setTotalPayment(getCartTotal(cartContent));
     };
 
     const handleOutsideClick = (event) => {

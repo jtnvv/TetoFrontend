@@ -28,7 +28,7 @@ export default function CardsSearchCategory({ category }) {
                 </div>
                 <div className="flex flex-wrap justify-center 2xl:mx-80">
                     {currentProducts.map((product, index) => (
-                        <CardItem key={index} id={product.id} name={product.name} photo={product.photo} price={product.price} rating={product.rating} />
+                        <CardItem key={index} id={product.id} name={product.name} photo={product.photo} price={product.price} rating={product.rating} stock={product.stock} />
                     ))}
                 </div>
                 <div className="bg-brand-1 text-brand-1 my-10">
