@@ -183,8 +183,7 @@ const RegisterFormBrand = () => {
                     <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg"  htmlFor="telefono">
                         Telefono
                     </label>
-                    <input className={inputStyle} id="phone" name="phone" onChange={handleInput}
-                        type="text" />
+                    <input className={inputStyle} id="phone" name="phone" onChange={handleInput} type="text" />
                     {errors.phone && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.phone}</span>}
                 </div>
                 <div>

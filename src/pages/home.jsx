@@ -98,7 +98,7 @@ const Home = () => {
           </div>
           <div className='flex justify-center mt-3 flex-wrap'>
             {categoryItems.map((item, index) => (
-              <CardItem key={index} id={item.id} name={item.name} photo={item.photo} price={item.price} rating={item.rating} />
+              <CardItem key={index} id={item.id} name={item.name} photo={item.photo} price={item.price} rating={item.rating} stock={item.stock} />
             ))}
           </div>
           <p className='underline underline-offset-8 text-xl md:text-2xl responsive:text-right text-center responsive:mr-20 responsive:mt-4 responsive:mb-8 mt-4 mb-8'><a className='text-brand-6' href={'/category/' + selectedCategory}>Ver más - &gt;</a></p>

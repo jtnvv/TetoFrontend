@@ -72,7 +72,7 @@ export default function Search() {
                         </div>
                         <div className="flex flex-wrap justify-center">
                             {currentItems.map((product, index) => (
-                                <CardItem key={index} id={product.id} name={product.name} price={product.price} photo={product.photo} rating={product.rating} />
+                                <CardItem key={index} id={product.id} name={product.name} price={product.price} photo={product.photo} rating={product.rating} stock={product.stock} />
                             ))}
                         </div>
                         <div className="pagination text-brand-1 space-x-1">
@@ -88,7 +88,7 @@ export default function Search() {
                     <h2 className="font-bold text-2xl">Recomendados</h2>
                     <div className="flex flex-wrap justify-center">
                         {items.slice(0, 4).map((product, index) => (
-                            <CardItem key={index} id={product.id} name={product.name} price={product.price} photo={product.photo} rating={product.rating} />
+                            <CardItem key={index} id={product.id} name={product.name} price={product.price} photo={product.photo} rating={product.rating} stock={product.stock} />
                         ))}
                     </div>
                 </div>
