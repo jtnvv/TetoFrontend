@@ -34,7 +34,8 @@ export default function BrandProfileUser(props) {
     const totalPages = Math.ceil(products.length / productsPerPage);
 
     return (
-        <div className="responsive:flex font-default min-h-screen">
+        <div className="responsive:flex font-default min-h-screen relative">
+    
             <div className="bg-brand-6 text-brand-2 flex flex-wrap flex-col items-center shadow-lg rounded-3xl my-5 responsive:my-16 w-4/5 sm:w-1/2 responsive:w-1/4 h-full py-0 responsive:py-10 mx-auto responsive:ml-20 ">
                 <img src={store.logo} alt="Logo" className="w-1/2 m-5 rounded-3xl" />
                 <h1 className="m-2 font-semibold">{store.name}</h1>
@@ -50,8 +51,7 @@ export default function BrandProfileUser(props) {
                     </div>}
                     <div className="flex flex-wrap justify-center mb-10">
                         {currentProducts.map((product, index) => (
-                            console.log(product),
-                            <CardItem key={index} id={product.id} name={product.name} photo={product.photo} price={product.price} rating={product.rating} stock={item.stock} />
+                            <CardItem key={index} id={product.id} name={product.name} photo={product.photo} price={product.price} rating={product.rating} stock={product.stock} />
                         ))}
                     </div>
                     <div className="bg-brand-1 text-brand-1 text-center">

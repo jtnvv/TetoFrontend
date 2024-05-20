@@ -59,3 +59,11 @@ export async function getFavorites() {
 export async function updateItemRating(item) {
     return await axios.post(`${url}update-item-rating`, item)
 }
+
+export async function updateItem(newItemData) {
+    return await axios.post(`${url}update-item`, newItemData)
+}
+
+export async function isOwner(itemId) {
+    return await axios.get(`${url}is-owner/${itemId}`);
+}

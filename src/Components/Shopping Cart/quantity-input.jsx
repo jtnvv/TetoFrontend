@@ -1,10 +1,17 @@
-import React from 'react'
+import { toast } from 'react-toastify';
 
-export default function QuantityInput({setQuantityFunction, quantity}) {
+export default function QuantityInput({setQuantityFunction, quantity, maxValue=quantity}){
     const setQuantity = (event) => {
         event.preventDefault();
-        setQuantityFunction(quantity + 1);
+        if (quantity + 1 > maxValue) {
+            toast.error("Alcanzaste la cantidad máxima de este producto", {
+                position: "top-left"
+            });
+        } else {
+            setQuantityFunction(quantity + 1);
+        }
     };
+
   return (
     <div className='flex mt-4 space-x-1'>
         <button onClick={() => setQuantityFunction(quantity - 1)} disabled={quantity < 2} type="button" id="decrement-button" data-input-counter-decrement="quantity-input" className={(quantity < 2 && 'opacity-70 ') + "bg-brand-6 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"}>

@@ -28,7 +28,6 @@ export default function BrandPageBrand() {
                 setPhone(response.data[0].phone_number)
                 setImageUrl(response.data[0].logo)
 
-
             })
             .catch(error => console.error('Error:', error));
 
@@ -40,10 +39,7 @@ export default function BrandPageBrand() {
             fetchItemsByStore(id)
                 .then(response => {
 
-
                     setProducts(response.data)
-                    //console.log(products)
-
 
                 })
                 .catch(error => console.error('Error:', error));
@@ -62,11 +58,11 @@ export default function BrandPageBrand() {
             <div className="w-screen min-h-screen font-default mb-4  ">
                 <div className="flex flex-wrap  bg-[#D9D9D9] justify-center items-center">
                     <img src={imageUrl} alt="Logo de la marca" className="w-60 rounded-xl mx-16 py-16" />
-                    <div className="flex flex-col w-96 ">
+                    <div className="flex flex-col w-96 responsive:px-0 px-6">
                         <div className="text-3xl mb-4">
                             {name}
                         </div>
-                        <div className="text-base mb-3 ">
+                        <div className="text-base mb-3">
 
                             {description + ". " + address + "."}
 
@@ -88,7 +84,7 @@ export default function BrandPageBrand() {
 
                     </h2>
                     <div>
-                        <div className="flex flex-wrap" >
+                        <div className="flex flex-wrap justify-center" >
 
                             {
                                 products.map((val, key) => {
@@ -101,7 +97,9 @@ export default function BrandPageBrand() {
                                                 name={val.name}
                                                 image={val.photo}
                                                 rating={val.rating}
-                                                price={val.price} />
+                                                price={val.price}
+                                                stock={val.stock}
+                                            />
 
                                         </div>
                                     );

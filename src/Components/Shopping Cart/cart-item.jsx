@@ -2,7 +2,7 @@ import { TiDelete } from "react-icons/ti";
 import QuantityInput from "../Shopping Cart/quantity-input";
 import { useEffect, useState } from "react";
 
-export default function CartItem({id, index, photo, name, price, color, size, onDelete, itemQuantity, updateItemQuantity}) {
+export default function CartItem({id, index, photo, name, price, color, size, onDelete, itemStock, itemQuantity, updateItemQuantity}) {
     const [quantity, setQuantity] = useState(itemQuantity);
 
     useEffect(() => {
@@ -21,7 +21,7 @@ export default function CartItem({id, index, photo, name, price, color, size, on
                 </div>
             </a>
             <div className="responsive:block flex space-x-4 items-center">
-                <QuantityInput quantity={quantity} setQuantityFunction={setQuantity} />
+                <QuantityInput quantity={quantity} setQuantityFunction={setQuantity} maxValue={itemStock} />
                 <button onClick={onDelete} className="bg-transparent border border-brand-5 responsive:hidden h-10 py-0 mt-4">Eliminar</button>
             </div>
             <button onClick={onDelete} className="hidden responsive:flex bg-transparent group-hover:bg-brand-2 focus:outline-none outline-none border-none text-3xl ">

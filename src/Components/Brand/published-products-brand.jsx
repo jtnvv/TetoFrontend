@@ -15,14 +15,15 @@ export default function PublishedProductsBrand(props) {
     const [rating, setRating] = useState(props.rating)
     const [price, setPrice] = useState(props.price)
 
-
-
-
-
     return (
 
         <div className="flex flex-col items-center m-5 text-brand-1 responsive:w-60 w-40 bg-red-900 rounded-2xl">
-            <a className="flex flex-col items-center bg-brand-6 rounded-2xl text-brand-1 responsive:w-60 w-40" href={'/product/' + id}>
+            <a className="flex flex-col items-center bg-brand-6 rounded-2xl text-brand-1 responsive:w-60 w-40 relative" href={'/product/' + id}>
+                {!props.stock && (
+                    <div className="absolute bg-red-600 w-full text-center rounded-t-lg">
+                        <h1 className="text-3xl">AGOTADO</h1>
+                    </div>
+                )}
                 <img src={image} alt={name} className="responsive:h-52 h-36 w-full object-cover mb-5 rounded-t-lg" />
                 <h2 className="mb-3 max-w-32 font-semibold responsive:text-2xl text-base truncate">{name}</h2>
                 {

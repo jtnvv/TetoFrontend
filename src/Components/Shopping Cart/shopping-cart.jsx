@@ -36,7 +36,7 @@ export default function ShoppingCart({showShoppingCart}) {
             setError("");
         })
         .catch(err => {
-            setError(err.message);
+            setError(err.response.data.message);
             (err.response.status === 403 || err.response.status === 401) && setError('Debes iniciar sesión para poder finalizar la compra');
         })
         .finally(() => {
@@ -119,7 +119,11 @@ export default function ShoppingCart({showShoppingCart}) {
                </div>
                <div className="responsive:max-h-[40vh] overflow-auto">
                     {cartContent.map((item, index) => {
-                        return <CartItem key={index} id={item.id} index={index} name={item.name} price={item.price} photo={item.photo} color={item.color} size={item.size} itemQuantity={item.quantity} onDelete={() => handleDeleteItem(index)} updateItemQuantity={updateItemQuantity} />
+                        let temporaryStock = item.stock + item.quantity;
+                        cartContent.filter(product => product.id === item.id).forEach(product => {
+                            temporaryStock = temporaryStock - product.quantity;
+                        });
+                        return <CartItem key={index} id={item.id} index={index} name={item.name} price={item.price} photo={item.photo} color={item.color} itemStock={temporaryStock} size={item.size} itemQuantity={item.quantity} onDelete={() => handleDeleteItem(index)} updateItemQuantity={updateItemQuantity} />
                     })}
                </div>
                 <form className="flex flex-col p-5 space-y-5" onSubmit={(event) => handlePayment(event)}>
@@ -128,7 +132,7 @@ export default function ShoppingCart({showShoppingCart}) {
                     <button className="bg-brand-6 text-brand-1">Pagar</button>
                 </form>
                 {error && (
-                    <div className="text-center p-5 bg-red-400">
+                    <div className="text-center p-5 bg-red-400 max-w-[35rem] break-words">
                         <p>Error: <em>{error}</em></p>
                     </div>
                 )}

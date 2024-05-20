@@ -38,10 +38,32 @@ export default {
             transform: 'translateX(110%)',
             opacity: 0,
           },
+        },
+        'move-in': {
+          'from': { 
+            display: 'none',
+            opacity: 0,
+          },
+          'to': { 
+            display: 'block',
+            opacity: 1,
+          },
+        },
+        'move-out': {
+          'from': { 
+            display: 'block',
+            opacity: 1,
+          },
+          'to': { 
+            display: 'none',
+            opacity: 0,
+          },
         }
       },
       animation: {
         'move-l-out': 'move-l-out .5s ease-in-out forwards',
+        'move-in': 'move-in .5s ease-in-out forwards',
+        'move-out': 'move-out .5s ease-in-out forwards',
       },
     },
   },
