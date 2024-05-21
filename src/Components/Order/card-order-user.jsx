@@ -38,12 +38,12 @@ const CardOrderUser = (props) => {
     useEffect(() => {
         if (props.item.order.sent_status === null) {
             setStatusMessage("No ha sido pagado aún.");
-            setCancelOrder(true)
-    
+            setCancelOrder(true);
         } else if (props.item.order.sent_status === true) {
             setStatusMessage("Ya se envió pero no ha sido recibido.");
         } else if (props.item.order.sent_status === false) {
             setStatusMessage("No se ha enviado.");
+            setCancelOrder(true);
         } 
         
         
