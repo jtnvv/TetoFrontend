@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { deleteItem } from "../../api/store.js";
 import { deleteImage } from "../../firebase.js";
 import { FaTrashAlt } from "react-icons/fa";
-
+import { priceFormatterCOP } from "../../formatter/formaters.js";
 export default function PublishedProductsBrand(props) {
 
     const [deleteProduct, setDeleteProduct] = useState(false);
@@ -15,21 +15,36 @@ export default function PublishedProductsBrand(props) {
     const [rating, setRating] = useState(props.rating)
     const [price, setPrice] = useState(props.price)
 
-
-
-
-
     return (
 
-        <div className=" relative flex flex-col items-center m-5 bg-brand-6 rounded-2xl text-brand-1 w-60">
-            
-            <h2 className="mt-5 mb-2 font-semibold text-xl">{name}</h2>
-            <a key={id} href={'/product/' + id}>
-                <img src={image} alt="prueba" className="h-40 w-40 object-cover mb-2" />
-                <StarRating rating={rating} />
-                <p className="text-brand-3 mb-5 text-xl">{"$" + price}</p>
+        <div className="flex flex-col items-center m-5 text-brand-1 responsive:w-60 w-40 bg-red-900 rounded-2xl">
+            <a className="flex flex-col items-center bg-brand-6 rounded-2xl text-brand-1 responsive:w-60 w-40 relative" href={'/product/' + id}>
+                {!props.stock && (
+                    <div className="absolute bg-red-600 w-full text-center rounded-t-lg">
+                        <h1 className="text-3xl">AGOTADO</h1>
+                    </div>
+                )}
+                <img src={image} alt={name} className="responsive:h-52 h-36 w-full object-cover mb-5 rounded-t-lg" />
+                <h2 className="mb-3 max-w-32 font-semibold responsive:text-2xl text-base truncate">{name}</h2>
+                {
+                    rating !== 0 ?
+                        <div className="flex items-center mb-3">
+                            {[...Array(5)].map((star, i) => {
+                                const ratingValue = i + 1;
+                                return (
+                                    <label key={i}>
+                                        <FaStar className="m-1" color={ratingValue <= props.rating ? 'white' : 'gray'} size="1.2em" />
+                                    </label>
+                                );
+                            })}
+                        </div>
+                        :
+
+                        <span className="mb-3 text-brand-3">Sin calificación</span>
+                }
+                <p className="text-brand-3 mb-5 text-xl">{priceFormatterCOP.format(price)}</p>
             </a>
-            <div className="mb-5 cursor-pointer">
+            <div className="my-3 cursor-pointer">
                 <FaTrashAlt size="2em" color="white" onClick={() => setDeleteProduct(true)} />
             </div>
             {deleteProduct && <DeleteProductModal onClose={() => setDeleteProduct(false)} id={id} image={image} />}
@@ -87,7 +102,7 @@ function DeleteProductModal({ onClose, id, image }) {
     return (
         <div className="fixed  z-50 inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full px-4 ">
             <div className="relative top-40 mx-auto shadow-xl rounded-md bg-[#8E8E7C] max-w-md font-default space-y-10  ">
-                
+
 
                 <div className="p-10 items-center" onSubmit={handleSubmit}>
 

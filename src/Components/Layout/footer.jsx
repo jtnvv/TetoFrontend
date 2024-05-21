@@ -40,15 +40,16 @@ export default function Footer() {
             </ul>
           </div>
           <div className="m-5">
-            <h4 className="font-semibold text-center">Emprendimientos</h4>
+            <h4 className="font-semibold text-center">Más</h4>
             <ul className="mt-2 text-sm text-center">
               <li><a href="/brand-search" className="text-gray-300 hover:text-brand-1">Marcas asociadas</a></li>
+              <li><a href="/contact" className="text-gray-300 hover:text-brand-1">Contáctanos (PQR)</a></li>
             </ul>
           </div>
         </div>
         <div className="flex justify-between items-center">
-          <a href="#" className="mr-4"><FaInstagram color="white" size="2.5em" className="pl-2" /></a>
-          <a href="#" className="mr-4"><FaTwitter color="white" size="2.5em" className="pl-2" /></a>
+          <a href="https://www.instagram.com/teto_dress/" className="mr-4"><FaInstagram color="white" size="2.5em" className="pl-2" /></a>
+          <a href="https://x.com/teto_dress" className="mr-4"><FaTwitter color="white" size="2.5em" className="pl-2" /></a>
           <a href="#"><FaFacebookF color="white" size="2em" className="pl-2" /></a>
         </div>
       </div>

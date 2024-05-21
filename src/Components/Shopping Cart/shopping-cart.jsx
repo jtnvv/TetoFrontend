@@ -17,8 +17,8 @@ export default function ShoppingCart({showShoppingCart}) {
         return parseFloat(item.price.replace(/[^0-9.,-]/g, '')) * 1000 * item.quantity;
     }
 
-    const getCartTotal = () => {
-        const total = cartContent.reduce((acumulator, current) => acumulator + getItemTotalPrice(current), 0);
+    const getCartTotal = (cart) => {
+        const total = cart.reduce((acumulator, current) => acumulator + getItemTotalPrice(current), 0);
         return priceFormatterCOP.format(total);
     };
 
@@ -36,7 +36,7 @@ export default function ShoppingCart({showShoppingCart}) {
             setError("");
         })
         .catch(err => {
-            setError(err.message);
+            setError(err.response.data.message);
             (err.response.status === 403 || err.response.status === 401) && setError('Debes iniciar sesión para poder finalizar la compra');
         })
         .finally(() => {
@@ -46,7 +46,12 @@ export default function ShoppingCart({showShoppingCart}) {
     
     const handleDeleteItem = (index) => {
         const newCart = [...cartContent];
+        const item = newCart[index];
+        const newTotal = priceFormatterCOP.format((parseFloat(totalPayment.replace(/[^0-9.,-]/g, '')) * 1000) - getItemTotalPrice(item));
+
+        setTotalPayment(newTotal);
         newCart.splice(index, 1);
+
         if (Object.keys(newCart).length === 0) {
             localStorage.removeItem("cart_content");
             toast.info('El carrito esta vacio', {
@@ -56,7 +61,9 @@ export default function ShoppingCart({showShoppingCart}) {
         } else {
             localStorage.setItem("cart_content", JSON.stringify(newCart));
         }
+
         setCartContent(newCart);
+        setTotalPayment(getCartTotal(newCart));
     };
 
     const emptyCart = () => {
@@ -70,7 +77,7 @@ export default function ShoppingCart({showShoppingCart}) {
     const updateItemQuantity = (index, quantity) => {
         cartContent[index].quantity = quantity;
         localStorage.setItem("cart_content", JSON.stringify(cartContent));
-        setTotalPayment(getCartTotal());
+        setTotalPayment(getCartTotal(cartContent));
     };
 
     const handleOutsideClick = (event) => {
@@ -112,7 +119,11 @@ export default function ShoppingCart({showShoppingCart}) {
                </div>
                <div className="responsive:max-h-[40vh] overflow-auto">
                     {cartContent.map((item, index) => {
-                        return <CartItem key={index} id={item.id} index={index} name={item.name} price={item.price} photo={item.photo} color={item.color} size={item.size} itemQuantity={item.quantity} onDelete={() => handleDeleteItem(index)} updateItemQuantity={updateItemQuantity} />
+                        let temporaryStock = item.stock + item.quantity;
+                        cartContent.filter(product => product.id === item.id).forEach(product => {
+                            temporaryStock = temporaryStock - product.quantity;
+                        });
+                        return <CartItem key={index} id={item.id} index={index} name={item.name} price={item.price} photo={item.photo} color={item.color} itemStock={temporaryStock} size={item.size} itemQuantity={item.quantity} onDelete={() => handleDeleteItem(index)} updateItemQuantity={updateItemQuantity} />
                     })}
                </div>
                 <form className="flex flex-col p-5 space-y-5" onSubmit={(event) => handlePayment(event)}>
@@ -121,7 +132,7 @@ export default function ShoppingCart({showShoppingCart}) {
                     <button className="bg-brand-6 text-brand-1">Pagar</button>
                 </form>
                 {error && (
-                    <div className="text-center p-5 bg-red-400">
+                    <div className="text-center p-5 bg-red-400 max-w-[35rem] break-words">
                         <p>Error: <em>{error}</em></p>
                     </div>
                 )}
