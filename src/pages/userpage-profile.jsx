@@ -61,9 +61,9 @@ export default function UserPageProfile() {
 
         <Layout>
           
-                <div className="grid sm:grid-cols-4  font-default w-screen min-h-screen    bg-white   ">
+                <div className="flex  flex-wrap font-default    bg-white   ">
                     
-                    <div className=" bg-white w-fit   h-fit  px-20 py-40  space-y-5  ">
+                    <div className=" bg-white lg:w-1/4  px-20 py-40  space-y-5  ">
                         <div className="space-y-2">
                             <p className="text-2xl text-gray-900 dark:text-black font-semibold">Nombre </p>
                             <p className="text-lg text-black ">{name}</p>
@@ -81,7 +81,7 @@ export default function UserPageProfile() {
                         </div>
 
                     </div>
-                    <div className="bg-[#D9D9D9] col-span-3  ">
+                    <div className="bg-[#D9D9D9]  lg:w-3/4 sm:w-max ">
                         <div className="  space-y-10 py-5 px-20">
 
                             <div className="mb-10  ">

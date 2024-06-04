@@ -40,34 +40,42 @@ const CardOrderBrand = (props) => {
                     <div className="rounded-full w-16 h-16 border-8 border-brand-3 border-t-brand-1 animate-spin"></div>
                 </div>
             )}
-            <div className="flex bg-brand-4 rounded p-5 items-center w-full">
-                <div className="mt-2 mb-2 mr-7 w-max">
-                    <a key={props.item.id} href={'/product/' + props.item.id}>
-                        <img src={props.item.photo} alt="prueba" className="min-w-32 h-32" />
-                    </a>
-                </div>
-                <div className="mb-3 space-y-1 w-full">
+            <div className="flex flex-wrap bg-brand-4 rounded p-5 items-center w-full">
 
-                    <p className="text-lg text-white-900 dark:text-white font-semibold ">{props.item.name}</p>
-                    <p className="text-sm text-white-900 dark:text-white ">Color: {props.item.order.color}</p>
-                    <p className="text-sm text-white-900 dark:text-white ">talla: {props.item.order.size}</p>
-                    <p className="text-sm text-white-900 dark:text-white ">Cantidad: {props.item.order.quantity}</p>
-                    <p className="text-sm text-white-900 (dark:text-white ">Enviar a: {props.item.order.delivery_addresss}</p>
-                    {props.item.order.received_status && (
-                        <p className="text-sm text-brand-1 font-bold">¡Pedido Entregado!</p>
-                    )}
+                <div className="flex flex-wrap  items-center  lg:w-screen">
+                    <div className="mt-2 mb-2 mr-7 w-fit">
+                        <a key={props.item.id} href={'/product/' + props.item.id}>
+                            <img src={props.item.photo} alt="prueba" className="min-w-32 h-32" />
+                        </a>
+                    </div>
+                    <div className=" mb-3 space-y-1 2xl:w-3/5 xl:w-2/5 lg:w-2/5 md:w-1/5 sm:w-1/5 ">
 
-                </div>
-                <div className="flex flex-col items-center">
-                    <p className="text-lg text-white-900 dark:text-white font-semibold mb-3 ">{priceFormatterCOP.format(parseFloat(props.item.price)) + " COP"}</p>
-                    {!sentStatus && (
-                        <button className='text-white grow bg-brand-3 hover:bg-brand-2 ml-5' onClick={markSend}>Marcar como enviado</button>
-                    )}
-                    {(sentStatus && !receivedStatus) && (
-                        <button className='text-white grow bg-brand-3 hover:bg-brand-2 ml-5' onClick={markReceive}>Marcar como recibido</button>
-                    )}
-                    <p className="text-sm text-white-900 dark:text-white ">{props.item.order.sent_status}</p>
-                    
+                        <p className="text-lg text-white-900 dark:text-white font-semibold ">{props.item.name}</p>
+                        <p className="text-sm text-white-900 dark:text-white ">Color: {props.item.order.color}</p>
+                        <p className="text-sm text-white-900 dark:text-white ">talla: {props.item.order.size}</p>
+                        <p className="text-sm text-white-900 dark:text-white ">Cantidad: {props.item.order.quantity}</p>
+                        <p className="text-sm text-white-900 (dark:text-white ">Enviar a: {props.item.order.delivery_addresss}</p>
+                        {props.item.order.received_status && (
+                            <p className="text-sm text-brand-1 font-bold">¡Pedido Entregado!</p>
+                        )}
+
+                    </div>
+                    <div className="flex flex-wrap w-1/5 items-center space-y-3">
+                        <div className="flex flex-col items-center">
+                            <p className="text-lg text-white-900 dark:text-white font-semibold mb-3 ">{priceFormatterCOP.format(parseFloat(props.item.price)) + " COP"}</p>
+                            {!sentStatus && (
+                                <button className='text-white grow bg-brand-3 hover:bg-brand-2 ml-5' onClick={markSend}>Marcar como enviado</button>
+                            )}
+                            {(sentStatus && !receivedStatus) && (
+                                <button className='text-white grow bg-brand-3 hover:bg-brand-2 ml-5' onClick={markReceive}>Marcar como recibido</button>
+                            )}
+                            <p className="text-sm text-white-900 dark:text-white ">{props.item.order.sent_status}</p>
+                            
+
+                        </div>
+
+                    </div>
+
 
                 </div>
 

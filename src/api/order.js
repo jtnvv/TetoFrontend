@@ -19,3 +19,13 @@ export async function userCancelOrder(data) {
 export async function sendCancelOrderEmail(data) {
     return await axios.post(`${url}send_cancel_order__email`, data)
   };
+
+export async function userRefundOrder(data) {
+   
+    return await axios.post(`${url}update-order-refund`,data);
+}
+
+export async function sendRefundOrderEmail(data) {
+    
+    return await axios.post(`${url}send-refund-order-email`, data)
+};
