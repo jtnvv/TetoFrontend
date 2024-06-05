@@ -17,6 +17,7 @@ import Product from "./pages/product";
 import Favorites from "./pages/favorites";
 import AboutUs from "./pages/about-us";
 import PaymentSuccess from "./pages/payment-success";
+import Contact from "./pages/contact";
 
 
 const PrivateRoutes = () => {
@@ -31,16 +32,16 @@ const RestrictedRoutes = () => {
 
 const UserRoutes = () => {
   const { role } = useSelector(state => state.auth);
-  return <>{role == "brand" ? <Navigate to='/' /> : <Outlet /> }</>
+  return <>{role == "brand" ? <Navigate to='/' /> : <Outlet />}</>
 }
 
 const BrandRoutes = () => {
   const { role } = useSelector(state => state.auth);
-  return <>{role == "user" ? <Navigate to='/' /> : <Outlet /> }</>
+  return <>{role == "user" ? <Navigate to='/' /> : <Outlet />}</>
 }
 
 const MobileRoutes = () => {
-  return <>{window.innerWidth > 1040 ? <Navigate to='/' /> : <Outlet /> }</>
+  return <>{window.innerWidth > 1040 ? <Navigate to='/' /> : <Outlet />}</>
 }
 
 function App() {
@@ -54,8 +55,9 @@ function App() {
           <Route path="/category/:category" element={<SearchCategory />} />
           <Route path='/search' element={<Search />} />
           <Route path='/product/:product_id' element={<Product />} />
-          <Route path='/about-us' element={<AboutUs/>} />
-          
+          <Route path='/about-us' element={<AboutUs />} />
+          <Route path='contact' element={<Contact />} />
+
           <Route element={<PrivateRoutes />}>
 
             <Route element={<UserRoutes />}>
@@ -77,9 +79,9 @@ function App() {
             <Route path='/register-brand' element={<RegisterBrand />} />
             <Route path='/login' element={<Login />} />
           </Route>
-          
+
           <Route element={<MobileRoutes />}>
-            <Route path="/shopping-cart" element={<ShoppingCartPage/>} />
+            <Route path="/shopping-cart" element={<ShoppingCartPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
