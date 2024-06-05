@@ -108,7 +108,7 @@ const Home = () => {
           <p className='text-2xl md:text-2xl text-center'>La mejor forma de vestirte y apoyar a los nuestros</p>
         </div>
         <div className='my-7'>
-          <h1 className='text-center mb-5'>TIENDAS</h1>
+          <h1 className='text-center mb-5 font-logo '>TIENDAS</h1>
           <div className="flex mt-3 justify-center">
             <div className='flex flex-wrap justify-around'>
               {

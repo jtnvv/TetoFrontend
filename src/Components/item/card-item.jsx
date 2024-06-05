@@ -8,7 +8,7 @@ const CardItem = (props) => {
                     <h1 className="responsive:w-[86%] w-[95%] font-bold text-xl text-center bg-red-600">AGOTADO</h1>
                 </div>
             )}
-            <a className="flex flex-col items-center responsive:m-5 m-1 bg-brand-6 rounded-2xl text-brand-1 responsive:w-full w-full" href={'/product/' + props.id}>
+            <a className="flex flex-col items-center responsive:m-5 m-1 bg-brand-6 rounded-2xl text-brand-1 responsive:w-full w-full transform transition duration-500 ease-in-out hover:scale-110 shadow-2xl" href={'/product/' + props.id}>
                 <img src={props.photo} alt={props.name} className="responsive:h-52 h-36 w-full object-cover mb-5 rounded-t-lg" />
                 <h2 className="mb-3 max-w-32 font-semibold responsive:text-2xl text-base truncate">{props.name}</h2>
                 {

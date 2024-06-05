@@ -7,9 +7,9 @@ export default function Footer() {
 
   useEffect(() => {
     fetchCategories()
-    .then(res => {
-      setCategories(JSON.parse(res.data.categories));
-    });
+      .then(res => {
+        setCategories(JSON.parse(res.data.categories));
+      });
   }, []);
 
   return (
@@ -27,7 +27,7 @@ export default function Footer() {
                   categories.map(category => {
                     return <li key={category}><a href={"/category/" + category} className="text-gray-300 hover:text-brand-1 mx-1">{category}</a></li>
                   })
-                ) 
+                )
               }
             </ul>
           </div>
@@ -43,14 +43,14 @@ export default function Footer() {
             <h4 className="font-semibold text-center">Más</h4>
             <ul className="mt-2 text-sm text-center">
               <li><a href="/brand-search" className="text-gray-300 hover:text-brand-1">Marcas asociadas</a></li>
-              <li><a href="/contact" className="text-gray-300 hover:text-brand-1">Contáctanos (PQR)</a></li>
+              <li><a href="/contact" className="text-gray-300 hover:text-brand-1">Contáctanos (PQRS)</a></li>
             </ul>
           </div>
         </div>
         <div className="flex justify-between items-center">
           <a href="https://www.instagram.com/teto_dress/" className="mr-4"><FaInstagram color="white" size="2.5em" className="pl-2" /></a>
           <a href="https://x.com/teto_dress" className="mr-4"><FaTwitter color="white" size="2.5em" className="pl-2" /></a>
-          <a href="#"><FaFacebookF color="white" size="2em" className="pl-2" /></a>
+          <a href="https://www.facebook.com/tetto.dress"><FaFacebookF color="white" size="2em" className="pl-2" /></a>
         </div>
       </div>
     </footer>

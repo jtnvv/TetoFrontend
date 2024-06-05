@@ -40,9 +40,9 @@ export default function Contact() {
                             <div className="w-full responsive:w-1/3 bg-brand-3 rounded p-5 mt-5 mb-8">
                                 <p className='text-center text-lg text-brand-1'>tetodress@gmail.com</p>
                                 <div className='flex justify-center space-x-2'>
-                                    <a href=''><FaInstagram color='white' size='1.5em' /></a>
-                                    <a href=''><FaTwitter color='white' size='1.5em' /></a>
-                                    <a href=''><FaFacebook color='white' size='1.5em' /></a>
+                                    <a href='https://www.instagram.com/teto_dress/'><FaInstagram color='white' size='1.5em' /></a>
+                                    <a href='https://x.com/teto_dress'><FaTwitter color='white' size='1.5em' /></a>
+                                    <a href='https://www.facebook.com/tetto.dress'><FaFacebook color='white' size='1.5em' /></a>
                                 </div>
                             </div>
                         </div>
