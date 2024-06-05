@@ -6,9 +6,9 @@ const CardBrandsSearch = (props) => {
 
   return (
     <Link to={`/brand/${props.id_brand}`}
-    className="mx-auto bg-black rounded-xl shadow-md overflow-hidden md:max-w-2xl cursor-pointer relative no-underline text-inherit"
-    style={{color: 'inherit' }}>
-      <div className="bg-black rounded-xl shadow-md overflow-hidden md:max-w-3xl cursor-pointer bg-neutral-950/[.8] responsive-sm:max-h-60"  >
+      className="mx-auto bg-black rounded-xl shadow-md overflow-hidden md:max-w-2xl cursor-pointer relative no-underline text-inherit"
+      style={{ color: 'inherit' }}>
+      <div className="bg-black rounded-xl overflow-hidden md:max-w-3xl cursor-pointer bg-neutral-950/[.8] responsive-sm:max-h-60 transform transition duration-500 ease-in-out hover:scale-110 shadow-2xl"  >
         <div className="flex flex-col responsive-sm:flex-row responsive-sm:max-h-60">
           <div className="flex m-5 mt-10 items-center justify-center">
             <img className="h-40 w-40 object-cover " src={props.image_brand} alt="Imagen de la sucursal" />

@@ -58,7 +58,7 @@ export default function BrandPageBrand() {
             <div className="w-screen min-h-screen font-default mb-4  ">
                 <div className="flex flex-wrap  bg-[#D9D9D9] justify-center items-center">
                     <img src={imageUrl} alt="Logo de la marca" className="w-60 rounded-xl mx-16 py-16" />
-                    <div className="flex flex-col w-96 responsive:px-0 px-6">
+                    <div className="flex flex-col w-96 responsive:px-0 px-6 mt-6">
                         <div className="text-3xl mb-4">
                             {name}
                         </div>
