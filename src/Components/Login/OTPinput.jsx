@@ -63,7 +63,7 @@ export default function () {
               <p>Email Verification</p>
             </div>
             <div className="block text-gray-700 font-bold mb-2 font-default text-left text-lg">
-              <p>We have sent a code to your email {email}</p>
+              <p>Te envíamos un código a tu correo {email}</p>
             </div>
           </div>
 
