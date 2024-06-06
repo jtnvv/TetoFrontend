@@ -105,8 +105,10 @@ export default function Header() {
                   <a
                     className="cursor-pointer"
                     onClick={(event) => {
-                      handleIsShoppingCartOpen(!isShoppingCartOpen);
-                      event.preventDefault();
+                      if (window.innerWidth > 1040) {
+                        handleIsShoppingCartOpen(!isShoppingCartOpen);
+                        event.preventDefault();
+                      }
                     }}
                     id="shopping-cart-icon"
                     href="/shopping-cart">

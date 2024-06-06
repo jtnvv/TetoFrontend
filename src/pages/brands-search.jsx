@@ -36,8 +36,8 @@ export default function BrandsSearch() {
           
           <div className=" bg-bgBrandsSearch bg-no-repeat bg-center bg-cover w-screen min-h-screen  text-white  font-default justify-between">
 
-              <div className="mb-10 p-10 text-center">
-                <h1 className=" ">MARCAS</h1>
+              <div className="pt-14 pb-4 text-center">
+                <h1 className="font-logo">MARCAS</h1>
               </div>
 
               <div className="m-10 " >

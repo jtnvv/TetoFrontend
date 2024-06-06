@@ -13,9 +13,11 @@ export default function Contact() {
     const [emailFocus, setEmailFocus] = useState(false);
     const [messageFocus, setMessageFocus] = useState(false);
     const [subjectFocus, setSubjectFocus] = useState(false);
+    const [isWaitingResponse, setIsWaitingResponse] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setIsWaitingResponse(true);
         sendContact({
             "recipient_email": email,
             "nameUser": name,
@@ -26,12 +28,20 @@ export default function Contact() {
 
         }).catch(() => {
             toast.error('Hubo un error al enviar el mensaje');
-        });
+        })
+        .finally(() => setIsWaitingResponse(false));
     }
     return (
         <Layout>
             <ToastContainer />
-            <div className='flex bg-bgMision h-full justify-center'>
+            <div className='flex bg-bgMision h-full justify-center relative'>
+
+                {isWaitingResponse && (
+                    <div className='absolute bg-brand-6 w-full h-full z-10 bg-opacity-50 flex justify-center items-center'>
+                        <div className='w-24 h-24 animate-spin border-4 rounded-full border-brand-3 border-b-brand-1'></div>
+                    </div>
+                )}
+
                 <div className='responsive:w-1/2 w-full'>
                     <h1 className="mt-20 text-4xl font-bold text-center text-brand-1 font-logo">CONTACTO</h1>
                     <form className="bg-brand-1 shadow-md rounded my-10 mx-5 px-8 py-14 mb-20 font-default" onSubmit={handleSubmit}>
