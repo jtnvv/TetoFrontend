@@ -143,7 +143,7 @@ const RegisterFormBrand = () => {
 
     return (
 
-        <div className="flex flex-col bg-white rounded-lg shadow-lg responsive:p-11 p-5 pt-20 responsive:w-[30rem] responsive:h-max w-screen h-full"  >
+        <div className="flex flex-col bg-white rounded-lg shadow-lg responsive:p-11 p-5 pt-20 responsive:w-[30rem] responsive:h-max w-fit h-fit"  >
 
             <div className="flex items-center justify-center mb-5 ">
                 <img className="w-20 mx-5 " src="https://raw.githubusercontent.com/jtnvv/TetoFrontend/main/src/assets/TetoLogo.png" alt='Teto Logo' />
@@ -167,7 +167,7 @@ const RegisterFormBrand = () => {
                     <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg"  htmlFor="descripcion">
                         Descripción de tu marca
                     </label>
-                    <input className={inputStyle} id="description" name="description" onChange={handleInput}
+                    <textarea className={inputStyle} id="description" name="description" onChange={handleInput}
                         type="text" />
                     {errors.description && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.description}</span>}
                 </div>
@@ -206,8 +206,8 @@ const RegisterFormBrand = () => {
                     <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg"  htmlFor="password">
                         Imagen de la marca
                     </label>
-                    <input className="text-brand-6 w-60" id="img" name="imagen" onChange={(event) => { setImageUpload(event.target.files[0]) }}
-                        type="file" />
+                    <input className="text-brand-6 w-60" id="img" name="imagen" accept="image/*" onChange={(event) => { setImageUpload(event.target.files[0]) }}
+                        type="file" required />
                 </div>
                 <div >
                     <button className="responsive:w-full bg-brand-2 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-lg mt-2">

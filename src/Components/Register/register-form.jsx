@@ -99,7 +99,7 @@ const RegisterForm = () => {
 
   return (
 
-    <div className="flex flex-col bg-white rounded-lg shadow-lg responsive:p-20 p-10 pt-20 responsive:w-[35rem] w-screen h-screen"  >
+    <div className="flex flex-col bg-white rounded-lg shadow-lg responsive:p-20 p-10 pt-20 responsive:w-[35rem] w-fit h-fit"  >
 
       <div className="flex items-center justify-center mb-20 ">
         <img className="w-20 mx-5 " src="https://raw.githubusercontent.com/jtnvv/TetoFrontend/main/src/assets/TetoLogo.png" alt='Teto Logo' />
