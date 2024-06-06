@@ -56,6 +56,10 @@ export async function getFavorites() {
     return await axios.get(`${url}get-favorites`);
 }
 
+export async function getRelatedItems(itemId) {
+    return await axios.get(`${url}get-related/${itemId}`);
+}
+
 export async function updateItemRating(item) {
     return await axios.post(`${url}update-item-rating`, item)
 }

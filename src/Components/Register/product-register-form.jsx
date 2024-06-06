@@ -3,6 +3,8 @@ import { uploadImage } from "../../firebase";
 import { fetchCategories, fetchColors, fetchSizes, storeItem } from "../../api/item";
 import SelectOption from "./select-option";
 import CurrencyInput from "react-currency-input-field";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ProductRegisterForm() {
     const gropuStyle = "flex flex-col space-y-2";
@@ -58,8 +60,9 @@ export default function ProductRegisterForm() {
             setIsWaitingResponse(false);
         })
         .catch((err) => {
-            console.log(err.message)
-        });
+            toast.error(err.message);
+        })
+        .finally(() => setIsWaitingResponse(false));
     
     };
 
@@ -78,7 +81,8 @@ export default function ProductRegisterForm() {
     },[]);
 
   return (
-    <form className="space-y-5 relative" onSubmit={onSubmit}>
+      <form className="space-y-5 relative" onSubmit={onSubmit}>
+        <ToastContainer />
         {isWaitingResponse && (
             <div className="absolute h-full w-full bg-brand-6 bg-opacity-55 z-40 flex items-center justify-center">
                 <div className="w-20 h-20 border-4 border-brand-4 border-t-brand-1 rounded-full animate-spin"></div>
