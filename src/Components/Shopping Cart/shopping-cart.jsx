@@ -132,7 +132,7 @@ export default function ShoppingCart({showShoppingCart}) {
                     <button className="bg-brand-6 text-brand-1">Pagar</button>
                 </form>
                 {error && (
-                    <div className="text-center p-5 bg-red-400 max-w-[35rem] break-words">
+                    <div className="text-center p-5 bg-red-400 min-w-full break-words">
                         <p>Error: <em>{error}</em></p>
                     </div>
                 )}
