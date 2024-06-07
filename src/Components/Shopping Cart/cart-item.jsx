@@ -12,7 +12,7 @@ export default function CartItem({id, index, photo, name, price, color, size, on
     return(
         <div className="flex responsive:flex-row flex-col responsive:space-x-4 hover:bg-brand-2 p-5 group min-w-max">
             <a href={`/product/${id}`} className="flex space-x-4 cursor-pointer text-brand-6 hover:text-brand-6 basis-full">
-                <img className="w-24" src={photo} alt="product" />
+                <img className="w-24 h-24 object-cover" src={photo} alt="product" />
                 <div>
                     <h1 className="text-lg">{name}</h1>
                     <h2>{price}</h2>
