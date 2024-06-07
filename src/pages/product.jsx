@@ -210,9 +210,9 @@ export default function Product() {
     return (
         <Layout>
             <ToastContainer limit={3}/>
-            <div className='flex flex-col responsive:p-32 p-4 space-y-10'>
+            <div className='flex flex-col responsive:p-32 p-4'>
                 
-                <div className='flex flex-col responsive:flex-row justify-center font-default relative'>
+                <div className='flex flex-col responsive:flex-row justify-center font-default relative mb-8'>
 
                     <div className='flex w-full responsive:w-2/4 relative responsive:pr-10'>
 
@@ -327,15 +327,14 @@ export default function Product() {
 
                     </div>
                 </div>
-                <h1 className='text-2xl text-center'>Productos relacionados</h1>
-                <div className='flex flex-col items-center overflow-x-scroll'>
-                    
-                    <div className='flex'>
+                <h1 className='text-2xl text-center font-bold mb-5'>Productos relacionados</h1>
+
+                <div className='flex overflow-auto'>
+                    <div className='flex mx-auto'>
                         {relatedProducts.map((item, index) => (
                             <CardItem key={index} id={item.id} name={item.name} photo={item.photo} price={item.price} rating={item.rating} stock={item.stock} />
                         ))}
                     </div>
-
                 </div>
 
             </div>

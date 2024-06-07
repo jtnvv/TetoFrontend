@@ -62,14 +62,14 @@ const CardOrderUser = (props) => {
             setStatusMessage("No ha sido pagado aún.");
             setCancelOrder(true);
             setPayLink(true);
-        } else if (props.item.order.sent_status === true) {
+        } else if (props.item.order.sent_status && !props.item.order.received_status) {
             setStatusMessage("Ya se envió pero no ha sido recibido.");
 
-        } else if (props.item.order.sent_status === false) {
+        } else if (!props.item.order.sent_status) {
             setStatusMessage("No se ha enviado.");
             setCancelOrder(true);
         }
-        if (props.item.order.received_status === true ){
+        if (props.item.order.received_status ){
             setStatusMessage("Recibido")
         
             setCancelOrder(false)
@@ -78,12 +78,10 @@ const CardOrderUser = (props) => {
             }
             
         }
-        else if (props.item.order.received_status === false){
+        else if (!props.item.order.received_status && props.item.order.received_at) {
             setStatusMessage("Reembolso pendiente")
             setCancelOrder(false)
         }
-        
-       
 
         
       }, []);
