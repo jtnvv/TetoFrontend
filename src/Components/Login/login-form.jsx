@@ -8,7 +8,7 @@ import { RecoveryContext } from "../../pages/login";
 
 export default function LoginForm() {
     const { setPage, setOTP, setEmail } = useContext(RecoveryContext);
-    const inputStyle = "text-brand-6 bg-brand-1 border border-brand-6 p-4 w-full";
+    const inputStyle = "responsive:w-full block py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300  focus_outline-non";
 
     const [values, setValues] = useState({
         email: '',
@@ -56,15 +56,17 @@ export default function LoginForm() {
 
     return (
 
-        <div className="flex justify-end w-screen responsive:h-screen min-h-screen bg-bgRegister bg-cover bg-no-repeat bg-center">
-            <div className="bg-white rounded-lg shadow-lg responsive:p-20 p-10 pt-16 max-w-x1 min-h-screen">
-                <BackButton />
-                <div className="flex items-center justify-center mb-20 ">
-                    <img className="w-20 mx-5 " src="https://raw.githubusercontent.com/jtnvv/TetoFrontend/main/src/assets/TetoLogo.png" alt='Teto Logo' />
-                    <h1 className="text-5xl font-bold text-center text-brand-6  font-logo"  >TETO</h1>
-                </div>
-                <form onSubmit={(e) => onSubmit(e)} className="space-y-16">
+        <div className="flex flex-col bg-white rounded-lg shadow-lg responsive:p-11 p-5 pt-20 responsive:w-[30rem] responsive:h-max w-screen h-full"  >
+            
+            <div className="flex items-center justify-center mb-5 ">
+                <img className="w-20 mx-5 " src="https://raw.githubusercontent.com/jtnvv/TetoFrontend/main/src/assets/TetoLogo.png" alt='Teto Logo' />
+                <h1 className="text-5xl font-bold text-center text-gray-700 font-logo"  >TETO</h1>
+            </div>
 
+
+            <BackButton />
+            <form className="space-y-8 flex flex-col items-center responsive:block" onSubmit={(e) => onSubmit(e)} >
+                    
                     <div>
                         <label className="block text-brand-6 font-bold mb-2 font-default text-left text-lg" htmlFor='email' >
                             Correo Electrónico
@@ -116,10 +118,7 @@ export default function LoginForm() {
                        ¿No estás registrado? <a href="/register">Regístrate aquí</a>
 
                     </div>
-                </form>
-            </div>
-
-
+            </form>
         </div>
 
 
