@@ -43,7 +43,6 @@ export default function LoginForm() {
 
             try {
                 await sendRecoveryEmail({ OTP, recipient_email: values.email, });
-                setPage("otp")
             } catch (error) {
                 console.log(error);
             }
