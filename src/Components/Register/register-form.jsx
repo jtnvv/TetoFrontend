@@ -6,8 +6,7 @@ import { useNavigate } from 'react-router-dom'
 const RegisterForm = () => {
 
   const navigate = useNavigate()
-  const inputStyle = "block py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300 apparance-none  focus_outline-non";
-
+  const inputStyle = "responsive:w-full block py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300  focus_outline-non";
   //Variables del usuario
   const [state, setState] = useState({
     name: '',
@@ -99,16 +98,14 @@ const RegisterForm = () => {
 
   return (
 
-    <div className="flex flex-col bg-white rounded-lg shadow-lg responsive:p-20 p-10 pt-20 responsive:w-[35rem] w-screen h-screen"  >
-
+    <div className="flex flex-col bg-white rounded-lg shadow-lg responsive:p-11 p-5 pt-20 responsive:w-[30rem] responsive:h-max w-screen h-full"  >
       <div className="flex items-center justify-center mb-20 ">
         <img className="w-20 mx-5 " src="https://raw.githubusercontent.com/jtnvv/TetoFrontend/main/src/assets/TetoLogo.png" alt='Teto Logo' />
         <h1 className="text-5xl font-bold text-center text-gray-700  font-default"  >TETO</h1>
       </div>
 
 
-
-      <form className="space-y-16" onSubmit={handleSubmit}>
+      <form className="space-y-8 flex flex-col items-center responsive:block" onSubmit={handleSubmit}>
 
         <div className="flex flex-col">
           <label className="block text-gray-700 font-bold mb-2 font-default text-left text-lg " htmlFor="name">
