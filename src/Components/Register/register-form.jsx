@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 const RegisterForm = () => {
 
   const navigate = useNavigate()
-  const inputStyle = "block py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300 apparance-none  focus_outline-non";
+  const inputStyle = "block py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   focus:outline-none ";
 
   //Variables del usuario
   const [state, setState] = useState({

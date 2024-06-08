@@ -6,7 +6,7 @@ import { uploadImage as uploader } from "../../firebase.js";
 
 const RegisterFormBrand = () => {
 
-    const inputStyle = "responsive:w-full block py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300  focus_outline-non";
+    const inputStyle = "responsive:w-full block py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300  focus:outline-none";
 
     const navigate = useNavigate()
 
