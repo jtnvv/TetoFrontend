@@ -42,11 +42,14 @@ export default function LoginForm() {
             setOTP(OTP);
 
             try {
-                await sendRecoveryEmail({ OTP, recipient_email: values.email, });
+                const res = await sendRecoveryEmail({ OTP, recipient_email: values.email, });
+                if(res.status==409){
+                    return alert("Correo no registrado")
+                }
+                setPage("otp")
             } catch (error) {
                 console.log(error);
             }
-            setPage("otp")
             setEmail(values.email)
             return;
         }
