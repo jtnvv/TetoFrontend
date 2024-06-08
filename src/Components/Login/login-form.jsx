@@ -42,12 +42,14 @@ export default function LoginForm() {
             setOTP(OTP);
 
             try {
-                await sendRecoveryEmail({ OTP, recipient_email: values.email, });
+                const res = await sendRecoveryEmail({ OTP, recipient_email: values.email, });
+                if(res.status==409){
+                    return alert("Correo no registrado")
+                }
                 setPage("otp")
             } catch (error) {
                 console.log(error);
             }
-            setPage("otp")
             setEmail(values.email)
             return;
         }
@@ -57,11 +59,21 @@ export default function LoginForm() {
     return (
 
         <div className="flex flex-col bg-white rounded-lg shadow-lg responsive:p-11 p-5 pt-20 responsive:w-[30rem] responsive:h-max w-screen h-full"  >
+<<<<<<< HEAD
             
             <div className="flex items-center justify-center mb-5 ">
                 <img className="w-20 mx-5 " src="https://raw.githubusercontent.com/jtnvv/TetoFrontend/main/src/assets/TetoLogo.png" alt='Teto Logo' />
                 <h1 className="text-5xl font-bold text-center text-gray-700 font-logo"  >TETO</h1>
             </div>
+=======
+            <div className="bg-white rounded-lg  responsive:p-20 p-10 pt-16 max-w-x1 min-h-screen">
+                <BackButton />
+                <div className="flex items-center justify-center mb-20 ">
+                    <img className="w-20 mx-5 " src="https://raw.githubusercontent.com/jtnvv/TetoFrontend/main/src/assets/TetoLogo.png" alt='Teto Logo' />
+                    <h1 className="text-5xl font-bold text-center text-brand-6  font-logo"  >TETO</h1>
+                </div>
+                <form onSubmit={(e) => onSubmit(e)} className="space-y-16">
+>>>>>>> main
 
 
             <BackButton />
@@ -102,7 +114,7 @@ export default function LoginForm() {
                     <div style={{ color: 'red', margin: '10px 0' }}>{error}</div>
 
                     <div  className="font-default ">
-                        <button type='submit' className="w-full bg-brand-2 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-lg mt-1 mb-4">
+                        <button type='submit' className="w-full bg-brand-2 hover:bg-white-900 text-white font-bold py-2 px-4 rounded-lg mt-1 mb-4">
                             Iniciar Sesion
                         </button>
                         <a

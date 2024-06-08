@@ -6,10 +6,10 @@ import { FetchUserInformation, FetchUserOrders } from "../api/user";
 import CardOrderUser from "../Components/Order/card-order-user";
 export default function UserPageProfile() {
 
-    const [updateData, setUpdateData] = useState(false); 
+    const [updateData, setUpdateData] = useState(false);
 
     const [name, setName] = useState()
-    const [id,setId] = useState()
+    const [id, setId] = useState()
     const [email, setEmail] = useState()
 
     const [orders, setOrders] = useState([]);
@@ -19,7 +19,7 @@ export default function UserPageProfile() {
     const [cardsPerPage] = useState(4);
 
     useEffect(() => {
-        
+
         FetchUserInformation()
             .then(response => {
 
@@ -27,74 +27,74 @@ export default function UserPageProfile() {
                 setId(response.data[0].id)
                 setName(response.data[0].name)
                 setEmail(response.data[0].email)
-                
+
             })
             .catch(error => console.error('Error:', error));
-      }, []);
+    }, []);
 
-      useEffect(() => {
-        
+    useEffect(() => {
+
         FetchUserOrders()
             .then(response => {
-               
+
                 // Extraer el item de cada orden
                 const items = response.data.map(order => {
                     // Asegúrate de que el item exista en la orden
                     if (order.item) {
-                        return {...order.item, order};
+                        return { ...order.item, order };
                     }
                 });
                 setOrders(items);
             })
             .catch(error => console.error('Error:', error));
-      }, []);
+    }, []);
 
     // Get current cards
     const indexOfLastCard = currentPage * cardsPerPage;
     const indexOfFirstCard = indexOfLastCard - cardsPerPage;
     const currentCards = orders.slice(indexOfFirstCard, indexOfLastCard);
 
-     // Change page
+    // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
-    return(
+    return (
 
         <Layout>
-          
-                <div className="grid sm:grid-cols-4  font-default w-screen min-h-screen    bg-white   ">
-                    
-                    <div className=" bg-white w-fit   h-fit  px-20 py-40  space-y-5  ">
-                        <div className="space-y-2">
-                            <p className="text-2xl text-gray-900 dark:text-black font-semibold">Nombre </p>
-                            <p className="text-lg text-black ">{name}</p>
-                        </div>
-                        
-                        <div className="space-y-2">
-                            <p className="text-2xl text-gray-900 dark:text-black font-semibold">Correo electronico</p>
-                            <p className="text-lg text-black ">{email}</p>
-                        </div>
-                    
-                        <div className="space-y-2 ">
-                            <button   className="bg-[#646458] hover:bg-gray-500 text-white hover:bg-grey-500 w-fit" onClick={() => setUpdateData(true)}>
-                                Modificar Datos
-                            </button>
-                        </div>
 
+            <div className="flex  flex-wrap font-default    bg-white   ">
+
+                <div className=" bg-white lg:w-1/4  px-20 py-40  space-y-5  ">
+                    <div className="space-y-2">
+                        <p className="text-2xl text-gray-900 dark:text-black font-semibold">Nombre </p>
+                        <p className="text-lg text-black ">{name}</p>
                     </div>
-                    <div className="bg-[#D9D9D9] col-span-3  ">
-                        <div className="  space-y-10 py-5 px-20">
 
-                            <div className="mb-10  ">
-                                <p className="text-2xl text-gray-900 dark:text-black font-bold">Historial de compras</p>
-                            </div>
+                    <div className="space-y-2">
+                        <p className="text-2xl text-gray-900 dark:text-black font-semibold">Correo electronico</p>
+                        <p className="text-lg text-black ">{email}</p>
+                    </div>
 
-                            <div className="space-y-8">
+                    <div className="space-y-2 ">
+                        <button className="bg-[#646458] hover:bg-gray-500 text-white hover:bg-grey-500 w-fit" onClick={() => setUpdateData(true)}>
+                            Modificar Datos
+                        </button>
+                    </div>
+
+                </div>
+                <div className="bg-[#D9D9D9]  lg:w-3/4 sm:w-max responsive:h-screen">
+                    <div className="  space-y-10 py-5 px-20">
+
+                        <div className="mb-10  ">
+                            <p className="text-2xl text-gray-900 dark:text-black font-bold">Historial de compras</p>
+                        </div>
+
+                        <div className="space-y-8">
 
                             {
                                 currentCards.length !== 0 ? currentCards.map((item, key) => {
                                     return (
                                         <div key={key}>
-                                            <CardOrderUser  item={item}  id ={id} email={email} name={name}/>
+                                            <CardOrderUser item={item} id={id} email={email} name={name} />
                                         </div>
                                     )
                                 }) : (
@@ -104,25 +104,25 @@ export default function UserPageProfile() {
                                     </div>
                                 )
                             }
-                                     
-                            </div>
-
-                            <div className=" pagination  text-center text-white ">
-                            
-                                {Array(Math.ceil(orders.length/ cardsPerPage)).fill().map((_, i) => (
-                                    <button key={i} onClick={() => paginate(i + 1)} className="mr-1">
-                                        {i + 1}
-                                    </button>
-                                    ))}
-
-                            </div>
 
                         </div>
+
+                        <div className=" pagination  text-center text-white ">
+
+                            {Array(Math.ceil(orders.length / cardsPerPage)).fill().map((_, i) => (
+                                <button key={i} onClick={() => paginate(i + 1)} className="mr-1">
+                                    {i + 1}
+                                </button>
+                            ))}
+
+                        </div>
+
                     </div>
                 </div>
+            </div>
 
-                {updateData && <UpdateDataUser onClose={() => setUpdateData(false)} name={name} email={email} />}
-           
+            {updateData && <UpdateDataUser onClose={() => setUpdateData(false)} name={name} email={email} />}
+
         </Layout>
 
     )

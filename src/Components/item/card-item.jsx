@@ -2,13 +2,13 @@ import { priceFormatterCOP } from "../../formatter/formaters";
 import { FaStar } from "react-icons/fa";
 const CardItem = (props) => {
     return (
-        <div className="flex flex-wrap relative responsive:w-72 w-40">
+        <div className="flex flex-wrap responsive:min-w-72 min-w-40">
             {!props.stock && (
                 <div className="absolute flex justify-center items-center h-full w-full text-brand-1">
                     <h1 className="responsive:w-[86%] w-[95%] font-bold text-xl text-center bg-red-600">AGOTADO</h1>
                 </div>
             )}
-            <a className="flex flex-col items-center responsive:m-5 m-1 bg-brand-6 rounded-2xl text-brand-1 responsive:w-full w-full" href={'/product/' + props.id}>
+            <a className="flex flex-col items-center responsive:m-5 m-1 bg-brand-6 rounded-2xl text-brand-1 responsive:w-full w-full transform transition duration-500 ease-in-out hover:scale-110 shadow-2xl" href={'/product/' + props.id}>
                 <img src={props.photo} alt={props.name} className="responsive:h-52 h-36 w-full object-cover mb-5 rounded-t-lg" />
                 <h2 className="mb-3 max-w-32 font-semibold responsive:text-2xl text-base truncate">{props.name}</h2>
                 {

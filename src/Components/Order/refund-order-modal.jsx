@@ -1,22 +1,22 @@
 import { useState } from 'react';
-import { sendCancelOrderEmail, userCancelOrder } from '../../api/order';
+import { sendRefundOrderEmail, userRefundOrder } from '../../api/order';
 
 
-const DeletingOrderModal = ({ showModal, toggleModal, notify, idorder, recipientemail,nameuser,nameItem,sizeitem,quantityitem,priceitem,idu}) => {
+const RefundOrderModal = ({ showModal, toggleModal, notify, idorder,idItem, recipientemail,nameuser,nameItem,sizeitem,quantityitem,priceitem,idu,address}) => {
     
 
     if (!showModal) return null;
 
-    const handleRatingChange = (event) => {
-        
-    };
+    
     const handleSubmit = async () => {
 
 
-      
+        let deleteOrder = false
         
         const data = {
             id: idorder
+
+
         };
 
         const dataEmail = {
@@ -24,23 +24,24 @@ const DeletingOrderModal = ({ showModal, toggleModal, notify, idorder, recipient
             nameUser: nameuser,
             nameItem:nameItem,
             size: sizeitem, 
+            id:idItem,
             quantity: quantityitem,
             price: priceitem,
-            iduser: idu
+            iduser: idu,
+            address: address
 
         }
         
+        userRefundOrder(data).then(response =>{
 
-        
-        userCancelOrder(data).then(response =>{
-
-            console.log("borrado con exito")
+          
 
             let deleteOrder = true;
+            
 
             if(deleteOrder){
                 
-                sendCancelOrderEmail(dataEmail).then(response=>{
+                sendRefundOrderEmail(dataEmail).then(response=>{
                     console.log("envio de correo exitoso");
                     
                 }).catch(error => console.log("error al enviar el correo"));
@@ -52,12 +53,10 @@ const DeletingOrderModal = ({ showModal, toggleModal, notify, idorder, recipient
         }).catch( error => console.log("error al borrar pedido")
  
         )
-        
 
-        
     };
     return (
-        <div className="fixed z-10 inset-0 overflow-y-auto h-full w-full " aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div className="fixed z-10 inset-0 overflow-y-auto h-full w-full  " aria-labelledby="modal-title" role="dialog" aria-modal="true">
             <div className="relative  items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                 <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
 
@@ -72,11 +71,11 @@ const DeletingOrderModal = ({ showModal, toggleModal, notify, idorder, recipient
                                     <span className="text-brand-6 font-logo font-semibold text-5xl">TETO</span>
                                 </div>
                                 <h3 className="text-lg leading-6 font-medium text-gray-900 text-center" id="modal-title">
-                                    Eliminar una orden
+                                    Pedir un reembolso
                                 </h3>
                                 <div className="mt-2">
                                     <p className="text-sm text-brand-5 text-center ">
-                                        Se eliminara este producto de tus ordenes y un correo le será llegado ¡Gracias por confiar en TETO!
+                                        Se enviará un correo al proveedor y se le será confirmado su reembolso a traves del correo ¡Gracias por confiar en TETO!
                                     </p>
 
                                 </div>
@@ -85,7 +84,7 @@ const DeletingOrderModal = ({ showModal, toggleModal, notify, idorder, recipient
                     </div>
                     <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex items-center justify-center  ">
                         <button type="button" className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-brand-4 text-base font-medium text-brand-1 hover:bg-brand-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm" onClick={handleSubmit}>
-                            Borrar
+                            Aceptar
                         </button>
                         <button type="button" className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm" onClick={toggleModal}>
                             Cancelar
@@ -97,4 +96,4 @@ const DeletingOrderModal = ({ showModal, toggleModal, notify, idorder, recipient
     );
 };
 
-export default DeletingOrderModal;
+export default RefundOrderModal;

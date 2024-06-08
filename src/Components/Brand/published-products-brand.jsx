@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { deleteItem } from "../../api/store.js";
 import { deleteImage } from "../../firebase.js";
 import { FaTrashAlt } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 import { priceFormatterCOP } from "../../formatter/formaters.js";
 export default function PublishedProductsBrand(props) {
 
@@ -53,17 +54,7 @@ export default function PublishedProductsBrand(props) {
     )
 }
 
-function StarRating({ rating }) {
-    const stars = [];
-    for (let i = 1; i <= 5; i++) {
-        stars.push(
-            <span key={i} className={i <= rating ? 'text-white-500 text-4xl' : 'text-gray-300  text-4xl '}>
-                {i <= rating ? '★' : '☆'}
-            </span>
-        );
-    }
-    return <div>{stars}</div>;
-}
+
 
 function DeleteProductModal({ onClose, id, image }) {
 
