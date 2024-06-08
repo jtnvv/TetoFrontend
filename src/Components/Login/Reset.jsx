@@ -10,25 +10,53 @@ export default function Reset() {
     password: "",
     confirmPassword: "",
   });
+  const [errors, setError] = useState({});
+  const validation = () => {
+    //Errores
+    const error = {};
+    error.password="";
+    error.confirmPassword="";
 
+    // La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula y un número
+    let passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    if (!passwordRegex.test(values.password)) {
+      error.password =
+        "La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula y un número.";
+    }
+    let confirmPasswordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    if (!confirmPasswordRegex.test(values.confirmPassword)) {
+      error.confirmPasswordRegex =
+        "La contraseña confirmada debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula y un número.";
+    }
+    return error;
+  };
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
   function changePassword() {
-    if (values.password === values.confirmPassword) {
-      axios
-        .post(import.meta.env.VITE_LOCAL_URL + "change-password", {
-          pass: values.password,
-          email: email,
-        })
-        .then(() => setPage("login"))
-        .catch();
-      setPage("reset");
+    let errorL = validation();
+    setError(errorL);
+    if (errorL.password === "" && errorL.confirmPassword === "") {
+      console.log("contraseÑa 1",values.password,"contraseña 2",values.confirmPassword)
+      if (values.password === values.confirmPassword) {
+        axios
+          .post(import.meta.env.VITE_LOCAL_URL + "change-password", {
+            pass: values.password,
+            email: email,
+          })
+          .then(() => setPage("login"))
+          .catch();
+        setPage("reset");
 
-      return;
+        return;
+      }
+      return alert("las contraseñas no coinciden")
     }
-    return alert("La contraseñas no coinciden");
+    console.log(errorL)
+    return alert(
+      "revisa que tu nueva contraseña tenga una mayuscula una minuscula, un numero y tengan almenos 8 caracteres"
+    );
   }
 
   return (

@@ -5,6 +5,8 @@ import { authenticateUser } from '../../redux/slices/authSlice'
 import BackButton from "../Layout/back-button";
 import { useContext } from "react";
 import { RecoveryContext } from "../../pages/login";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function LoginForm() {
     const { setPage, setOTP, setEmail } = useContext(RecoveryContext);
@@ -44,6 +46,7 @@ export default function LoginForm() {
             try {
                 const res = await sendRecoveryEmail({ OTP, recipient_email: values.email, });
                 if(res.status==409){
+                    toast.success("correo no registrado");
                     return alert("Correo no registrado")
                 }
                 setPage("otp")
