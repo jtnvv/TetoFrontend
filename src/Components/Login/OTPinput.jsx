@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useContext } from "react";
 import { RecoveryContext } from "../../pages/login";
 import { sendRecoveryEmail } from "../../api/auth";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function () {
   const { email, otp, setPage } = useContext(RecoveryContext);
@@ -13,7 +15,6 @@ export default function () {
 
   async function resendOTP() {
     if (disable) return;
-    console.log("caaaaaaaaaaaaa", otp)
     const OTP = otp
     try {
       const res = await sendRecoveryEmail({OTP, recipient_email: email,
@@ -32,6 +33,7 @@ export default function () {
       setPage("reset");
       return;
     }
+    toast.warn("código incorrecto")
     alert(
       "The code you have entered is not correct, try again or re-send the link"
     );

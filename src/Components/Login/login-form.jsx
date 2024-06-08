@@ -39,14 +39,15 @@ export default function LoginForm() {
 
     }
     async function nagigateToOtp() {
+        
         if (values.email) {
             const OTP = Math.floor(Math.random() * 9000 + 1000);
             setOTP(OTP);
-
+            toast("Wow so easy!")
             try {
                 const res = await sendRecoveryEmail({ OTP, recipient_email: values.email, });
                 if(res.status==409){
-                    toast.success("correo no registrado");
+                    toast.warn("correo no registrado");
                     return alert("Correo no registrado")
                 }
                 setPage("otp")

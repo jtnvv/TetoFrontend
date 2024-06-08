@@ -26,7 +26,7 @@ export async function onLogout() {
 }
 
 export async function sendRecoveryEmail(data) {
-  console.log(data)
+  // console.log(data)
   return await axios.post(`${url}send_recovery_email`, data)
 };
 
