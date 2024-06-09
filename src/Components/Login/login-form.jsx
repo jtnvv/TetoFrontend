@@ -17,56 +17,93 @@ export default function LoginForm() {
     email: "",
     password: "",
   });
-  const [error, setError] = useState(false);
+  const [error1, setError1] = useState(false);
+  const [success, setSuccess] = useState()
+  //Errores
+  const [errors, setError] = useState({});
+
+  const validation = () => {
+    //Errores
+    const error = {};
+    error.password = "";
+    error.email = "";
+
+    // Expresión regular para validar el correo electrónico
+    let emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    if (!emailRegex.test(values.email)) {
+      error.email = "El correo electrónico no es válido.";
+    }
+
+    // La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula y un número
+    let passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    if (!passwordRegex.test(values.password)) {
+      error.password =
+        "contraseña incorrecta";
+    }
+    return error;
+  };
 
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
   const dispatch = useDispatch();
+
   const onSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const res = await onLogin(values);
-
-      localStorage.setItem("isAuth", "true");
-      localStorage.setItem("role", res.data.role);
-
-      dispatch(authenticateUser());
-    } catch (err) {
-      setError(err.response.data.errors[0].msg);
+    let errorL = validation(values);
+    setError(errorL);
+    if (errorL.password === "" && errorL.email === "") {
+      try {
+        const res = await onLogin(values);
+        localStorage.setItem("isAuth", "true");
+        localStorage.setItem("role", res.data.role);
+        dispatch(authenticateUser());
+        setError('')
+        console.log(error)
+        setSuccess(res.message)
+      } catch (err) {
+        setError(err.response.data.errors[0].msg);
+        setSuccess('')
+      }
     }
   };
 
-  
   async function nagigateToOtp() {
-      
-          
     if (values.email) {
       const OTP = Math.floor(Math.random() * 9000 + 1000);
       setOTP(OTP);
-
+      let res="";
       try {
-        const res = await sendRecoveryEmail({
+         res = await sendRecoveryEmail({
           OTP,
           recipient_email: values.email,
         });
         if (res.status == 409) {
-          toast.warn("correo no registrado");
-          return alert("Correo no registrado");
+          toast.warn("Introduce el email pedazo de calabaza", {
+            position: "top-right",
+          });
+          console.log("ssssssssssssssssssss")
+          return ;
         }
         setPage("otp");
       } catch (error) {
-        console.log(error);
+        console.log("sisisisisisisi",res)
+        if (res.status == 409) {
+          toast.warn("Introduce el email pedazo de calabaza", {
+            position: "top-right",
+          });
+        }
+        console.log("zzzzzzzzzzzzzzzz",error1);
       }
       setEmail(values.email);
       return;
     }
-    
-    toast.warn('Introduce el email pedazo de calabaza', {
-        position: "top-right",
-        });
-    return ;
+
+    toast.warn("Introduce el email pedazo de calabaza", {
+      position: "top-right",
+    });
+    return;
   }
 
   return (
@@ -96,14 +133,13 @@ export default function LoginForm() {
           </label>
           <input
             onChange={(e) => onChange(e)}
-            type="email"
             className={inputStyle}
             id="email"
             name="email"
             value={values.email}
             placeholder="correo@gmail.com"
-            required
           />
+          {errors.email && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.email}</span>}
         </div>
 
         <div className="mb-3">
@@ -121,11 +157,10 @@ export default function LoginForm() {
             id="password"
             name="password"
             placeholder="Contraseña"
-            required
           />
+          
+          {errors.password && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.password}</span>}
         </div>
-
-        <div style={{ color: "red", margin: "10px 0" }}>{error}</div>
 
         <div className="font-default ">
           <button
