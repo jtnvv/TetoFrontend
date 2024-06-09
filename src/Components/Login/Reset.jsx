@@ -3,6 +3,9 @@ import { useState } from "react";
 import { useContext } from "react";
 import { RecoveryContext } from "../../pages/login";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 export default function Reset() {
   const { email, otp, setPage } = useContext(RecoveryContext);
@@ -38,7 +41,6 @@ export default function Reset() {
     let errorL = validation();
     setError(errorL);
     if (errorL.password === "" && errorL.confirmPassword === "") {
-      console.log("contraseÑa 1",values.password,"contraseña 2",values.confirmPassword)
       if (values.password === values.confirmPassword) {
         axios
           .post(import.meta.env.VITE_LOCAL_URL + "change-password", {
@@ -51,12 +53,11 @@ export default function Reset() {
 
         return;
       }
-      return alert("las contraseñas no coinciden")
+      toast.warn("las contraseñas no coinciden")
+      return 
     }
     console.log(errorL)
-    return alert(
-      "revisa que tu nueva contraseña tenga una mayuscula una minuscula, un numero y tengan almenos 8 caracteres"
-    );
+    return 
   }
 
   return (
@@ -84,6 +85,7 @@ export default function Reset() {
                   className="text-brand-6 w-full h-full flex flex-col items-left justify-left text-center px-5 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-blue-700"
                   required=""
                 ></input>
+                {errors.password && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.password}</span>}
               </div>
               <div>
                 <label
@@ -101,6 +103,7 @@ export default function Reset() {
                   className="text-brand-6 w-full h-full flex flex-col items-left justify-left text-center px-5 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-blue-700"
                   required=""
                 ></input>
+                 {errors.password && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.password}</span>}
               </div>
               <div className="flex items-start">
                 <div className="flex items-center h-5">
@@ -134,6 +137,7 @@ export default function Reset() {
             >
               Cambiar Contraseña
             </a>
+            <ToastContainer />
           </div>
         </div>
       </section>

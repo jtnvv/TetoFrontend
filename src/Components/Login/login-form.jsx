@@ -63,6 +63,9 @@ export default function LoginForm() {
         console.log(error)
         setSuccess(res.message)
       } catch (err) {
+        toast.warn("Revisa el email y contraseña introducidos", {
+          position: "top-right",
+        });
         setError(err.response.data.errors[0].msg);
         setSuccess('')
       }
@@ -79,22 +82,12 @@ export default function LoginForm() {
           OTP,
           recipient_email: values.email,
         });
-        if (res.status == 409) {
-          toast.warn("Introduce el email pedazo de calabaza", {
-            position: "top-right",
-          });
-          console.log("ssssssssssssssssssss")
-          return ;
-        }
         setPage("otp");
       } catch (error) {
-        console.log("sisisisisisisi",res)
-        if (res.status == 409) {
-          toast.warn("Introduce el email pedazo de calabaza", {
-            position: "top-right",
-          });
-        }
-        console.log("zzzzzzzzzzzzzzzz",error1);
+            toast.warn("Email incorrecto", {
+              position: "top-right",
+            });
+        
       }
       setEmail(values.email);
       return;

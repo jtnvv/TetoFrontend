@@ -8,20 +8,20 @@ import 'react-toastify/dist/ReactToastify.css'
 
 export default function () {
   const { email, otp, setPage } = useContext(RecoveryContext);
-  const [timerCount, setTimer] = React.useState(10);
+  const [timerCount, setTimer] = React.useState(60);
   const [OTPinput, setOTPinput] = useState([0, 0, 0, 0]);
   const [disable, setDisable] = useState(true);
   
 
   async function resendOTP() {
     if (disable) return;
+    setTimer(60)
+    setDisable(true);
     const OTP = otp
     try {
       const res = await sendRecoveryEmail({OTP, recipient_email: email,
       });
-      if (res.status == 409) {
-        return alert("Correo no registrado");
-      }
+      toast.warn("Se ha enviado el código a tu correo")
       setPage("otp");
     } catch (error) {
       console.log(error);
@@ -67,8 +67,8 @@ export default function () {
         <div className="bg-white px-6 pt-10 pb-9 shadow-xl mx-auto w-full max-w-lg rounded-2xl">
           <div className="mx-auto flex w-full max-w-md flex-col space-y-16">
             <div className="flex flex-col items-center justify-center text-center space-y-2">
-              <div className="font-semibold text-3xl">
-                <p>Email Verification</p>
+              <div className="block text-gray-700 font-bold mb-2 font-default text-left text-3xl">
+                <p>Verificación de Correo</p>
               </div>
               <div className="block text-gray-700 font-bold mb-2 font-default text-left text-lg">
                 <p>Te envíamos un código a tu correo {email}</p>
@@ -175,6 +175,7 @@ export default function () {
                           ? `Reenviar código ${timerCount}s`
                           : "Reenviar código"}
                       </a>
+                      <ToastContainer />
                     </div>
                   </div>
                 </div>
