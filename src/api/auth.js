@@ -26,7 +26,15 @@ export async function onLogout() {
 }
 
 export async function sendRecoveryEmail(data) {
-  // console.log(data)
   return await axios.post(`${url}send_recovery_email`, data)
 };
 
+export async function sendConfirmationEmail() {
+  return await axios.post(`${url}active-account`)
+};
+
+export async function validateCode(code) {
+  return await axios.post(`${url}confirm-code`, {
+    code: code
+  })
+};
