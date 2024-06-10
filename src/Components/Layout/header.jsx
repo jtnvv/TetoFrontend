@@ -20,6 +20,8 @@ export default function Header() {
     link = "/brandpage-brand";
   } else if (isAuth && role === 'user') {
     link = "/userpage-profile";
+  } else if (isAuth && role === 'inactive'){
+    link = "/activate-advertisement";
   } else {
     link = "/login";
   }
@@ -41,10 +43,16 @@ export default function Header() {
         {/* Logo */}
         <div className="flex items-center font-logo cursor-pointer" onClick={() => window.location.href = "/"}>
           <img src="/favicon.svg" alt="Logo" className="h-14 w-14 mr-2" />
-          {role === 'brand' ? (<>
+          {role === 'brand' ? (
+          <>
             <div className=' flex flex-col'>
               <span className="text-brand-1 font-semibold text-5xl">TETO </span>
-              <span className="text-brand-1 font-semibold text-3xl">marcas</span> </div></>) : (<span className="text-brand-1 font-semibold text-5xl">TETO</span>)}
+              <span className="text-brand-1 font-semibold text-3xl">marcas</span> 
+            </div>
+          </>
+            ) : (
+            <span className="text-brand-1 font-semibold text-5xl">TETO</span>
+            )}
 
         </div>
 

@@ -60,7 +60,6 @@ export default function LoginForm() {
         localStorage.setItem("role", res.data.role);
         dispatch(authenticateUser());
         setError('')
-        console.log(error)
         setSuccess(res.message)
       } catch (err) {
         toast.warn("Revisa el email y contraseña introducidos", {

@@ -1,8 +1,8 @@
-import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Layout from "../Components/Layout/layout";
 
 export default function PaymentSuccess() {
-    const params = useParams();
+    const { role } = useSelector(state => state.auth);
 
   return (
     <Layout>
@@ -14,7 +14,7 @@ export default function PaymentSuccess() {
                     <span className="text-brand-6 font-logo font-semibold text-6xl">TETO</span>
                 </div>
                 <h2>Gracias por confiar en TETO</h2>
-                <p>Tú pedido ha sido registrado exitosamente, puedes verlo en el siguiente enlace</p>
+                <p>Tú pedido ha sido registrado exitosamente, puedes verlo en el siguiente <a href={role == "user" ? "/userpage-profile" : "/brandpage-profile"}>enlace</a></p>
                 <img className="w-72 self-center" src="https://images.hive.blog/0x0/http://i.stack.imgur.com/e8nZC.gif" alt="payment-succesfull" />
             </div>
         </div>

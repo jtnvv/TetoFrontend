@@ -18,6 +18,8 @@ import Favorites from "./pages/favorites";
 import AboutUs from "./pages/about-us";
 import PaymentSuccess from "./pages/payment-success";
 import Contact from "./pages/contact";
+import ActivateAdvertisement from "./pages/activate-advertisement";
+import ActivateAccount from "./pages/activate-account";
 
 
 const PrivateRoutes = () => {
@@ -30,14 +32,19 @@ const RestrictedRoutes = () => {
   return <>{!isAuth ? <Outlet /> : <Navigate to='/' />}</>
 }
 
+const InactiveRoutes = () => {
+  const { role } = useSelector(state => state.auth);
+  return <>{role == "inactive" ? <Navigate to='/activate-advertisement' /> : <Outlet /> }</>
+}
+
 const UserRoutes = () => {
   const { role } = useSelector(state => state.auth);
-  return <>{role == "brand" ? <Navigate to='/' /> : <Outlet />}</>
+  return <>{role == "brand" ? <Navigate to='/' /> : (role  == "inactive" ? <Navigate to='/activate-advertisement' /> : <Outlet />) }</>
 }
 
 const BrandRoutes = () => {
   const { role } = useSelector(state => state.auth);
-  return <>{role == "user" ? <Navigate to='/' /> : <Outlet />}</>
+  return <>{role == "user" ? <Navigate to='/' /> : (role  == "inactive" ? <Navigate to='/activate-advertisement' /> : <Outlet />) }</>
 }
 
 const MobileRoutes = () => {
@@ -59,6 +66,9 @@ function App() {
           <Route path='contact' element={<Contact />} />
 
           <Route element={<PrivateRoutes />}>
+
+            <Route path="/activate-account" element={<ActivateAccount />} />
+            <Route path="/activate-advertisement" element={<ActivateAdvertisement />} />
 
             <Route element={<UserRoutes />}>
               <Route path='/userpage-profile' element={<UserPageProfile />} />
