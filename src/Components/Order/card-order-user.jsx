@@ -127,7 +127,7 @@ const CardOrderUser = (props) => {
                                 )}
 
                                 <>
-                                {!props.item.order.sent_status && (
+                                {props.item.order.payment_link && (
                                     <a className="underline" href={props.item.order.payment_link} target="_blank" >Paga aquí</a>
                                 )}
                                 </>

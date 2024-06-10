@@ -70,7 +70,7 @@ export default function BrandPageProfile() {
     return(
 
         <Layout>
-            <div className="flex  flex-wrap  font-default bg-white  ">
+            <div className="flex  flex-wrap font-default bg-white  ">
                 <div className="  bg-white  lg:w-1/4  h-fit   px-20 py-5  space-y-10  ">
                     <div className="space-y-2">
                         <p className="text-2xl text-gray-900 dark:text-black font-semibold">Nombre de la marca</p>
