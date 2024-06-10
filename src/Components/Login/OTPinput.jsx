@@ -34,9 +34,6 @@ export default function () {
       return;
     }
     toast.warn("código incorrecto")
-    alert(
-      "The code you have entered is not correct, try again or re-send the link"
-    );
     return;
   }
 
