@@ -127,8 +127,8 @@ export default function ShoppingCart({showShoppingCart}) {
                     })}
                </div>
                 <form className="flex flex-col p-5 space-y-5" onSubmit={(event) => handlePayment(event)}>
-                    <label htmlFor="address">Ingresa tu dirección de envio:</label>
-                    <input id="address" onChange={(event) =>  setAddress(event.target.value)} type="text" placeholder="Calle 12 # 5 - 48" className="text-brand-6 bg-brand-1 border border-brand-6 p-4" required/>
+                    <label htmlFor="address">Ingresa tu dirección y ciudad de envio:</label>
+                    <input id="address" onChange={(event) =>  setAddress(event.target.value)} type="text" placeholder="Calle 12 # 5 - 48, Bogotá" className="text-brand-6 bg-brand-1 border border-brand-6 p-4" required/>
                     <button className="bg-brand-6 text-brand-1">Pagar</button>
                 </form>
                 {error && (
