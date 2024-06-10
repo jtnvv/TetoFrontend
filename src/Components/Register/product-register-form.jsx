@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function ProductRegisterForm() {
     const gropuStyle = "flex flex-col space-y-2";
     const labelStyle = "";
-    const inputStyle = "p-2 bg-brand-1 border-b-2 border-brand-6 focus:border-brand-2 focus:outline-0 required:bg-red hover:border-brand-2";
+    const inputStyle = "responsive:w-full block py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300  focus_outline-non";
     const [postData, setPostData] = useState({});
     const [productImage, setProductImage] = useState(null);
     const [colors, setColors] = useState([]);

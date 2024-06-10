@@ -3,6 +3,9 @@ import { useState } from "react";
 import { useContext } from "react";
 import { RecoveryContext } from "../../pages/login";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 export default function Reset() {
   const { email, otp, setPage } = useContext(RecoveryContext);
@@ -10,25 +13,51 @@ export default function Reset() {
     password: "",
     confirmPassword: "",
   });
+  const [errors, setError] = useState({});
+  const validation = () => {
+    //Errores
+    const error = {};
+    error.password="";
+    error.confirmPassword="";
 
+    // La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula y un número
+    let passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    if (!passwordRegex.test(values.password)) {
+      error.password =
+        "La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula y un número.";
+    }
+    let confirmPasswordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    if (!confirmPasswordRegex.test(values.confirmPassword)) {
+      error.confirmPasswordRegex =
+        "La contraseña confirmada debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula y un número.";
+    }
+    return error;
+  };
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
   function changePassword() {
-    if (values.password === values.confirmPassword) {
-      axios
-        .post(import.meta.env.VITE_LOCAL_URL + "change-password", {
-          pass: values.password,
-          email: email,
-        })
-        .then(() => setPage("login"))
-        .catch();
-      setPage("reset");
+    let errorL = validation();
+    setError(errorL);
+    if (errorL.password === "" && errorL.confirmPassword === "") {
+      if (values.password === values.confirmPassword) {
+        axios
+          .post(import.meta.env.VITE_LOCAL_URL + "change-password", {
+            pass: values.password,
+            email: email,
+          })
+          .then(() => setPage("login"))
+          .catch();
+        setPage("reset");
 
-      return;
+        return;
+      }
+      toast.warn("las contraseñas no coinciden")
+      return 
     }
-    return alert("La contraseñas no coinciden");
+    console.log(errorL)
+    return 
   }
 
   return (
@@ -56,6 +85,7 @@ export default function Reset() {
                   className="text-brand-6 w-full h-full flex flex-col items-left justify-left text-center px-5 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-blue-700"
                   required=""
                 ></input>
+                {errors.password && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.password}</span>}
               </div>
               <div>
                 <label
@@ -73,6 +103,7 @@ export default function Reset() {
                   className="text-brand-6 w-full h-full flex flex-col items-left justify-left text-center px-5 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-blue-700"
                   required=""
                 ></input>
+                 {errors.password && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.password}</span>}
               </div>
               <div className="flex items-start">
                 <div className="flex items-center h-5">
@@ -106,6 +137,7 @@ export default function Reset() {
             >
               Cambiar Contraseña
             </a>
+            <ToastContainer />
           </div>
         </div>
       </section>
