@@ -98,7 +98,7 @@ const RegisterForm = () => {
 
   return (
 
-    <div className="flex flex-col bg-white rounded-lg shadow-lg responsive:p-11 p-5 pt-20 responsive:w-[30rem] responsive:h-max w-screen h-full text-center">
+    <div className="flex flex-col bg-white rounded-lg shadow-lg responsive:p-14 p-10 pt-20 responsive:w-[30rem] w-screen responsive:h-max min-h-screen h-full responsive:min-h-max justify-center text-center">
       <div className="flex items-center justify-center mb-12">
         <img className="w-20 mx-5 " src="https://raw.githubusercontent.com/jtnvv/TetoFrontend/main/src/assets/TetoLogo.png" alt='Teto Logo' />
         <h1 className="text-6xl font-bold text-center text-brand-6 font-logo"  >TETO</h1>
@@ -133,7 +133,7 @@ const RegisterForm = () => {
           {errors.password && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.password}</span>}
         </div>
         <div className="flex text-brand-6 responsive:text-start">
-          <input type="checkbox" className="mr-2" required />
+          <input type="checkbox" className="mr-2 before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-gray-900 checked:bg-gray-900 checked:before:bg-gray-900 hover:before:opacity-10" required />
           <p className="m-0 text-start">He leido y acepto los <a href="/terminos" className="text-brand-6 underline">Terminos y condiciones</a></p>
         </div>
         <div className="flex flex-col">
