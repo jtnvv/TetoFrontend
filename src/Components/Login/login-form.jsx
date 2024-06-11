@@ -10,8 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function LoginForm() {
   const { setPage, setOTP, setEmail } = useContext(RecoveryContext);
-  const inputStyle =
-    "responsive:w-full block py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300  focus_outline-non";
+  const inputStyle = "responsive:w-full block py-2 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300  focus:border-brand-6 focus:outline-none focus:ring-0";
 
   const [values, setValues] = useState({
     email: "",
@@ -75,18 +74,18 @@ export default function LoginForm() {
     if (values.email) {
       const OTP = Math.floor(Math.random() * 9000 + 1000);
       setOTP(OTP);
-      let res="";
+      let res = "";
       try {
-         res = await sendRecoveryEmail({
+        res = await sendRecoveryEmail({
           OTP,
           recipient_email: values.email,
         });
         setPage("otp");
       } catch (error) {
-            toast.warn("Email incorrecto", {
-              position: "top-right",
-            });
-        
+        toast.warn("Email incorrecto", {
+          position: "top-right",
+        });
+
       }
       setEmail(values.email);
       return;
@@ -99,21 +98,21 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="flex flex-col bg-white rounded-lg shadow-lg responsive:p-11 p-5 pt-20 responsive:w-[30rem] responsive:h-max w-screen h-full">
-      <div className="flex items-center justify-center mb-5 ">
+    <div className="flex flex-col bg-white rounded-lg shadow-lg responsive:p-14 p-2 pt-20 responsive:w-[30rem] w-screen responsive:h-max h-screen justify-center">
+      <div className="flex items-center justify-center mb-10 ">
         <img
           className="w-20 mx-5 "
           src="https://raw.githubusercontent.com/jtnvv/TetoFrontend/main/src/assets/TetoLogo.png"
           alt="Teto Logo"
         />
-        <h1 className="text-5xl font-bold text-center text-gray-700 font-logo">
+        <h1 className="text-5xl font-bold text-center text-brand-6 font-logo">
           TETO
         </h1>
       </div>
 
       <BackButton />
       <form
-        className="space-y-8 flex flex-col items-center responsive:block"
+        className="space-y-8 flex flex-col items-center responsive:block w-full"
         onSubmit={(e) => onSubmit(e)}
       >
         <div>
@@ -130,6 +129,7 @@ export default function LoginForm() {
             name="email"
             value={values.email}
             placeholder="correo@gmail.com"
+            required
           />
           {errors.email && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.email}</span>}
         </div>
@@ -149,26 +149,29 @@ export default function LoginForm() {
             id="password"
             name="password"
             placeholder="Contraseña"
+            required
           />
-          
+
           {errors.password && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.password}</span>}
         </div>
 
-        <div className="font-default ">
+        <div className="font-default flex flex-col justify-center">
           <button
             type="submit"
-            className="w-full bg-brand-2 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-lg mt-1 mb-4"
+            className="w-full bg-brand-2 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-lg mt-1 mb-7"
           >
             Iniciar Sesion
           </button>
-          <a href="#" onClick={() => nagigateToOtp()} className="text-gray-800">
-            Olvidaste tu contraseña?
-          </a>
-          <ToastContainer />
+          <p className="text-brand-6">
+            ¿Olvidaste tu contraseña? &nbsp;
+            <a href="#" onClick={() => nagigateToOtp()}>
+              Haz clic aquí
+            </a>
+          </p>
         </div>
 
         <div className="text-black font-default">
-          ¿No estás registrado? <a href="/register">Regístrate aquí</a>
+          ¿No tienes una cuenta? <a href="/register">Regístrate aquí</a>
         </div>
       </form>
     </div>
