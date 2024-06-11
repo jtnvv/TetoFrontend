@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import { onRegistrationStore } from '../../api/auth.js'
 import { uploadImage as uploader } from "../../firebase.js";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const RegisterFormBrand = () => {
@@ -120,22 +122,30 @@ const RegisterFormBrand = () => {
                 const { data } = await onRegistrationStore(postData)
 
 
-                alert("EMPRESA CREADA");
+                toast.success("Registro Exitoso", {
+                    position: "top-right",
+                  });
                 setError('')
                 setSuccess(data.message)
-                //setState({...state, name:'',email: '', password: '',address:'',description:'',phone:'' })
-                navigate("/login")
+              
+                setTimeout(() => {
+                    navigate("/login")
+                }, 3000); 
 
             } catch (err) {
                 console.log(err)
                 setError(err.response.data.error)
-                alert("EMPRESA NO CREADA: " + err.response.data.error)
+                toast.error("Esta cuenta ya existe", {
+                    position: "top-right",
+                  });
                 setSuccess('')
             }
 
         } else {
 
-            alert("EMPRESA NO CREADA");
+            toast.error("Campos no validos", {
+                position: "top-right",
+              });
         }
     }
 
@@ -150,7 +160,7 @@ const RegisterFormBrand = () => {
                 <h1 className="text-6xl font-bold text-center text-brand-6 font-logo"  >TETO</h1>
             </div>
 
-
+            <ToastContainer/>
 
             <form className="space-y-8 flex flex-col items-center responsive:block" onSubmit={handleSubmit}>
 
@@ -206,8 +216,8 @@ const RegisterFormBrand = () => {
                     <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg" htmlFor="password">
                         Imagen de la marca
                     </label>
-                    
-                    <input  type="file" name="file-input" id="file-input" className="text-brand-6  block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none file:bg-gray-50 file:border-0 file:me-4 file:py-3 file:px-4"  accept="image/*" onChange={(event) => { setImageUpload(event.target.files[0]) }}  required />
+                
+                    <input  type="file" name="file-input" id="file-input" className="text-brand-6  block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none file:bg-black-50 file:border-0 file:me-4 file:py-3 file:px-4"  accept="image/*" onChange={(event) => { setImageUpload(event.target.files[0]) }}  required />
                 </div>
                 <div className="flex text-brand-6 responsive:text-start">
                 <input type="checkbox" className="mr-2 before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-gray-900 checked:bg-gray-900 checked:before:bg-gray-900 hover:before:opacity-10" required />

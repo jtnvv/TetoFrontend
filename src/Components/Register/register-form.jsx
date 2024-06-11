@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { onRegistration } from '../../api/auth'
 import { useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const RegisterForm = () => {
@@ -78,27 +80,36 @@ const RegisterForm = () => {
 
       try {
         const { data } = await onRegistration(state)
-        alert(data.message);
+      
         setError('')
         setSuccess(data.message)
-        //setState({ name:'',email: '', password: '' })
-        navigate("/login")
+        toast.success("Registro Exitoso", {
+          position: "top-right",
+        });
+        setTimeout(() => {
+          navigate("/login")
+        }, 3000); 
       } catch (err) {
         setError(err.response.data.error)
 
-        alert("USUARIO NO CREADO: " + err.response.data.error)
+        toast.error("Esta cuenta ya existe", {
+          position: "top-right",
+        });
         setSuccess('')
       }
 
     } else {
 
-      alert("USUARIO NO CREADO");
+      toast.error("Campos no validos", {
+        position: "top-right",
+      });
     }
   }
 
   return (
 
     <div className="flex flex-col bg-white rounded-lg shadow-lg responsive:p-14 p-10 pt-20 responsive:w-[30rem] w-screen responsive:h-max min-h-screen h-full responsive:min-h-max justify-center text-center">
+      <ToastContainer />
       <div className="flex items-center justify-center mb-12">
         <img className="w-20 mx-5 " src="https://raw.githubusercontent.com/jtnvv/TetoFrontend/main/src/assets/TetoLogo.png" alt='Teto Logo' />
         <h1 className="text-6xl font-bold text-center text-brand-6 font-logo"  >TETO</h1>
