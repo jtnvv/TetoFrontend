@@ -2,11 +2,13 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import { onRegistrationStore } from '../../api/auth.js'
 import { uploadImage as uploader } from "../../firebase.js";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const RegisterFormBrand = () => {
 
-    const inputStyle = "responsive:w-full block py-2.3 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300  focus:outline-none";
+    const inputStyle = "w-full block py-2 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300  focus:border-brand-6 focus:outline-none focus:ring-0";
 
     const navigate = useNavigate()
 
@@ -44,11 +46,11 @@ const RegisterFormBrand = () => {
             error.name = "El nombre no puede estar vacío.";
         }
         if (!state.description.trim()) {
-            error.description = "La descripcion no puede estar vacía.";
+            error.description = "La descripción no puede estar vacía.";
         }
 
         if (state.description.length < 50) {
-            error.description = "La descripcion no puede ser menor de 50 caracteres";
+            error.description = "La descripción no puede ser menor de 50 caracteres";
         }
 
         if (!state.address.trim()) {
@@ -59,7 +61,7 @@ const RegisterFormBrand = () => {
 
         let phoneRegex = /^\d{7,10}$/;
         if (!phoneRegex.test(state.phone)) {
-            error.phone = "El telefono no es valido"
+            error.phone = "El teléfono no es valido"
         }
 
         // Expresión regular para validar el correo electrónico
@@ -106,8 +108,8 @@ const RegisterFormBrand = () => {
         setError(errorL)
 
 
-        if (errorL.name === "" && errorL.password === "" && errorL.email === "" && errorL.description ==="" && errorL.phone==="" && errorL.address==="") {
-            
+        if (errorL.name === "" && errorL.password === "" && errorL.email === "" && errorL.description === "" && errorL.phone === "" && errorL.address === "") {
+
             //añadir función de registro aqui, pues no se ha encontrado errores 
             event.preventDefault()
             try {
@@ -120,22 +122,30 @@ const RegisterFormBrand = () => {
                 const { data } = await onRegistrationStore(postData)
 
 
-                alert("EMPRESA CREADA");
+                toast.success("Registro Exitoso", {
+                    position: "top-right",
+                  });
                 setError('')
                 setSuccess(data.message)
-                //setState({...state, name:'',email: '', password: '',address:'',description:'',phone:'' })
-                navigate("/login")
+              
+                setTimeout(() => {
+                    navigate("/login")
+                }, 3000); 
 
             } catch (err) {
                 console.log(err)
                 setError(err.response.data.error)
-                alert("EMPRESA NO CREADA: " + err.response.data.error)
+                toast.error("Esta cuenta ya existe", {
+                    position: "top-right",
+                  });
                 setSuccess('')
             }
 
         } else {
 
-            alert("EMPRESA NO CREADA");
+            toast.error("Campos no validos", {
+                position: "top-right",
+              });
         }
     }
 
@@ -143,71 +153,75 @@ const RegisterFormBrand = () => {
 
     return (
 
-        <div className="flex flex-col bg-white rounded-lg shadow-lg responsive:p-11 p-5 pt-20 responsive:w-[30rem] responsive:h-max w-fit h-fit"  >
+        <div className="flex flex-col bg-white rounded-lg shadow-lg responsive:p-14 p-10 pt-20 responsive:w-[30rem] w-screen responsive:h-max min-h-screen h-full responsive:min-h-max justify-center text-center"  >
 
             <div className="flex items-center justify-center mb-5 ">
                 <img className="w-20 mx-5 " src="https://raw.githubusercontent.com/jtnvv/TetoFrontend/main/src/assets/TetoLogo.png" alt='Teto Logo' />
-                <h1 className="text-5xl font-bold text-center text-gray-700 font-logo"  >TETO</h1>
+                <h1 className="text-6xl font-bold text-center text-brand-6 font-logo"  >TETO</h1>
             </div>
 
-
+            <ToastContainer/>
 
             <form className="space-y-8 flex flex-col items-center responsive:block" onSubmit={handleSubmit}>
 
-                <div>
-                    <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg "  htmlFor="name">
+                <div className="flex flex-col w-full">
+                    <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg " htmlFor="name" >
                         Nombre de la marca
                     </label>
-                    <input className={inputStyle} id="name" name="name" onChange={handleInput}
+                    <input className={inputStyle} id="name" name="name" onChange={handleInput} placeholder="Nombre"
                         type="text" />
                     {errors.name && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.name}</span>}
 
                 </div>
-                <div>
-                    <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg"  htmlFor="descripcion">
+                <div className="flex flex-col w-full">
+                    <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg" htmlFor="descripcion">
                         Descripción de tu marca
                     </label>
-                    <textarea className={inputStyle} id="description" name="description" onChange={handleInput}
+                    <textarea className={inputStyle} id="description" name="description" onChange={handleInput} placeholder="Descripción de tu marca"
                         type="text" />
                     {errors.description && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.description}</span>}
                 </div>
-                <div>
-                    <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg"  htmlFor="direccion">
+                <div className="flex flex-col w-full">
+                    <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg" htmlFor="direccion">
                         Dirección
                     </label>
-                    <input className={inputStyle} id="address" name="address" onChange={handleInput}
+                    <input className={inputStyle} id="address" name="address" onChange={handleInput} placeholder="Dirección"
                         type="text" />
                     {errors.address && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.address}</span>}
                 </div>
-                <div>
-                    <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg"  htmlFor="telefono">
-                        Telefono
+                <div className="flex flex-col w-full">
+                    <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg" htmlFor="telefono">
+                        Teléfono
                     </label>
-                    <input className={inputStyle} id="phone" name="phone" onChange={handleInput} type="text" />
+                    <input className={inputStyle} id="phone" name="phone" onChange={handleInput} type="text" placeholder="Teléfono"/>
                     {errors.phone && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.phone}</span>}
                 </div>
-                <div>
-                    <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg"  htmlFor="email">
-                        Correo Electronico
+                <div className="flex flex-col w-full">
+                    <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg" htmlFor="email">
+                        Correo Electrónico
                     </label>
-                    <input className={inputStyle} id="email" name="email" onChange={handleInput}
+                    <input className={inputStyle} id="email" name="email" onChange={handleInput} placeholder="Correo Electrónico"
                         type="email" />
                     {errors.email && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.email}</span>}
                 </div>
-                <div>
-                    <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg"  htmlFor="password">
+                <div className="flex flex-col w-full">
+                    <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg" htmlFor="password">
                         Contraseña
                     </label>
-                    <input className={inputStyle} id="password" name="password" onChange={handleInput}
+                    <input className={inputStyle} id="password" name="password" onChange={handleInput} placeholder="***********"
                         type="password" />
                     {errors.password && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.password}</span>}
                 </div>
-                <div>
-                    <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg"  htmlFor="password">
+                <div className="flex flex-col w-full">
+                    <label className="block text-gray-700 font-bold mb-1 font-default text-left text-lg" htmlFor="password">
                         Imagen de la marca
                     </label>
-                    <input className="text-brand-6 w-60" id="img" name="imagen" accept="image/*" onChange={(event) => { setImageUpload(event.target.files[0]) }}
-                        type="file" required />
+                
+                    <input  type="file" name="file-input" id="file-input" className="text-brand-6  block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none file:bg-black-50 file:border-0 file:me-4 file:py-3 file:px-4"  accept="image/*" onChange={(event) => { setImageUpload(event.target.files[0]) }}  required />
+                </div>
+                <div className="flex text-brand-6 responsive:text-start">
+                <input type="checkbox" className="mr-2 before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-gray-900 checked:bg-gray-900 checked:before:bg-gray-900 hover:before:opacity-10" required />
+                    <p className="m-0 text-start">He leido y acepto los <a href="/terminos" className="text-brand-6 underline">Terminos y condiciones</a></p>
                 </div>
                 <div >
                     <button className="responsive:w-full bg-brand-2 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-lg mt-2">
