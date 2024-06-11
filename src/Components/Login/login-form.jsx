@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function LoginForm() {
   const { setPage, setOTP, setEmail } = useContext(RecoveryContext);
-  const inputStyle = "responsive:w-full block py-2 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300  focus:border-brand-6 focus:outline-none focus:ring-0";
+  const inputStyle = "w-full block py-2 px-3 text-sm text-gray-700 bg-transparent border-0 border-b-2 border-gray-300 focus:border-brand-6 focus:outline-none focus:ring-0";
 
   const [values, setValues] = useState({
     email: "",
@@ -61,7 +61,7 @@ export default function LoginForm() {
         setError('')
         setSuccess(res.message)
       } catch (err) {
-        toast.warn("Revisa el email y contraseña introducidos", {
+        toast.error("Revisa el email y contraseña introducidos", {
           position: "top-right",
         });
         setError(err.response.data.errors[0].msg);
@@ -69,43 +69,45 @@ export default function LoginForm() {
       }
     }
   };
-
+  const toastError = () => {
+    toast.error("Email incorrecto", {
+      position: "top-right",
+    });
+  }
   async function nagigateToOtp() {
     if (values.email) {
       const OTP = Math.floor(Math.random() * 9000 + 1000);
       setOTP(OTP);
-      let res = "";
       try {
-        res = await sendRecoveryEmail({
+        await sendRecoveryEmail({
           OTP,
           recipient_email: values.email,
         });
         setPage("otp");
       } catch (error) {
-        toast.warn("Email incorrecto", {
-          position: "top-right",
-        });
-
+        toastError();
+        return;
       }
       setEmail(values.email);
       return;
     }
 
-    toast.warn("Introduce el email pedazo de calabaza", {
+    toast.error("Introduce el email", {
       position: "top-right",
     });
     return;
   }
 
   return (
-    <div className="flex flex-col bg-white rounded-lg shadow-lg responsive:p-14 p-2 pt-20 responsive:w-[30rem] w-screen responsive:h-max h-screen justify-center">
-      <div className="flex items-center justify-center mb-10 ">
+    <div className="flex flex-col bg-white rounded-lg shadow-lg responsive:p-14 p-10 pt-20 responsive:w-[30rem] w-screen responsive:h-max min-h-screen h-full responsive:min-h-max justify-center text-center">
+      <ToastContainer />
+      <div className="flex items-center justify-center mb-12 ">
         <img
           className="w-20 mx-5 "
           src="https://raw.githubusercontent.com/jtnvv/TetoFrontend/main/src/assets/TetoLogo.png"
           alt="Teto Logo"
         />
-        <h1 className="text-5xl font-bold text-center text-brand-6 font-logo">
+        <h1 className="text-6xl font-bold text-center text-brand-6 font-logo">
           TETO
         </h1>
       </div>
@@ -115,7 +117,7 @@ export default function LoginForm() {
         className="space-y-8 flex flex-col items-center responsive:block w-full"
         onSubmit={(e) => onSubmit(e)}
       >
-        <div>
+        <div className="w-full">
           <label
             className="block text-brand-6 font-bold mb-2 font-default text-left text-lg"
             htmlFor="email"
@@ -134,7 +136,7 @@ export default function LoginForm() {
           {errors.email && <span className="text-danger text-red-800 text-left block w-96 mt-1 text-sm">{errors.email}</span>}
         </div>
 
-        <div className="mb-3">
+        <div className="mb-3 w-full">
           <label
             htmlFor="password"
             className="block text-brand-6 font-bold mb-2 font-default text-left text-lg"
@@ -164,14 +166,15 @@ export default function LoginForm() {
           </button>
           <p className="text-brand-6">
             ¿Olvidaste tu contraseña? &nbsp;
-            <a href="#" onClick={() => nagigateToOtp()}>
+            <a href="#" onClick={() => nagigateToOtp()} className="text-brand-6 underline">
               Haz clic aquí
             </a>
           </p>
         </div>
 
         <div className="text-black font-default">
-          ¿No tienes una cuenta? <a href="/register">Regístrate aquí</a>
+          <p>¿No tienes una cuenta?</p>
+          <p>Registrate como <a href="/register" className="text-brand-6 underline">cliente</a> o como <a href="/register-brand" className="text-brand-6 underline">marca</a></p>
         </div>
       </form>
     </div>
