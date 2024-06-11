@@ -62,7 +62,7 @@ const CardOrderUser = (props) => {
             setStatusMessage("No ha sido pagado aún.");
             setCancelOrder(true);
             setPayLink(true);
-        } else if (props.item.order.sent_status && !props.item.order.received_status) {
+        } else if (props.item.order.sent_status && !props.item.order.received_status && props.item.order.received_at === null) {
             setStatusMessage("Ya se envió pero no ha sido recibido.");
 
         } else if (!props.item.order.sent_status) {

@@ -61,7 +61,7 @@ export default function UserPageProfile() {
 
         <Layout>
 
-            <div className="flex  flex-wrap font-default    bg-white   ">
+            <div className="flex  flex-wrap font-default min-h-screen    bg-white   ">
 
                 <div className=" bg-white lg:w-1/4  px-20 py-40  space-y-5  ">
                     <div className="space-y-2">
@@ -81,7 +81,7 @@ export default function UserPageProfile() {
                     </div>
 
                 </div>
-                <div className="bg-[#D9D9D9]  lg:w-3/4 sm:w-max responsive:h-screen">
+                <div className="bg-[#D9D9D9]  lg:w-3/4 sm:w-screen responsive:min-h-screen 2xl:min-h-screen xl:min-h-screen lg:min-h-screen ">
                     <div className="  space-y-10 py-5 px-20">
 
                         <div className="mb-10  ">
