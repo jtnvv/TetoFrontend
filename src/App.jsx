@@ -20,6 +20,8 @@ import PaymentSuccess from "./pages/payment-success";
 import Contact from "./pages/contact";
 import ActivateAdvertisement from "./pages/activate-advertisement";
 import ActivateAccount from "./pages/activate-account";
+import Terminos from "./pages/terms";
+import Manual from "./pages/manual";
 
 
 const PrivateRoutes = () => {
@@ -34,17 +36,17 @@ const RestrictedRoutes = () => {
 
 const InactiveRoutes = () => {
   const { role } = useSelector(state => state.auth);
-  return <>{role == "inactive" ? <Navigate to='/activate-advertisement' /> : <Outlet /> }</>
+  return <>{role == "inactive" ? <Navigate to='/activate-advertisement' /> : <Outlet />}</>
 }
 
 const UserRoutes = () => {
   const { role } = useSelector(state => state.auth);
-  return <>{role == "brand" ? <Navigate to='/' /> : (role  == "inactive" ? <Navigate to='/activate-advertisement' /> : <Outlet />) }</>
+  return <>{role == "brand" ? <Navigate to='/' /> : (role == "inactive" ? <Navigate to='/activate-advertisement' /> : <Outlet />)}</>
 }
 
 const BrandRoutes = () => {
   const { role } = useSelector(state => state.auth);
-  return <>{role == "user" ? <Navigate to='/' /> : (role  == "inactive" ? <Navigate to='/activate-advertisement' /> : <Outlet />) }</>
+  return <>{role == "user" ? <Navigate to='/' /> : (role == "inactive" ? <Navigate to='/activate-advertisement' /> : <Outlet />)}</>
 }
 
 const MobileRoutes = () => {
@@ -64,6 +66,8 @@ function App() {
           <Route path='/product/:product_id' element={<Product />} />
           <Route path='/about-us' element={<AboutUs />} />
           <Route path='contact' element={<Contact />} />
+          <Route path='/terminos' element={<Terminos />} />
+          <Route path='/manual' element={<Manual />} />
 
           <Route element={<PrivateRoutes />}>
 

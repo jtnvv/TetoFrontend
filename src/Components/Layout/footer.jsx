@@ -37,6 +37,7 @@ export default function Footer() {
               <li><a href="/about-us" className="text-gray-300 hover:text-brand-1">Misión</a></li>
               <li><a href="/about-us" className="text-gray-300 hover:text-brand-1">Visión</a></li>
               <li><a href="/about-us" className="text-gray-300 hover:text-brand-1">¿Quienes somos?</a></li>
+              <li><a href="/terminos" className="text-gray-300 hover:text-brand-1">Teminos</a></li>
             </ul>
           </div>
           <div className="m-5">
@@ -44,6 +45,7 @@ export default function Footer() {
             <ul className="mt-2 text-sm text-center">
               <li><a href="/brand-search" className="text-gray-300 hover:text-brand-1">Marcas asociadas</a></li>
               <li><a href="/contact" className="text-gray-300 hover:text-brand-1">Contáctanos (PQRS)</a></li>
+              <li><a href="/manual" className="text-gray-300 hover:text-brand-1">Manual de usuario</a></li>
             </ul>
           </div>
         </div>
