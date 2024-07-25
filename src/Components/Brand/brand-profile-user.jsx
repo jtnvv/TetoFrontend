@@ -32,14 +32,13 @@ export default function BrandProfileUser(props) {
     const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
     const totalPages = Math.ceil(products.length / productsPerPage);
-
     return (
         <div className="responsive:flex font-default min-h-screen relative">
-    
-            <div className="bg-brand-6 text-brand-2 flex flex-wrap flex-col items-center shadow-lg rounded-3xl my-5 responsive:my-16 w-4/5 sm:w-1/2 responsive:w-1/4 h-full py-0 responsive:py-10 mx-auto responsive:ml-20 ">
+
+            <div className="bg-brand-6 text-brand-2 flex flex-wrap items-center shadow-lg rounded-3xl my-5 responsive:my-16 w-4/5 sm:w-1/2 responsive:w-[33em] h-full py-0 responsive:py-10 mx-auto responsive:ml-20 justify-center text-pretty p-2">
                 <img src={store.logo} alt="Logo" className="w-1/2 m-5 rounded-3xl" />
-                <h1 className="m-2 font-semibold">{store.name}</h1>
-                <p className='p-10'>Descripcion: {store.description}</p>
+                <h1 className="m-2 font-semibold text-center break-all">{store.name ? (store.name.length > 50 ? store.name.substring(0, 50) + '...' : store.name) : 'Cargando...'}</h1>
+                <p className='text-center'>Descripcion: {store.description}</p>
             </div>
 
             <div className="bg-brand-1 text-brand-6 w-full">
