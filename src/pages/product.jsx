@@ -14,6 +14,8 @@ import CardItem from '../Components/item/card-item';
 
 export default function Product() {
     const [product, setProduct] = useState({});
+    const [description, setDescription] = useState("");
+    const [initialDescriptionValue, setInitialDescriptionValue] = useState(null);
     const [relatedProducts, setRelatedProducts] = useState([]);
     const [owner, setOwner] = useState(0);
     const [isUserOwner, setIsUserOwner] = useState(false);
@@ -78,6 +80,7 @@ export default function Product() {
 
         const newItemData = {
             item_id: product.id,
+            description: description,
             price: price,
             stock: stock,
             categories: categoriesResponse,
@@ -88,6 +91,7 @@ export default function Product() {
         updateItem(newItemData)
         .then(res => {
             setIsWaitingResponse(false);
+            setInitialDescriptionValue(description);
             setInitialStockValue(parseInt(stock));
             setInitialPrice(price);
             setIsNotEditable(true);
@@ -100,6 +104,11 @@ export default function Product() {
     const setItemStock = (event) => {
         setIsNotEditable(initialStockValue == event.target.value);
         setStock(event.target.value);
+    };
+
+    const setItemDescription = (event) => {
+        setIsNotEditable(initialDescriptionValue == event.target.value);
+        setDescription(event.target.value);
     };
 
     const addToCart = () => {
@@ -158,6 +167,8 @@ export default function Product() {
             setInitialPrice(response.data.item.price);
             response.data.item.price = priceFormatterCOP.format(parseFloat(response.data.item.price));
             
+            setDescription(product.description);
+            setInitialDescriptionValue(product.description);
             setCategories(JSON.parse(resCategories.data.categories));
             setColors(JSON.parse(resColors.data.colors));
             setSizes(JSON.parse(resSizes.data.sizes));
@@ -244,6 +255,15 @@ export default function Product() {
                             <div className='mb-5'>
                                 <h2 className='text-lg'>Precio:</h2>
                                 <CurrencyInput className={inputStyle} defaultValue={getItemTotalPrice(product)} onValueChange={(value) => setPrice(value)} prefix="$" suffix="COP" placeholder="$100,000 COP"/>
+                            </div>
+                        )}
+
+                        {!isUserOwner ? (
+                                <h6 className='text-brand-6 text-sm'>{product.description}</h6>
+                        ) : (
+                            <div className='mb-5'>
+                                <h2 className='text-lg'>Descripción:</h2>
+                                <textarea className={inputStyle} defaultValue={product.description} onChange={(value) => setItemDescription(value)} placeholder='Esta es la descripción del producto'/>
                             </div>
                         )}
 

@@ -91,8 +91,12 @@ export default function ProductRegisterForm() {
         <h2 className="text-2xl font-bold pb-4">Agregar un producto</h2>
         <h3>Ten en cuenta que después del registro no podras cambiar la imagen o nombre del producto.</h3>
         <div className={gropuStyle}>
-            <label htmlFor="name" className={labelStyle} >Nombre item*:</label>
+            <label htmlFor="name" className={labelStyle} >Nombre*:</label>
             <input type="text" placeholder="Nombre" id="name" name="name" className={inputStyle} required onChange={onChange}/>
+        </div>
+        <div className={gropuStyle}>
+            <label htmlFor="name" className={labelStyle} >Descripción:</label>
+            <textarea placeholder="Descripción del producto" id="description" name="description" className={inputStyle} onChange={onChange}/>
         </div>
         <div className={gropuStyle}>
             <label htmlFor="colors" className={labelStyle} >¿En qué colores está disponible?*:</label>
