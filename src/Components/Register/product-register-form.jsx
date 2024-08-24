@@ -95,8 +95,8 @@ export default function ProductRegisterForm() {
             <input type="text" placeholder="Nombre" id="name" name="name" className={inputStyle} required onChange={onChange}/>
         </div>
         <div className={gropuStyle}>
-            <label htmlFor="name" className={labelStyle} >Descripción:</label>
-            <textarea placeholder="Descripción del producto" id="description" name="description" className={inputStyle} onChange={onChange}/>
+            <label htmlFor="name" className={labelStyle} >Descripción (Máximo 255 letras):</label>
+            <textarea placeholder="Descripción del producto" id="description" name="description" className={inputStyle} onChange={onChange} maxLength="255"/>
         </div>
         <div className={gropuStyle}>
             <label htmlFor="colors" className={labelStyle} >¿En qué colores está disponible?*:</label>

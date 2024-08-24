@@ -259,11 +259,11 @@ export default function Product() {
                         )}
 
                         {!isUserOwner ? (
-                                <h6 className='text-brand-6 text-sm'>{product.description}</h6>
+                                <h6 className='text-brand-6 text-sm text-wrap'>{product.description}</h6>
                         ) : (
                             <div className='mb-5'>
-                                <h2 className='text-lg'>Descripción:</h2>
-                                <textarea className={inputStyle} defaultValue={product.description} onChange={(value) => setItemDescription(value)} placeholder='Esta es la descripción del producto'/>
+                                <h2 className='text-lg'>Descripción (Máximo 255 letras):</h2>
+                                <textarea className={inputStyle} maxLength="255" defaultValue={product.description} onChange={(value) => setItemDescription(value)} placeholder='Esta es la descripción del producto'/>
                             </div>
                         )}
 
