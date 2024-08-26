@@ -46,6 +46,7 @@ export default function Footer() {
               <li><a href="/brand-search" className="text-gray-300 hover:text-brand-1">Marcas asociadas</a></li>
               <li><a href="/contact" className="text-gray-300 hover:text-brand-1">Contáctanos (PQRS)</a></li>
               <li><a href="/manual" className="text-gray-300 hover:text-brand-1">Manual de usuario</a></li>
+              <li><a href="/faq" className="text-gray-300 hover:text-brand-1">Preguntas frecuentes</a></li>
             </ul>
           </div>
         </div>

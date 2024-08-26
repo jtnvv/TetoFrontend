@@ -22,6 +22,7 @@ import ActivateAdvertisement from "./pages/activate-advertisement";
 import ActivateAccount from "./pages/activate-account";
 import Terminos from "./pages/terms";
 import Manual from "./pages/manual";
+import Faq from "./pages/faq";
 
 
 const PrivateRoutes = () => {
@@ -68,6 +69,7 @@ function App() {
           <Route path='contact' element={<Contact />} />
           <Route path='/terminos' element={<Terminos />} />
           <Route path='/manual' element={<Manual />} />
+          <Route path='/faq' element={<Faq />} />
 
           <Route element={<PrivateRoutes />}>
 
