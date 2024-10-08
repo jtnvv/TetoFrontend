@@ -21,15 +21,32 @@ export const storage = getStorage(app);
  * @returns {String} Url of saved image
  */
 export async function uploadImage(file, folder) {
-    const fileName = folder + file.name.toString() + v4();
+  
+    if (!file) {
+      return { success: false, message: "La imagen es obligatoria" };
+    }
+    const validTypes = ["image/jpeg", "image/png"];
+    if (!validTypes.includes(file.type)) {
+      return { success: false, message: "La imagen debe ser un archivo JPG o PNG" };
+    }
+    
+    const fileName = `${folder}${file.name.toString()}_${v4()}`;
     const storageRef = ref(storage, fileName);
-    await uploadBytes(storageRef, file);
-    return await getDownloadURL(storageRef);
-}
+    
+    try {
+      
+      await uploadBytes(storageRef, file);
+      
+      const downloadURL = await getDownloadURL(storageRef);
+      return { success: true, url: downloadURL };
+    } catch (error) {
+      
+      return { success: false, message: "Error al subir la imagen. Intenta nuevamente." };
+    }
+    
+  }  
 
 export async function deleteImage(url){
-  
-
   // Create a reference to the file to delete
   const imageRef = ref(storage, url);
   await deleteObject(imageRef).then(() => { // also remove the image from Firebase
@@ -37,8 +54,5 @@ export async function deleteImage(url){
   }).catch((error) => {
     console.log("ocurrio un error: ", error)
   })
-
-
-
 
 }
